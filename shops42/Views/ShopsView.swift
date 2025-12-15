@@ -1,0 +1,294 @@
+//
+//  ShopsView.swift
+//  shops24
+//
+//  Created by Diederick de Buck on 10/12/2022.
+//
+
+import Foundation
+import SwiftUI
+import P42_extensions
+import P42_keychain
+import P42_sound
+import P42_viewmodifiers
+import P42_utils
+
+
+enum ShopsLabel: String {
+    case pickerTitle = "Select Shop"
+    case empty = "No shops configured"
+    case loggedIn = "Logged in"
+    case loggedOut = "Logged out"
+}
+
+struct ShopsListView: View {
+    
+    @Environment(PortfolioModel.self) private var portfolio
+    @State private var selectedShop: String = ""
+    @State private var icon: String = ""
+    @State private var granted: Bool = false
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Picker(ShopsLabel.pickerTitle.rawValue, selection: $selectedShop) {
+                ForEach(portfolio.shops, id: \.self) { shop in
+                    ShopListItem(
+                        shopLabel: shop,
+                        shopLabelColor: Color(LabelColor.picker.rawValue)
+                    )
+                }
+            }
+            .onAppear {
+                selectedShop = portfolio.selectedShop
+                _ = portfolio.selectShop(selectedShop)
+                icon = PortfolioModel.securityIcon(portfolio.securityState(portfolio.selectedShop)).rawValue
+                granted = portfolio.securityState(portfolio.selectedShop) == .granted
+            }
+            .onChange(of: selectedShop) { _, changed in
+                _ = portfolio.selectShop(changed)
+                icon = PortfolioModel.securityIcon(portfolio.securityState(changed)).rawValue
+                granted = portfolio.securityState(changed) == .granted
+            }
+            .pickerStyle(.inline)
+            Image(systemName: icon)
+                .portrait(
+                    width: Squares.portrait.rawValue,
+                    height: Squares.portrait.rawValue
+                )
+            Text(granted ? ShopsLabel.loggedIn.rawValue : ShopsLabel.loggedOut.rawValue)
+            Divider()
+            Spacer()
+        }
+    }
+}
+
+
+struct ShopsSyncView: View {
+    
+    @Environment(AlertModel.self) private var alert
+    @Environment(PortfolioModel.self) private var portfolio
+    @Environment(ConnectivityProvider.self) var watch
+    
+    @State private var isPressed: Bool = false
+    @State private var showAlert: Bool = false
+    @State private var showPaywall: Bool = false
+    
+    @MainActor
+    func syncWatch(connectivityProvider: ConnectivityProvider, portfolio: PortfolioModel) -> (Topic, Diagnostics) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasLicense.rawValue) {
+            return (.license, .unlicensed)
+        }
+        if !portfolio.shopIsSelected(portfolio.selectedShop) {
+            return (.shop, .unsubscribed)
+        }
+        if !Security.isAuthorizedShop(portfolio.selectedShop) {
+            return (.security, .unauthorized)
+        }
+        guard let result = Keychain.instance.getKeyChain(
+            service: Bundle.main.displayName!,
+            account: portfolio.selectedShop
+        ) else {
+            return (.security, .invalidAccessToken)
+        }
+        let accessToken = String(decoding: result, as: UTF8.self)
+        let message = Shops42.shopAdd(portfolio.selectedShop, accessToken: accessToken)
+        connectivityProvider.semaphore.wait()
+        connectivityProvider.send(message: message)
+        connectivityProvider.semaphore.signal()
+        return (.none, .okay)
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Button {
+                    let (topic, diagnostics) = self.syncWatch(
+                        connectivityProvider: watch,
+                        portfolio: portfolio
+                    )
+                    if (diagnostics == .unlicensed) {
+                        showPaywall = true
+                        return
+                    }
+                    if (diagnostics != .okay) {
+                        showAlert = true
+                        Sound.playSound(
+                            .reject,
+                            soundExtension: .aif,
+                            audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                        )
+                        alert.showAlert(topic, diagnostics: diagnostics)
+                        return
+                    }
+                } label: {
+                    ButtonLabelWithImage(
+                        buttonImageName: Icon.sync.rawValue,
+                        buttonTitle: ButtonTitle.sync.rawValue.capitalized,
+                        buttonColor: Color(LabelColor.button.rawValue),
+                        buttonLabelColor: Color(LabelColor.button.rawValue),
+                        buttonBackgroundColor: Color(NavigationColor.button.rawValue)
+                    )
+                    .scaleEffect(isPressed ? 0.9 : 1.0)
+                }
+                .pressEvents {
+                    withAnimation(.easeIn(duration: 0.1)) {
+                        isPressed = true
+                    }
+                } onRelease: {
+                    withAnimation {
+                        isPressed = false
+                    }
+                }
+            }
+        }
+        .alert(alert.topicTitle, isPresented: $showAlert) {
+            Button(ButtonTitle.ok.rawValue.capitalized) {
+            }
+        } message: {
+            Text(alert.errorMessage)
+        }
+    }
+}
+
+struct ShopsAuthView: View {
+    
+    @Environment(PortfolioModel.self) private var portfolio
+    @State private var isPressed = false
+    
+    var body: some View {
+        VStack {
+            HStack {
+                NavigationLink(
+                    destination:
+                        AppAuthView()
+                        .onAppear {
+                            _ = portfolio.selectShop(portfolio.selectedShop)
+                        }
+                ) {
+                    ButtonLabelWithImage(
+                        buttonImageName: Icon.login.rawValue,
+                        buttonTitle: ButtonTitle.login.rawValue.capitalized,
+                        buttonColor: Color(LabelColor.button.rawValue),
+                        buttonLabelColor: Color(LabelColor.button.rawValue),
+                        buttonBackgroundColor: Color(NavigationColor.button.rawValue)
+                    )
+                }
+                .pressEvents {
+                    withAnimation(.easeIn(duration: 0.1)) {
+                        isPressed = true
+                    }
+                } onRelease: {
+                    withAnimation {
+                        isPressed = false
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct ShopsNavigationView: View {
+    @Environment(PortfolioModel.self) private var portfolio
+
+    
+    @ViewBuilder
+    func view(_ isAuthenticated: Bool) -> some View {
+        switch isAuthenticated {
+        case true:
+            ShopsSyncView()
+        default:
+            ShopsAuthView()
+        }
+    }
+    
+    var body: some View {
+        view(portfolio.securityState(portfolio.selectedShop) == .granted)
+    }
+}
+
+
+struct ShopsConnectionView: View {
+    
+    @Environment(ConnectivityProvider.self) var watch
+    
+    var body: some View {
+        VStack {
+            ButtonLabelWithImage(
+                buttonImageName: Icon.connection.rawValue,
+                buttonTitle: watch.watchIsReady ? WatchState.connected.rawValue : WatchState.disconnected.rawValue,
+                buttonColor: Utils.stateFieldColor(watch.watchIsReady ? .up : .down),
+                buttonLabelColor: Color(LabelColor.p.rawValue),
+                buttonBackgroundColor: .clear
+            )
+        }
+    }
+}
+
+
+struct ShopsView: View {
+    
+    @Environment(PortfolioModel.self) private var portfolio
+    
+    var body: some View {
+        ZStack {
+            BackgroundView(
+                watermarkImageName: Watermark.graph.rawValue,
+                opacity: 0.05
+            )
+            VStack {
+                ShopsListView()
+                ShopsNavigationView()
+                ShopsConnectionView()
+                    .padding(.bottom, 100)
+            }
+            .modifier(
+                EmptyDataModifier(
+                    items: portfolio.shops,
+                    placeholder:
+                        Label(ShopsLabel.empty.rawValue, systemImage: Icon.orders.rawValue)
+                        .labelStyle(BackgroundLabelStyle(
+                            color: Color(LabelColor.button.rawValue),
+                            backgroundColor: Color(NavigationColor.button.rawValue),
+                            radius: 25.0
+                        )
+                        )
+                )
+            )
+            .scrollContentBackground(.hidden)
+            .navigationTitle(TabItem.shops.rawValue.capitalized)
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem {
+                    NavigationLink {
+                        ShopView()
+                            .onAppear {
+                                Sound.playSound(
+                                    .click,
+                                    audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                                )
+                            }
+                    } label: {
+                        Image(systemName: Icon.plus.rawValue)
+                            .foregroundColor(.white)
+                    }
+                }
+                ToolbarItem {
+                    Button {
+                        Sound.playSound(
+                            .trash,
+                            soundExtension: .aif,
+                            audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                        )
+                        _ = portfolio.delShop(portfolio.selectedShop)
+                        _ = portfolio.selectFirstShop()
+                    } label: {
+                        Image(systemName: Icon.minus.rawValue)
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+        }
+    }
+}
+

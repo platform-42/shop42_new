@@ -1,0 +1,69 @@
+{
+  "originHash" : "a58f33c40bcae2c1df593f946fe5cbec6c850496b66d2ea4f379b6cd1f409a71",
+  "pins" : [
+    {
+      "identity" : "appauth-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/openid/AppAuth-iOS",
+      "state" : {
+        "revision" : "145104f5ea9d58ae21b60add007c33c1cc0c948e",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "p42-extensions",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-extensions.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "db0f90da6e8b35b862a5b736468149426ccad5e4"
+      }
+    },
+    {
+      "identity" : "p42-keychain",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/p42-keychain.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ecea3d4c54481d4f5e8fe5e3cfad8da76c3f84cb"
+      }
+    },
+    {
+      "identity" : "p42-sound",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-sound.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "13d602369020a9030089990377ec17cf27711c22"
+      }
+    },
+    {
+      "identity" : "p42-utils",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-utils.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5c9ca921331a842548d52ebdf99889c00a2fdffa"
+      }
+    },
+    {
+      "identity" : "p42-viewmodifiers",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-viewmodifiers.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a61809941f2530a72c2552c2e4fe32a83870a732"
+      }
+    },
+    {
+      "identity" : "p42-watchos-widgets",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-watchos-widgets.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f591e3c537ebf2d26be8fe138c05c9db3342b8cc"
+      }
+    }
+  ],
+  "version" : 3
+}

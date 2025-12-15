@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ *  HTML sections (body, header, section, footer)
+ */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+    letter-spacing: 1.03px;
+    background-color: white;
+    text-align: left;
+    line-height: 1.2;
+    margin: auto;
+}
+
+.header {
+    background-color: rgb(34,48,60);
+}
+
+.section {
+    background-color: white;
+}
+
+.footer {
+    background-color: rgb(34,48,60);
+    color: white;
+}
+
+
+/*
+ *  HTML headers
+ */
+h1 {
+    font-size: 1.6em;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+
+h2 {
+    font-size: 1.3em;
+    font-weight: 300;
+    text-align: center;
+    color: black;
+    padding: 30px;
+}
+
+
+/*
+ *  HTML paragraphs
+ */
+p {
+    font-size: 1.1em;
+    font-weight: 200;
+    text-align: center;
+    color: black;
+    padding: 20px;
+}
+
+.footer {
+    font-size: 1.1em;
+    font-weight: 200;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+
+/*
+ *  HTML elements
+ */
+a {
+    background-color: rgb(76,186,180);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.3em;
+}
+
+
+img {
+    display: block;
+    margin: 0px auto;
+    width: 76px;
+    border-radius: 20px;
+}
+
+
+hr {
+    width: 25%;
+    margin: 20px auto;
+}
+

@@ -1,0 +1,69 @@
+{
+  "originHash" : "27d97f27d7e99cc31ab368f336a87c5306a34873394c2f8ae3d548101a15f713",
+  "pins" : [
+    {
+      "identity" : "appauth-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/openid/AppAuth-iOS",
+      "state" : {
+        "revision" : "145104f5ea9d58ae21b60add007c33c1cc0c948e",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "p42-extensions",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-extensions.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "db0f90da6e8b35b862a5b736468149426ccad5e4"
+      }
+    },
+    {
+      "identity" : "p42-keychain",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/p42-keychain.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "244c0a9db559ca749ea0478638ac415ccba1d7d6"
+      }
+    },
+    {
+      "identity" : "p42-sound",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-sound.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9f5ad94d354af647bbe6f165b0c6f332053faa5f"
+      }
+    },
+    {
+      "identity" : "p42-utils",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-utils.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3aaf1e677eaad38fa50f71b41c2fbc65604305ee"
+      }
+    },
+    {
+      "identity" : "p42-viewmodifiers",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-viewmodifiers.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a61809941f2530a72c2552c2e4fe32a83870a732"
+      }
+    },
+    {
+      "identity" : "p42-watchos-widgets",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-watchos-widgets.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "086f7c19a388e37dbf61fae47bd87026deb6af88"
+      }
+    }
+  ],
+  "version" : 3
+}
