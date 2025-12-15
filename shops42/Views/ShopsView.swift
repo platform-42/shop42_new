@@ -57,7 +57,6 @@ struct ShopsListView: View {
                     height: Squares.portrait.rawValue
                 )
             Text(granted ? ShopsLabel.loggedIn.rawValue : ShopsLabel.loggedOut.rawValue)
-            Divider()
             Spacer()
         }
     }
@@ -129,16 +128,6 @@ struct ShopsSyncView: View {
                         buttonLabelColor: Color(LabelColor.button.rawValue),
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
-                    .scaleEffect(isPressed ? 0.9 : 1.0)
-                }
-                .pressEvents {
-                    withAnimation(.easeIn(duration: 0.1)) {
-                        isPressed = true
-                    }
-                } onRelease: {
-                    withAnimation {
-                        isPressed = false
-                    }
                 }
             }
         }
@@ -174,15 +163,7 @@ struct ShopsAuthView: View {
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
                 }
-                .pressEvents {
-                    withAnimation(.easeIn(duration: 0.1)) {
-                        isPressed = true
-                    }
-                } onRelease: {
-                    withAnimation {
-                        isPressed = false
-                    }
-                }
+
             }
         }
     }

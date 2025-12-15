@@ -19,10 +19,10 @@ enum LogoutTitle: String {
 
 struct LogoutView: View {
     
-    @Environment(AlertModel.self) private var alert
+    @Environment(AlertModel.self) private var alertModel
     @Environment(PortfolioModel.self) private var portfolio
     @Environment(ConnectivityProvider.self) private var watch
-    @Environment(TabsModel.self) private var tabs
+    @Environment(TabsModel.self) private var tabsModel
     
     @State private var showAlert: Bool = false
     @State private var showDeleteAlert: Bool = false
@@ -44,15 +44,13 @@ struct LogoutView: View {
                         height: Squares.portrait.rawValue
                     )
                     .foregroundColor(Utils.stateFieldColor(.neutral))
-                Divider()
                 Text("By pressing Logout, you will revoke access to Shopify merchant-data.\n\nIn order to use the Watch app again, you need to re-authenticate")
                     .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
-                Divider()
                 Spacer()
                 Button {
                     showDeleteAlert = (portfolio.selectedShop.isEmpty == false)
                     if (!showDeleteAlert) {
-                        alert.showAlert(.shop, diagnostics: .unsubscribed)
+                        alertModel.showAlert(.shop, diagnostics: .unsubscribed)
                         Sound.playSound(
                             .reject,
                             soundExtension: .aif,
@@ -68,12 +66,12 @@ struct LogoutView: View {
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
                 }
-                .alert(alert.topicTitle, isPresented: $showAlert) {
+                .alert(alertModel.topicTitle, isPresented: $showAlert) {
                     Button(ButtonTitle.ok.rawValue.capitalized) {
-                        tabs.redirectTab = TabItem.shops
+                        tabsModel.select(.shops, isAuthenticated: true)
                     }
                 } message: {
-                    Text(alert.errorMessage)
+                    Text(alertModel.errorMessage)
                 }
                 .alert("Remove access to \(portfolio.selectedShop)?", isPresented: $showDeleteAlert) {
                     Button(ButtonTitle.ok.rawValue.capitalized, role: .destructive) {
@@ -84,7 +82,7 @@ struct LogoutView: View {
                         Security.revokeShop(portfolio.selectedShop)
                         _ = portfolio.deselectShop(portfolio.selectedShop)
                         _ = portfolio.selectFirstShop()
-                        tabs.redirectTab = TabItem.shops
+                        tabsModel.select(.shops, isAuthenticated: true)
                     }
                 }
                 Spacer()

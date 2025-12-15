@@ -64,7 +64,6 @@ struct HistoryView: View {
                             )
                             .font(.system(size: 8))
                         }
-                        Divider()
                         VStack {
                             Text(
                                 Utils.autoscaleCurrency(
@@ -89,7 +88,6 @@ struct HistoryView: View {
             }
             .scrollIndicators(.hidden)
             .listStyle(CarouselListStyle())
-            Divider()
             FooterView(topic: portfolio.selectedShop)
             Spacer()
         }

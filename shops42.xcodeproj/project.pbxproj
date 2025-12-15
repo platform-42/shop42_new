@@ -11,6 +11,9 @@
 		065387082C53B37B0012B07F /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065387062C53B3610012B07F /* WatchView.swift */; };
 		067035D42C53D54400622F6C /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067035D32C53D54400622F6C /* HistoryModel.swift */; };
 		B242A9A92B6D28F10058DD06 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B242A9A82B6D28F10058DD06 /* StoreKit.framework */; };
+		DE1E58062EF0721900C149CC /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1E58052EF0721900C149CC /* ColorManager.swift */; };
+		DE1E58072EF0721A00C149CC /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1E58052EF0721900C149CC /* ColorManager.swift */; };
+		DE1E580A2EF0868300C149CC /* P42-screenelements in Frameworks */ = {isa = PBXBuildFile; productRef = DE1E58092EF0868300C149CC /* P42-screenelements */; };
 		DE62EADD2CA2EB060040802F /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62EADC2CA2EB060040802F /* Subscription.swift */; };
 		DE648B7B2C6F4AEC00D2DDF5 /* RevenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE648B7A2C6F4AEC00D2DDF5 /* RevenueModel.swift */; };
 		DE68B0A22B6846A500B8A3C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68B0A12B6846A500B8A3C1 /* Colors.swift */; };
@@ -114,6 +117,7 @@
 		4A2C185E2A311BEC8162BB69 /* Pods-shops42.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shops42.debug.xcconfig"; path = "Target Support Files/Pods-shops42/Pods-shops42.debug.xcconfig"; sourceTree = "<group>"; };
 		A0DA646D802B53ADDE367928 /* Pods_shops42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shops42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B242A9A82B6D28F10058DD06 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		DE1E58052EF0721900C149CC /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		DE309F962C528EDB00FAEE23 /* TransactionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObserver.swift; sourceTree = "<group>"; };
 		DE4A266B2CB0068500380C5D /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		DE62EADC2CA2EB060040802F /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 			files = (
 				E3DE02B97496D0FFF18B39ED /* Pods_shops42.framework in Frameworks */,
 				DE9E9F9E2DA7107F004BCDE7 /* P42-sound in Frameworks */,
+				DE1E580A2EF0868300C149CC /* P42-screenelements in Frameworks */,
 				DE9E9F9B2DA7102C004BCDE7 /* P42-keychain in Frameworks */,
 				DE9E9F8E2DA70D69004BCDE7 /* P42-utils in Frameworks */,
 				DE9E9F8B2DA6CFD0004BCDE7 /* P42-extensions in Frameworks */,
@@ -457,6 +462,7 @@
 		DE8CC7552B5E727500E307F4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DE1E58052EF0721900C149CC /* ColorManager.swift */,
 				DE8CC7592B5E727500E307F4 /* Shops42.swift */,
 				DE8CC75A2B5E727500E307F4 /* UD.swift */,
 			);
@@ -614,6 +620,7 @@
 				DE9E9F922DA70E8C004BCDE7 /* P42-viewmodifiers */,
 				DE9E9F9A2DA7102C004BCDE7 /* P42-keychain */,
 				DE9E9F9D2DA7107F004BCDE7 /* P42-sound */,
+				DE1E58092EF0868300C149CC /* P42-screenelements */,
 			);
 			productName = shops42;
 			productReference = DE8CC7142B5E700500E307F4 /* shops42.app */;
@@ -676,6 +683,7 @@
 				DE9E9F992DA7102C004BCDE7 /* XCRemoteSwiftPackageReference "p42-keychain" */,
 				DE9E9F9C2DA7107F004BCDE7 /* XCRemoteSwiftPackageReference "P42-sound" */,
 				DE1E58042EF06ECE00C149CC /* XCRemoteSwiftPackageReference "AppAuth-iOS" */,
+				DE1E58082EF0868300C149CC /* XCRemoteSwiftPackageReference "P42-screenelements" */,
 			);
 			productRefGroup = DE8CC7152B5E700500E307F4 /* Products */;
 			projectDirPath = "";
@@ -784,6 +792,7 @@
 				DE8CC7A12B5E729100E307F4 /* AppAuthView.swift in Sources */,
 				DE8CC7612B5E727500E307F4 /* AppAuth.swift in Sources */,
 				DE8CC7A72B5E729100E307F4 /* MainView.swift in Sources */,
+				DE1E58062EF0721900C149CC /* ColorManager.swift in Sources */,
 				DE8CC7AE2B5E729100E307F4 /* Security.swift in Sources */,
 				DE76EA5E2C6100C200809EF5 /* ConnectivityProvider.swift in Sources */,
 				DE8CC75B2B5E727500E307F4 /* Enumerators.swift in Sources */,
@@ -805,6 +814,7 @@
 				DE8CC7D02B5E72B700E307F4 /* AbandonedModel.swift in Sources */,
 				DE8CC7D22B5E72B700E307F4 /* ProductsModel.swift in Sources */,
 				DE8CC7D72B5E72B700E307F4 /* RevenueView.swift in Sources */,
+				DE1E58072EF0721A00C149CC /* ColorManager.swift in Sources */,
 				DE8CC7DA2B5E72B700E307F4 /* AbandonedView.swift in Sources */,
 				DE8CC7D12B5E72B700E307F4 /* OrdersModel.swift in Sources */,
 				DE8CC7742B5E727600E307F4 /* Shopify.swift in Sources */,
@@ -1149,6 +1159,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		DE1E58082EF0868300C149CC /* XCRemoteSwiftPackageReference "P42-screenelements" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:platform-42/P42-screenelements.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		DE9E9F892DA6CFD0004BCDE7 /* XCRemoteSwiftPackageReference "P42-extensions" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:platform-42/P42-extensions.git";
@@ -1200,6 +1218,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE1E58092EF0868300C149CC /* P42-screenelements */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE1E58082EF0868300C149CC /* XCRemoteSwiftPackageReference "P42-screenelements" */;
+			productName = "P42-screenelements";
+		};
 		DE9E9F8A2DA6CFD0004BCDE7 /* P42-extensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE9E9F892DA6CFD0004BCDE7 /* XCRemoteSwiftPackageReference "P42-extensions" */;

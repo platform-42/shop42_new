@@ -18,7 +18,7 @@ enum ShopLabel: String {
 
 struct ShopView: View {
     
-    @Environment(AlertModel.self) private var alert
+    @Environment(AlertModel.self) private var alertModel
     @Environment(PortfolioModel.self) private var portfolio
     @Environment(\.dismiss) private var dismiss
     
@@ -79,13 +79,11 @@ struct ShopView: View {
                 Text("Specify storename\nwithout .myshopify.com")
                     .multilineTextAlignment(.center)
                     .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
-                Divider()
                 TextField(ShopLabel.storename.rawValue, text: $shop)
                     .disableAutocorrection(true)
                     .multilineTextAlignment(.center)
                     .textFieldStyle(.roundedBorder)
                     .autocapitalization(.none)
-                Divider()
                 Spacer()
                 Button {
                     let (topic, diagnostics) = validateShop(
@@ -109,7 +107,7 @@ struct ShopView: View {
                             soundExtension: .aif,
                             audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
                         )
-                        alert.showAlert(topic, diagnostics: diagnostics)
+                        alertModel.showAlert(topic, diagnostics: diagnostics)
                     }
                 } label: {
                     ButtonLabelWithImage(
@@ -123,14 +121,14 @@ struct ShopView: View {
                 Spacer()
             }
         }
-        .alert(alert.topicTitle, isPresented: $showAlert) {
+        .alert(alertModel.topicTitle, isPresented: $showAlert) {
             Button(ButtonTitle.ok.rawValue.capitalized) {
-                if !([.invalidShop, .tooShort].contains(alert.diagnostics)) {
+                if !([.invalidShop, .tooShort].contains(alertModel.diagnostics)) {
                     dismiss()
                 }
             }
         } message: {
-            Text(alert.errorMessage)
+            Text(alertModel.errorMessage)
         }
     }
 }

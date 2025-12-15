@@ -46,6 +46,14 @@ enum Icon: String {
     case about = "house.fill"
     case licenseOn = "checkmark.seal.fill"
     case licenseOff = "xmark.seal.fill"
+    case highlight = "guidepoint.vertical.arrowtriangle.forward"
+}
+
+enum TabIcon: String {
+    case shops = "basket.fill"
+    case logout = "rectangle.portrait.and.arrow.right.fill"
+    case settings = "gearshape.2.fill"
+    case help = "questionmark.circle.fill"
 }
 
 enum IconSecurity: String {

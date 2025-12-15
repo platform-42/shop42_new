@@ -70,7 +70,6 @@ struct ContentHeader: View {
         Image(systemName: logo.rawValue)
             .portrait(width: portraitSize, height: portraitSize)
             .foregroundColor(logoColor)
-        Divider()
     }
 }
 

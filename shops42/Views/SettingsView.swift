@@ -31,9 +31,9 @@ enum SettingsItem: String {
 struct SettingsView: View {
     
     @State private var settingsModel: SettingsModel = SettingsModel()
-    @Environment(AlertModel.self) private var alert
+    @Environment(AlertModel.self) private var alertModel
     @Environment(PortfolioModel.self) private var portfolio
-    @Environment(TabsModel.self) private var tabs
+    @Environment(TabsModel.self) private var tabsModel
     @Environment(ConnectivityProvider.self) private var watch
     @State private var showAlert = false
     
@@ -50,7 +50,7 @@ struct SettingsView: View {
             portfolio: portfolio
         )
         if (diagnostics != .okay) {
-            alert.showAlert(topic, diagnostics: diagnostics)
+            alertModel.showAlert(topic, diagnostics: diagnostics)
         }
     }
     
@@ -165,12 +165,12 @@ struct SettingsView: View {
                         .font(.headline)
                 }
             }
-            .alert(alert.topicTitle, isPresented: $showAlert) {
+            .alert(alertModel.topicTitle, isPresented: $showAlert) {
                 Button(ButtonTitle.ok.rawValue.capitalized) {
-                    tabs.redirectTab = TabItem.shops
+                    tabsModel.select(.shops, isAuthenticated: true)
                 }
             } message: {
-                Text(alert.errorMessage)
+                Text(alertModel.errorMessage)
             }
             .scrollContentBackground(.hidden)
             .navigationTitle(TabItem.settings.rawValue.capitalized)

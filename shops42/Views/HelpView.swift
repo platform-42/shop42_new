@@ -10,6 +10,7 @@ import SwiftUI
 import P42_extensions
 import P42_viewmodifiers
 import P42_utils
+import P42_screenelements
 
 
 enum HelpLabel: String {
@@ -26,9 +27,14 @@ enum SMTPLabel: String {
 }
 
 // 1
+enum HelpAboutLabel: String {
+    case groupboxShops42Title = "Shop42"
+    case groupboxVersionTitle = "Version Info"
+}
+
 struct HelpAbout: View {
     
-    @State private var isPressed = false
+    @Environment(ColorManager.self) private var colorManager
     
     var body: some View {
         VScrollView {
@@ -39,15 +45,30 @@ struct HelpAbout: View {
                     logoColor: Color(OrnamentColor.logo.rawValue),
                     portraitSize: Squares.portrait.rawValue
                 )
-                Text("\(Bundle.main.displayName!.capitalized) app for Shopify store owners is brought to you by Platform-42.com")
-                    .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
-                Divider()
-                VStack {
-                    Text("Version: \(Bundle.main.appVersion!)")
-                    Text("Build: \(Bundle.main.buildVersion!)")
-                    Text("iOS-version: \(Utils.iosVersion())")
+                StyledGroupBox(
+                    title: HelpAboutLabel.groupboxShops42Title.rawValue.uppercased(),
+                    icon: Icon.highlight.rawValue,
+                    tint: colorManager.tint,
+                    background: colorManager.groupBoxBG,
+                    stroke: colorManager.stroke
+                ) {
+                    VStack {
+                        Text("\(Bundle.main.displayName!.capitalized) app for Shopify store owners is brought to you by Platform-42.com")
+                    }
                 }
-                .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
+                StyledGroupBox(
+                    title: HelpAboutLabel.groupboxVersionTitle.rawValue.uppercased(),
+                    icon: Icon.highlight.rawValue,
+                    tint: colorManager.tint,
+                    background: colorManager.groupBoxBG,
+                    stroke: colorManager.stroke
+                ) {
+                    VStack {
+                        Text("Version: \(Bundle.main.appVersion!)")
+                        Text("Build: \(Bundle.main.buildVersion!)")
+                        Text("iOS-version: \(Utils.iosVersion())")
+                    }
+                }
                 Spacer()
                 Button {
                     if let url = URL(string: "https://platform-42.com") {
@@ -61,26 +82,21 @@ struct HelpAbout: View {
                         buttonLabelColor: Color(LabelColor.button.rawValue),
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
-                    .scaleEffect(isPressed ? 0.9 : 1.0)
-                }
-                .pressEvents {
-                    withAnimation(.easeIn(duration: 0.1)) {
-                        isPressed = true
-                    }
-                } onRelease: {
-                    withAnimation {
-                        isPressed = false
-                    }
                 }
                 Spacer()
             }
-            .navigationTitle(TabItem.help.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
 
-// 2
+
+// #2 - Bugs
+enum HelpBugsLabel: String {
+    case emailTitle = "Faultreport"
+    case groupboxBugsTitle = "Report"
+}
+
+
 struct HelpBugs: View {
     
     static func htmlBody(title: String, application: String, version: String, build: String, osVersion: String) -> String {
@@ -106,8 +122,8 @@ struct HelpBugs: View {
         return body
     }
     
-    @Environment(AlertModel.self) private var alert
-    @State private var isPressed = false
+    @Environment(ColorManager.self) private var colorManager
+    @Environment(AlertModel.self) private var alertModel
     @State private var showAlert: Bool = false
     
     var body: some View {
@@ -119,8 +135,18 @@ struct HelpBugs: View {
                     logoColor: Color(OrnamentColor.logo.rawValue),
                     portraitSize: Squares.portrait.rawValue
                 )
-                Text("Reporting problems helps make \(Bundle.main.displayName!.capitalized) better. We will review it in order to have the issue resolved.")
-                    .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
+                StyledGroupBox(
+                    title: HelpBugsLabel.groupboxBugsTitle.rawValue.uppercased(),
+                    icon: Icon.highlight.rawValue,
+                    tint: colorManager.tint,
+                    background: colorManager.groupBoxBG,
+                    stroke: colorManager.stroke
+                ) {
+                    VStack(alignment: .leading) {
+                        Text("Help us **improve** \(Bundle.main.displayName!.uppercased()) by reporting any issues you encounter. Our team will review your submission to resolve the problem."
+                        )
+                    }
+                }
                 Spacer()
                 Button {
                     let application = "\(Bundle.main.displayName!)"
@@ -142,7 +168,7 @@ struct HelpBugs: View {
                     )
                     if (!result) {
                         showAlert = true
-                        alert.showAlert(.mail, diagnostics: .noMailAccount)
+                        alertModel.showAlert(.mail, diagnostics: .noMailAccount)
                     }
                 } label: {
                     ButtonLabelWithImage(
@@ -152,36 +178,32 @@ struct HelpBugs: View {
                         buttonLabelColor: Color(LabelColor.button.rawValue),
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
-                    .scaleEffect(isPressed ? 0.9 : 1.0)
                 }
-                .alert(alert.topicTitle, isPresented: $showAlert) {
+                .alert(alertModel.topicTitle, isPresented: $showAlert) {
                     Button(ButtonTitle.ok.rawValue.capitalized) {
                     }
                 } message: {
-                    Text(alert.errorMessage)
-                }
-                .pressEvents {
-                    withAnimation(.easeIn(duration: 0.1)) {
-                        isPressed = true
-                    }
-                } onRelease: {
-                    withAnimation {
-                        isPressed = false
-                    }
+                    Text(alertModel.errorMessage)
                 }
                 Spacer()
             }
-            .navigationTitle(TabItem.help.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
 
-// 3
-struct HelpAuthentication: View {
+
+// #3 - Authentication
+
+enum HelpAuthLabel: String {
+    case groupboxAuthTitle = "OAuth2"
+}
+
+
+struct HelpAuth: View {
     
-    @Environment(TabsModel.self) private var tabs
-    
+    @Environment(TabsModel.self) private var tabsModel
+    @Environment(ColorManager.self) private var colorManager
+
     var body: some View {
         VScrollView {
             VStack {
@@ -191,11 +213,21 @@ struct HelpAuthentication: View {
                     logoColor: Color(OrnamentColor.logo.rawValue),
                     portraitSize: Squares.portrait.rawValue
                 )
-                Text("Login will grant our app \(Bundle.main.displayName!.capitalized), access to your Shopify merchant-data. Logout to revoke access.")
-                    .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
+                StyledGroupBox(
+                    title: HelpAuthLabel.groupboxAuthTitle.rawValue.uppercased(),
+                    icon: Icon.highlight.rawValue,
+                    tint: colorManager.tint,
+                    background: colorManager.groupBoxBG,
+                    stroke: colorManager.stroke
+                ) {
+                    VStack {
+                        Text("**Login** will grant our app \(Bundle.main.displayName!.capitalized), access to your Shopify merchant-data for **read-access**. \n\nPress **logout** button to revoke access.")
+                            .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
+                    }
+                }
                 Spacer()
                 Button {
-                    tabs.redirectTab = TabItem.shops
+                    _ = tabsModel.select(.shops, isAuthenticated: true)
                 } label: {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.login.rawValue,
@@ -207,40 +239,20 @@ struct HelpAuthentication: View {
                 }
                 Spacer()
             }
-            .navigationTitle(TabItem.help.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
 
-// 4
-struct HelpRevoke: View {
-    
-    var body: some View {
-        VScrollView {
-            VStack {
-                ContentHeader(
-                    titleLabel: HelpLabel.revoke,
-                    logo: Logo.security,
-                    logoColor: Color(OrnamentColor.logo.rawValue),
-                    portraitSize: Squares.portrait.rawValue
-                )
-                Group {
-                    Text("To revoke your auto-renewable subscription, perform the following steps:\n\n1. Open the ") +
-                    Text("**Settings** app on your iPhone\n\n2. Type **\"subscriptions\"**  in searchbar\n\n3. Find the subscription you want to ") +
-                    Text("**cancel** and **tap** on it\n\n4. Tap **Cancel Subscription**. A confirmation message will appear\n")
-                }
-                .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
-                Spacer()
-            }
-            .navigationTitle(TabItem.help.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
-        }
-    }
+
+enum HelpCreditsLabel: String {
+    case groupboxOAuth = "AppAuth"
+    case groupboxChatGPT = "ChatGPT"
 }
 
-// 5
 struct HelpCredits: View {
+    
+    @Environment(ColorManager.self) private var colorManager
+
     var body: some View {
         VScrollView {
             VStack {
@@ -250,12 +262,31 @@ struct HelpCredits: View {
                     logoColor: Color(OrnamentColor.logo.rawValue),
                     portraitSize: Squares.portrait.rawValue
                 )
-                Text("**AppAuth**\nOAuth2 technology. Copyright (c) 2016 William Denniss\n\n**ChatGPT**\nThis app uses insights generated by ChatGPT, developed by OpenAI.")
-                    .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
+                StyledGroupBox(
+                    title: HelpCreditsLabel.groupboxOAuth.rawValue.uppercased(),
+                    icon: Icon.highlight.rawValue,
+                    tint: colorManager.tint,
+                    background: colorManager.groupBoxBG,
+                    stroke: colorManager.stroke
+                ) {
+                    VStack(alignment: .leading) {
+                        Text("**AppAuth** implements OAuth2 technology. Copyright (c) 2016 William Denniss")
+                    }
+                }
+                StyledGroupBox(
+                    title: HelpCreditsLabel.groupboxChatGPT.rawValue.uppercased(),
+                    icon: Icon.highlight.rawValue,
+                    tint: colorManager.tint,
+                    background: colorManager.groupBoxBG,
+                    stroke: colorManager.stroke
+                ) {
+                    VStack(alignment: .leading) {
+                        Text("This app uses insights generated by")
+                        Text("**ChatGPT**, developed by OpenAI.")
+                    }
+                }
                 Spacer()
             }
-            .navigationTitle(TabItem.help.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
@@ -271,14 +302,11 @@ struct HelpView: View {
             TabView {
                 HelpAbout()
                 HelpBugs()
-                HelpAuthentication()
-                HelpRevoke()
+                HelpAuth()
                 HelpCredits()
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-            .navigationTitle(TabItem.help.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

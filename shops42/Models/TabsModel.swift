@@ -14,18 +14,34 @@ enum TabItem: String {
     case help
 }
 
-enum TabIcon: String {
-    case shops = "basket.fill"
-    case logout = "rectangle.portrait.and.arrow.right.fill"
-    case settings = "gearshape.2.fill"
-    case help = "questionmark.circle.fill"
+
+enum TabSwitchResult {
+    case success
+    case notAuthenticated
 }
 
-@Observable class TabsModel {
-    var redirectTab: TabItem
-    
+
+@Observable
+final class TabsModel {
+    private(set) var selectedTab: TabItem
+
     init(_ tabItem: TabItem) {
-        self.redirectTab = tabItem
+        self.selectedTab = tabItem
+    }
+
+    @discardableResult
+    func select(
+        _ tab: TabItem,
+        isAuthenticated: Bool
+    ) -> TabSwitchResult {
+        switch tab {
+//        case .properties where !isAuthenticated:
+//            return .notAuthenticated
+        default:
+            selectedTab = tab
+            return .success
+        }
     }
 }
+
 
