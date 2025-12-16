@@ -232,8 +232,6 @@ struct ShopsView: View {
                 )
             )
             .scrollContentBackground(.hidden)
-            .navigationTitle(TabItem.shops.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem {
                     NavigationLink {

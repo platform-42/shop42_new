@@ -31,6 +31,7 @@ enum SettingsItem: String {
 struct SettingsView: View {
     
     @State private var settingsModel: SettingsModel = SettingsModel()
+    @Environment(ColorManager.self) private var colorManager
     @Environment(AlertModel.self) private var alertModel
     @Environment(PortfolioModel.self) private var portfolio
     @Environment(TabsModel.self) private var tabsModel
@@ -84,10 +85,7 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(
-                watermarkImageName: Watermark.graph.rawValue,
-                opacity: 0.05
-            )
+            colorManager.background.ignoresSafeArea()
             List {
                 Section {
                     Toggle(isOn: $settingsModel.showHistory) {
@@ -173,8 +171,6 @@ struct SettingsView: View {
                 Text(alertModel.errorMessage)
             }
             .scrollContentBackground(.hidden)
-            .navigationTitle(TabItem.settings.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

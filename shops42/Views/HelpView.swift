@@ -33,9 +33,7 @@ enum HelpAboutLabel: String {
 }
 
 struct HelpAbout: View {
-    
     @Environment(ColorManager.self) private var colorManager
-    
     var body: some View {
         VScrollView {
             VStack {
@@ -98,7 +96,6 @@ enum HelpBugsLabel: String {
 
 
 struct HelpBugs: View {
-    
     static func htmlBody(title: String, application: String, version: String, build: String, osVersion: String) -> String {
         let body = """
             <body>
@@ -121,7 +118,6 @@ struct HelpBugs: View {
         """
         return body
     }
-    
     @Environment(ColorManager.self) private var colorManager
     @Environment(AlertModel.self) private var alertModel
     @State private var showAlert: Bool = false
@@ -200,10 +196,8 @@ enum HelpAuthLabel: String {
 
 
 struct HelpAuth: View {
-    
     @Environment(TabsModel.self) private var tabsModel
     @Environment(ColorManager.self) private var colorManager
-
     var body: some View {
         VScrollView {
             VStack {
@@ -250,9 +244,7 @@ enum HelpCreditsLabel: String {
 }
 
 struct HelpCredits: View {
-    
     @Environment(ColorManager.self) private var colorManager
-
     var body: some View {
         VScrollView {
             VStack {
@@ -292,13 +284,10 @@ struct HelpCredits: View {
 }
 
 struct HelpView: View {
-    
+    @Environment(ColorManager.self) private var colorManager
     var body: some View {
         ZStack {
-            BackgroundView(
-                watermarkImageName: Watermark.graph.rawValue,
-                opacity: 0.05
-            )
+            colorManager.background.ignoresSafeArea()
             TabView {
                 HelpAbout()
                 HelpBugs()
