@@ -65,6 +65,15 @@ struct TabContainer<Content: View>: View {
 
 struct MainView: View {
     
+    func forceRedraw() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            for window in windowScene.windows {
+                window.rootViewController?.view.setNeedsLayout()
+                window.rootViewController?.view.setNeedsDisplay()
+            }
+        }
+    }
+    
     func updateColorScheme(
         _ colorScheme: ColorScheme,
         colorManager: ColorManager
@@ -77,12 +86,7 @@ struct MainView: View {
         tabBarAppearance.backgroundColor = UIColor(colorManager.tabBarBG)
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            for window in windowScene.windows {
-                window.rootViewController?.view.setNeedsLayout()
-                window.rootViewController?.view.setNeedsDisplay()
-            }
-        }
+        forceRedraw()
     }
     
     

@@ -36,7 +36,8 @@ struct HelpAbout: View {
     @Environment(ColorManager.self) var colorManager
     var body: some View {
         VScrollView {
-            VStack {
+            VStack(spacing: 20) {
+                Spacer()
                 ContentHeader(
                     titleLabel: HelpLabel.about,
                     logo: Logo.about,
@@ -124,7 +125,8 @@ struct HelpBugs: View {
     
     var body: some View {
         VScrollView {
-            VStack {
+            VStack(spacing: 20) {
+                Spacer()
                 ContentHeader(
                     titleLabel: HelpLabel.bugs,
                     logo: Logo.bugs,
@@ -200,7 +202,8 @@ struct HelpAuth: View {
     @Environment(ColorManager.self) var colorManager
     var body: some View {
         VScrollView {
-            VStack {
+            VStack(spacing: 20) {
+                Spacer()
                 ContentHeader(
                     titleLabel: HelpLabel.authentication,
                     logo: Logo.security,
@@ -216,7 +219,6 @@ struct HelpAuth: View {
                 ) {
                     VStack {
                         Text("**Login** will grant our app \(Bundle.main.displayName!.capitalized), access to your Shopify merchant-data for **read-access**. \n\nPress **logout** button to revoke access.")
-                            .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
                     }
                 }
                 Spacer()
@@ -247,7 +249,8 @@ struct HelpCredits: View {
     @Environment(ColorManager.self) var colorManager
     var body: some View {
         VScrollView {
-            VStack {
+            VStack(spacing: 20) {
+                Spacer()
                 ContentHeader(
                     titleLabel: HelpLabel.credits,
                     logo: Logo.credits,

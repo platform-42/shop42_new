@@ -214,8 +214,8 @@ struct ShopsView: View {
                     placeholder:
                         Label(ShopsLabel.empty.rawValue, systemImage: Icon.orders.rawValue)
                         .labelStyle(BackgroundLabelStyle(
-                            color: Color(LabelColor.button.rawValue),
-                            backgroundColor: Color(NavigationColor.button.rawValue),
+                            color: colorManager.navigationText,
+                            backgroundColor: colorManager.navigationBG,
                             radius: 25.0
                         )
                         )
