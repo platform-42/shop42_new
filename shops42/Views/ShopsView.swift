@@ -23,7 +23,7 @@ enum ShopsLabel: String {
 
 struct ShopsListView: View {
     
-    @Environment(PortfolioModel.self) private var portfolio
+    @Environment(PortfolioModel.self) var portfolio
     @State private var selectedShop: String = ""
     @State private var icon: String = ""
     @State private var granted: Bool = false
@@ -41,12 +41,12 @@ struct ShopsListView: View {
             }
             .onAppear {
                 selectedShop = portfolio.selectedShop
-                _ = portfolio.selectShop(selectedShop)
+                portfolio.selectShop(selectedShop)
                 icon = PortfolioModel.securityIcon(portfolio.securityState(portfolio.selectedShop)).rawValue
                 granted = portfolio.securityState(portfolio.selectedShop) == .granted
             }
             .onChange(of: selectedShop) { _, changed in
-                _ = portfolio.selectShop(changed)
+                portfolio.selectShop(changed)
                 icon = PortfolioModel.securityIcon(portfolio.securityState(changed)).rawValue
                 granted = portfolio.securityState(changed) == .granted
             }
@@ -65,8 +65,8 @@ struct ShopsListView: View {
 
 struct ShopsSyncView: View {
     
-    @Environment(AlertModel.self) private var alert
-    @Environment(PortfolioModel.self) private var portfolio
+    @Environment(AlertModel.self) var alert
+    @Environment(PortfolioModel.self) var portfolio
     @Environment(ConnectivityProvider.self) var watch
     
     @State private var isPressed: Bool = false
@@ -136,10 +136,8 @@ struct ShopsSyncView: View {
 }
 
 struct ShopsAuthView: View {
-    
-    @Environment(PortfolioModel.self) private var portfolio
+    @Environment(PortfolioModel.self) var portfolio
     @State private var isPressed = false
-    
     var body: some View {
         VStack {
             HStack {
@@ -147,7 +145,7 @@ struct ShopsAuthView: View {
                     destination:
                         AppAuthView()
                         .onAppear {
-                            _ = portfolio.selectShop(portfolio.selectedShop)
+                            portfolio.selectShop(portfolio.selectedShop)
                         }
                 ) {
                     ButtonLabelWithImage(
@@ -165,16 +163,14 @@ struct ShopsAuthView: View {
 }
 
 struct ShopsNavigationView: View {
-    @Environment(PortfolioModel.self) private var portfolio
+    @Environment(PortfolioModel.self) var portfolio
 
     
     @ViewBuilder
     func view(_ isAuthenticated: Bool) -> some View {
         switch isAuthenticated {
-        case true:
-            ShopsSyncView()
-        default:
-            ShopsAuthView()
+        case true: ShopsSyncView()
+        default: ShopsAuthView()
         }
     }
     
@@ -185,9 +181,7 @@ struct ShopsNavigationView: View {
 
 
 struct ShopsConnectionView: View {
-    
     @Environment(ConnectivityProvider.self) var watch
-    
     var body: some View {
         VStack {
             ButtonLabelWithImage(
@@ -203,7 +197,7 @@ struct ShopsConnectionView: View {
 
 
 struct ShopsView: View {
-    @Environment(PortfolioModel.self) private var portfolio
+    @Environment(PortfolioModel.self) var portfolio
     @Environment(ColorManager.self) var colorManager
     var body: some View {
         ZStack {
@@ -250,7 +244,7 @@ struct ShopsView: View {
                             soundExtension: .aif,
                             audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
                         )
-                        _ = portfolio.delShop(portfolio.selectedShop)
+                        portfolio.delShop(portfolio.selectedShop)
                         _ = portfolio.selectFirstShop()
                     } label: {
                         Image(systemName: Icon.minus.rawValue)

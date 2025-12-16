@@ -19,10 +19,10 @@ enum LogoutTitle: String {
 
 struct LogoutView: View {
     
-    @Environment(AlertModel.self) private var alertModel
-    @Environment(PortfolioModel.self) private var portfolio
-    @Environment(ConnectivityProvider.self) private var watch
-    @Environment(TabsModel.self) private var tabsModel
+    @Environment(AlertModel.self) var alertModel
+    @Environment(PortfolioModel.self) var portfolio
+    @Environment(ConnectivityProvider.self) var watch
+    @Environment(TabsModel.self) var tabsModel
     @Environment(ColorManager.self) var colorManager
     @State private var showAlert: Bool = false
     @State private var showDeleteAlert: Bool = false
@@ -30,10 +30,7 @@ struct LogoutView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(
-                watermarkImageName: Watermark.graph.rawValue,
-                opacity: 0.05
-            )
+            colorManager.background.ignoresSafeArea()
             VStack {
                 Spacer()
                 Text(LogoutTitle.warning.rawValue.capitalized)
@@ -80,15 +77,13 @@ struct LogoutView: View {
                             audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
                         )
                         Security.revokeShop(portfolio.selectedShop)
-                        _ = portfolio.deselectShop(portfolio.selectedShop)
+                        portfolio.deselectShop(portfolio.selectedShop)
                         _ = portfolio.selectFirstShop()
                         tabsModel.select(.shops, isAuthenticated: true)
                     }
                 }
                 Spacer()
             }
-            .navigationTitle(TabItem.logout.rawValue.capitalized)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

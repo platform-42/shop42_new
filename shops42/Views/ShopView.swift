@@ -18,9 +18,10 @@ enum ShopLabel: String {
 
 struct ShopView: View {
     
-    @Environment(AlertModel.self) private var alertModel
-    @Environment(PortfolioModel.self) private var portfolio
-    @Environment(\.dismiss) private var dismiss
+    @Environment(ColorManager.self) var colorManager
+    @Environment(AlertModel.self) var alertModel
+    @Environment(PortfolioModel.self) var portfolio
+    @Environment(\.dismiss) var dismiss
     
     @State private var shop: String = ""
     @State private var showAlert = false
@@ -63,10 +64,7 @@ struct ShopView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(
-                watermarkImageName: Watermark.graph.rawValue,
-                opacity: 0.05
-            )
+            colorManager.background.ignoresSafeArea()
             VStack {
                 Spacer()
                 Text(ShopLabel.title.rawValue)

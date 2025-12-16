@@ -72,6 +72,7 @@ import Foundation
         return false
     }
     
+    @discardableResult
     func deselectShop(_ shop: String) -> Bool {
         if shopIsSelected(shop) {
             self.selectedShop = ""
@@ -98,6 +99,7 @@ import Foundation
         return true
     }
     
+    @discardableResult
     func delShop(_ shop: String) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
         self.shops.removeAll { $0 == shopName }

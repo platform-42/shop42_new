@@ -33,7 +33,7 @@ enum HelpAboutLabel: String {
 }
 
 struct HelpAbout: View {
-    @Environment(ColorManager.self) private var colorManager
+    @Environment(ColorManager.self) var colorManager
     var body: some View {
         VScrollView {
             VStack {
@@ -118,8 +118,8 @@ struct HelpBugs: View {
         """
         return body
     }
-    @Environment(ColorManager.self) private var colorManager
-    @Environment(AlertModel.self) private var alertModel
+    @Environment(ColorManager.self) var colorManager
+    @Environment(AlertModel.self) var alertModel
     @State private var showAlert: Bool = false
     
     var body: some View {
@@ -196,8 +196,8 @@ enum HelpAuthLabel: String {
 
 
 struct HelpAuth: View {
-    @Environment(TabsModel.self) private var tabsModel
-    @Environment(ColorManager.self) private var colorManager
+    @Environment(TabsModel.self) var tabsModel
+    @Environment(ColorManager.self) var colorManager
     var body: some View {
         VScrollView {
             VStack {
@@ -244,7 +244,7 @@ enum HelpCreditsLabel: String {
 }
 
 struct HelpCredits: View {
-    @Environment(ColorManager.self) private var colorManager
+    @Environment(ColorManager.self) var colorManager
     var body: some View {
         VScrollView {
             VStack {
@@ -284,7 +284,7 @@ struct HelpCredits: View {
 }
 
 struct HelpView: View {
-    @Environment(ColorManager.self) private var colorManager
+    @Environment(ColorManager.self) var colorManager
     
     func padded<T: View>(_ view: T) -> some View {
         view

@@ -31,11 +31,11 @@ enum SettingsItem: String {
 struct SettingsView: View {
     
     @State private var settingsModel: SettingsModel = SettingsModel()
-    @Environment(ColorManager.self) private var colorManager
-    @Environment(AlertModel.self) private var alertModel
-    @Environment(PortfolioModel.self) private var portfolio
-    @Environment(TabsModel.self) private var tabsModel
-    @Environment(ConnectivityProvider.self) private var watch
+    @Environment(ColorManager.self) var colorManager
+    @Environment(AlertModel.self) var alertModel
+    @Environment(PortfolioModel.self) var portfolio
+    @Environment(TabsModel.self) var tabsModel
+    @Environment(ConnectivityProvider.self) var watch
     @State private var showAlert = false
     
     @MainActor
