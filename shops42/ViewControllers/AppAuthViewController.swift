@@ -89,7 +89,7 @@ class AppAuthViewController: UIViewController {
                 for tuple in authState.lastAuthorizationResponse.additionalParameters! {
                     if tuple.key == AppAuthToken.shop.rawValue {
                         let shop = tuple.value as! String
-                        _ = Security.authorizeShop(shop, secret: secret)
+                            Security.authorizeShop(shop, secret: secret)
                     }
                 }
             } else {

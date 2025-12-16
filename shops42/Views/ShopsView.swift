@@ -203,15 +203,11 @@ struct ShopsConnectionView: View {
 
 
 struct ShopsView: View {
-    
     @Environment(PortfolioModel.self) private var portfolio
-    
+    @Environment(ColorManager.self) var colorManager
     var body: some View {
         ZStack {
-            BackgroundView(
-                watermarkImageName: Watermark.graph.rawValue,
-                opacity: 0.05
-            )
+            colorManager.background.ignoresSafeArea()
             VStack {
                 ShopsListView()
                 ShopsNavigationView()

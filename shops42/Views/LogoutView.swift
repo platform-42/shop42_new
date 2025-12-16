@@ -23,7 +23,7 @@ struct LogoutView: View {
     @Environment(PortfolioModel.self) private var portfolio
     @Environment(ConnectivityProvider.self) private var watch
     @Environment(TabsModel.self) private var tabsModel
-    
+    @Environment(ColorManager.self) var colorManager
     @State private var showAlert: Bool = false
     @State private var showDeleteAlert: Bool = false
     
@@ -61,9 +61,9 @@ struct LogoutView: View {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.trash.rawValue,
                         buttonTitle: ButtonTitle.logout.rawValue.capitalized,
-                        buttonColor: Color(LabelColor.button.rawValue),
-                        buttonLabelColor: Color(LabelColor.button.rawValue),
-                        buttonBackgroundColor: Color(NavigationColor.button.rawValue)
+                        buttonColor: colorManager.navigationText,
+                        buttonLabelColor: colorManager.navigationText,
+                        buttonBackgroundColor: colorManager.navigationBG
                     )
                 }
                 .alert(alertModel.topicTitle, isPresented: $showAlert) {

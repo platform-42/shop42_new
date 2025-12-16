@@ -40,7 +40,7 @@ struct HelpAbout: View {
                 ContentHeader(
                     titleLabel: HelpLabel.about,
                     logo: Logo.about,
-                    logoColor: Color(OrnamentColor.logo.rawValue),
+                    logoColor: colorManager.logo,
                     portraitSize: Squares.portrait.rawValue
                 )
                 StyledGroupBox(
@@ -76,9 +76,9 @@ struct HelpAbout: View {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.about.rawValue,
                         buttonTitle: ButtonTitle.visit.rawValue.capitalized,
-                        buttonColor: Color(LabelColor.button.rawValue),
-                        buttonLabelColor: Color(LabelColor.button.rawValue),
-                        buttonBackgroundColor: Color(NavigationColor.button.rawValue)
+                        buttonColor: colorManager.navigationText,
+                        buttonLabelColor: colorManager.navigationText,
+                        buttonBackgroundColor: colorManager.navigationBG
                     )
                 }
                 Spacer()
@@ -128,7 +128,7 @@ struct HelpBugs: View {
                 ContentHeader(
                     titleLabel: HelpLabel.bugs,
                     logo: Logo.bugs,
-                    logoColor: Color(OrnamentColor.logo.rawValue),
+                    logoColor: colorManager.logo,
                     portraitSize: Squares.portrait.rawValue
                 )
                 StyledGroupBox(
@@ -170,9 +170,9 @@ struct HelpBugs: View {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.mail.rawValue,
                         buttonTitle: ButtonTitle.report.rawValue.capitalized,
-                        buttonColor: Color(LabelColor.button.rawValue),
-                        buttonLabelColor: Color(LabelColor.button.rawValue),
-                        buttonBackgroundColor: Color(NavigationColor.button.rawValue)
+                        buttonColor: colorManager.navigationText,
+                        buttonLabelColor: colorManager.navigationText,
+                        buttonBackgroundColor: colorManager.navigationBG
                     )
                 }
                 .alert(alertModel.topicTitle, isPresented: $showAlert) {
@@ -204,7 +204,7 @@ struct HelpAuth: View {
                 ContentHeader(
                     titleLabel: HelpLabel.authentication,
                     logo: Logo.security,
-                    logoColor: Color(OrnamentColor.logo.rawValue),
+                    logoColor: colorManager.logo,
                     portraitSize: Squares.portrait.rawValue
                 )
                 StyledGroupBox(
@@ -221,14 +221,14 @@ struct HelpAuth: View {
                 }
                 Spacer()
                 Button {
-                    _ = tabsModel.select(.shops, isAuthenticated: true)
+                    tabsModel.select(.shops, isAuthenticated: true)
                 } label: {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.login.rawValue,
                         buttonTitle: ButtonTitle.login.rawValue.capitalized,
-                        buttonColor: Color(LabelColor.button.rawValue),
-                        buttonLabelColor: Color(LabelColor.button.rawValue),
-                        buttonBackgroundColor: Color(NavigationColor.button.rawValue)
+                        buttonColor: colorManager.navigationText,
+                        buttonLabelColor: colorManager.navigationText,
+                        buttonBackgroundColor: colorManager.navigationBG
                     )
                 }
                 Spacer()
@@ -251,7 +251,7 @@ struct HelpCredits: View {
                 ContentHeader(
                     titleLabel: HelpLabel.credits,
                     logo: Logo.credits,
-                    logoColor: Color(OrnamentColor.logo.rawValue),
+                    logoColor: colorManager.logo,
                     portraitSize: Squares.portrait.rawValue
                 )
                 StyledGroupBox(
@@ -285,14 +285,20 @@ struct HelpCredits: View {
 
 struct HelpView: View {
     @Environment(ColorManager.self) private var colorManager
+    
+    func padded<T: View>(_ view: T) -> some View {
+        view
+        .padding(.bottom, 50)
+    }
+    
     var body: some View {
         ZStack {
             colorManager.background.ignoresSafeArea()
             TabView {
-                HelpAbout()
-                HelpBugs()
-                HelpAuth()
-                HelpCredits()
+                padded(HelpAbout())
+                padded(HelpBugs())
+                padded(HelpAuth())
+                padded(HelpCredits())
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
