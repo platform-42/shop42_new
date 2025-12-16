@@ -1,5 +1,5 @@
 {
-  "originHash" : "27d97f27d7e99cc31ab368f336a87c5306a34873394c2f8ae3d548101a15f713",
+  "originHash" : "d7cc21ed51cac41c63fb360a3a10b82b0ec99608e057489aabc6839de95ba909",
   "pins" : [
     {
       "identity" : "appauth-ios",
@@ -26,6 +26,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "244c0a9db559ca749ea0478638ac415ccba1d7d6"
+      }
+    },
+    {
+      "identity" : "p42-screenelements",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-screenelements.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "65570dd0577e5fa3d927aa9cec6e86bd3fc3a13f"
       }
     },
     {

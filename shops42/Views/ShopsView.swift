@@ -71,7 +71,6 @@ struct ShopsSyncView: View {
     
     @State private var isPressed: Bool = false
     @State private var showAlert: Bool = false
-    @State private var showPaywall: Bool = false
     
     @MainActor
     func syncWatch(connectivityProvider: ConnectivityProvider, portfolio: PortfolioModel) -> (Topic, Diagnostics) {
@@ -106,10 +105,6 @@ struct ShopsSyncView: View {
                         connectivityProvider: watch,
                         portfolio: portfolio
                     )
-                    if (diagnostics == .unlicensed) {
-                        showPaywall = true
-                        return
-                    }
                     if (diagnostics != .okay) {
                         showAlert = true
                         Sound.playSound(

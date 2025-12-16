@@ -14,7 +14,6 @@
 		DE1E58062EF0721900C149CC /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1E58052EF0721900C149CC /* ColorManager.swift */; };
 		DE1E58072EF0721A00C149CC /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1E58052EF0721900C149CC /* ColorManager.swift */; };
 		DE1E580A2EF0868300C149CC /* P42-screenelements in Frameworks */ = {isa = PBXBuildFile; productRef = DE1E58092EF0868300C149CC /* P42-screenelements */; };
-		DE62EADD2CA2EB060040802F /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62EADC2CA2EB060040802F /* Subscription.swift */; };
 		DE648B7B2C6F4AEC00D2DDF5 /* RevenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE648B7A2C6F4AEC00D2DDF5 /* RevenueModel.swift */; };
 		DE68B0A22B6846A500B8A3C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68B0A12B6846A500B8A3C1 /* Colors.swift */; };
 		DE68B0A32B68473600B8A3C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68B0A12B6846A500B8A3C1 /* Colors.swift */; };
@@ -401,6 +400,7 @@
 				DE863C362C99508400838300 /* AppAuth */,
 				DE8CC73C2B5E726200E307F4 /* HTML */,
 				DE834BDA2CA066F6002C5148 /* API.md */,
+				DE62EADC2CA2EB060040802F /* Subscription.swift */,
 				DEB9C5C82C776D39005965CF /* LicenseView.swift */,
 				DE309F962C528EDB00FAEE23 /* TransactionObserver.swift */,
 			);
@@ -446,7 +446,6 @@
 				DE8CC74A2B5E727500E307F4 /* AppAuth.swift */,
 				DE68B0A12B6846A500B8A3C1 /* Colors.swift */,
 				065387062C53B3610012B07F /* WatchView.swift */,
-				DE62EADC2CA2EB060040802F /* Subscription.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -788,7 +787,6 @@
 				DE8CC7B82B5E729100E307F4 /* PortfolioModel.swift in Sources */,
 				DE8CC7B52B5E729100E307F4 /* AlertModel.swift in Sources */,
 				DE8CC7A42B5E729100E307F4 /* HelpView.swift in Sources */,
-				DE62EADD2CA2EB060040802F /* Subscription.swift in Sources */,
 				DE8CC7A12B5E729100E307F4 /* AppAuthView.swift in Sources */,
 				DE8CC7612B5E727500E307F4 /* AppAuth.swift in Sources */,
 				DE8CC7A72B5E729100E307F4 /* MainView.swift in Sources */,

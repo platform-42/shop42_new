@@ -55,6 +55,9 @@ struct TabContainer<Content: View>: View {
             content()
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.large)
+                .toolbarBackground(colorManager.navbarBG, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .toolbarColorScheme(colorManager.navbarContent, for: .navigationBar)
         }
     }
 }
@@ -89,6 +92,8 @@ struct MainView: View {
     @State private var portfolioModel: PortfolioModel = PortfolioModel()
     @State private var alertModel: AlertModel = AlertModel()
     @State private var tabsModel: TabsModel = TabsModel(TabItem.logout)
+    @State private var showAlert: Bool = false
+
     let userDefaults: UD = UD()
 
     private var tabSelectionBinding: Binding<AppTab> {
@@ -133,12 +138,6 @@ struct MainView: View {
             .onChange(of: colorScheme) { oldValue, newValue in
                 updateColorScheme(newValue, colorManager: colorManager)
             }
-//            .alert(alertModel.subject, isPresented: $showAlert) {
-//                Button(ButtonLabel.alert.rawValue.uppercased()) {
-//                }
-//            } message: {
-//                Text(alertModel.diagnostics)
-//            }
         }
         .environment(colorManager)
         .environment(watch)
