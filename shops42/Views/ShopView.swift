@@ -11,10 +11,12 @@ import P42_sound
 import P42_viewmodifiers
 import P42_colormanager
 
+
 enum ShopLabel: String {
     case title = "Add Shop"
     case storename = "Enter storename ..."
 }
+
 
 struct ShopView: View {
     

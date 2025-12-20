@@ -13,6 +13,7 @@ import P42_utils
 import P42_screenelements
 import P42_colormanager
 
+
 enum HelpLabel: String {
     case about
     case bugs
@@ -21,16 +22,19 @@ enum HelpLabel: String {
     case credits
 }
 
+
 enum SMTPLabel: String {
     case title
     case subject
 }
+
 
 // 1
 enum HelpAboutLabel: String {
     case groupboxShops42Title = "Shop42"
     case groupboxVersionTitle = "Version Info"
 }
+
 
 struct HelpAbout: View {
     @Environment(ColorManager.self) var colorManager
@@ -245,6 +249,7 @@ enum HelpCreditsLabel: String {
     case groupboxChatGPT = "ChatGPT"
 }
 
+
 struct HelpCredits: View {
     @Environment(ColorManager.self) var colorManager
     var body: some View {
@@ -285,6 +290,7 @@ struct HelpCredits: View {
         }
     }
 }
+
 
 struct HelpView: View {
     @Environment(ColorManager.self) var colorManager
