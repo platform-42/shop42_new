@@ -42,7 +42,7 @@ struct SettingsLabel: View {
     }
 }
 
-
+/*
 struct ContentHeader: View {
     var titleLabel: HelpLabel
     var logo: Logo
@@ -58,7 +58,7 @@ struct ContentHeader: View {
             .foregroundColor(logoColor)
     }
 }
-
+*/
 
 struct ShopListItem: View {
     var shopLabel: String

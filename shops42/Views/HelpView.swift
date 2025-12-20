@@ -41,12 +41,11 @@ struct HelpAbout: View {
     var body: some View {
         PageScrollView {
             VStack(spacing: 20) {
-                Spacer()
                 ContentHeader(
-                    titleLabel: HelpLabel.about,
-                    logo: Logo.about,
+                    titleLabel: HelpLabel.about.rawValue.capitalized,
+                    logo: Logo.about.rawValue,
                     logoColor: colorManager.logo,
-                    portraitSize: Squares.portrait.rawValue
+                    portraitSize: 60,
                 )
                 StyledGroupBox(
                     title: HelpAboutLabel.groupboxShops42Title.rawValue.uppercased(),
@@ -56,9 +55,10 @@ struct HelpAbout: View {
                     stroke: colorManager.stroke
                 ) {
                     VStack {
-                        Text("\(Bundle.main.displayName!.capitalized) app for Shopify store owners is brought to you by Platform-42.com")
+                        Text("**\(Bundle.main.displayName!.capitalized)** app for Shopify store owners is brought to you by **Platform-42.com**")
                     }
                 }
+                .frame(width: UIScreen.main.bounds.width * 0.8)
                 StyledGroupBox(
                     title: HelpAboutLabel.groupboxVersionTitle.rawValue.uppercased(),
                     icon: Icon.highlight.rawValue,
@@ -66,13 +66,13 @@ struct HelpAbout: View {
                     background: colorManager.groupBoxBG,
                     stroke: colorManager.stroke
                 ) {
-                    VStack {
-                        Text("Version: \(Bundle.main.appVersion!)")
-                        Text("Build: \(Bundle.main.buildVersion!)")
-                        Text("iOS-version: \(Utils.iosVersion())")
+                    VStack(alignment: .leading) {
+                        Text("**Version:** \(Bundle.main.appVersion!)")
+                        Text("**Build:** \(Bundle.main.buildVersion!)")
+                        Text("**iOS-version:** \(Utils.iosVersion())")
                     }
                 }
-                Spacer()
+                .frame(width: UIScreen.main.bounds.width * 0.8)
                 Button {
                     if let url = URL(string: "https://platform-42.com") {
                         UIApplication.shared.open(url)
@@ -86,7 +86,7 @@ struct HelpAbout: View {
                         buttonBackgroundColor: colorManager.navigationBG
                     )
                 }
-                Spacer()
+                .padding(.top, 40)
             }
         }
     }
@@ -130,12 +130,11 @@ struct HelpBugs: View {
     var body: some View {
         PageScrollView {
             VStack(spacing: 20) {
-                Spacer()
                 ContentHeader(
-                    titleLabel: HelpLabel.bugs,
-                    logo: Logo.bugs,
+                    titleLabel: HelpLabel.bugs.rawValue.capitalized,
+                    logo: Logo.bugs.rawValue,
                     logoColor: colorManager.logo,
-                    portraitSize: Squares.portrait.rawValue
+                    portraitSize: 60,
                 )
                 StyledGroupBox(
                     title: HelpBugsLabel.groupboxBugsTitle.rawValue.uppercased(),
@@ -149,7 +148,7 @@ struct HelpBugs: View {
                         )
                     }
                 }
-                Spacer()
+                .frame(width: UIScreen.main.bounds.width * 0.8)
                 Button {
                     let application = "\(Bundle.main.displayName!)"
                     let version = "\(Bundle.main.appVersion!)"
@@ -181,13 +180,13 @@ struct HelpBugs: View {
                         buttonBackgroundColor: colorManager.navigationBG
                     )
                 }
+                .padding(.top, 40)
                 .alert(alertModel.topicTitle, isPresented: $showAlert) {
                     Button(ButtonTitle.ok.rawValue.capitalized) {
                     }
                 } message: {
                     Text(alertModel.errorMessage)
                 }
-                Spacer()
             }
         }
     }
@@ -207,12 +206,11 @@ struct HelpAuth: View {
     var body: some View {
         PageScrollView {
             VStack(spacing: 20) {
-                Spacer()
                 ContentHeader(
-                    titleLabel: HelpLabel.authentication,
-                    logo: Logo.security,
+                    titleLabel: HelpLabel.authentication.rawValue.capitalized,
+                    logo: Logo.security.rawValue,
                     logoColor: colorManager.logo,
-                    portraitSize: Squares.portrait.rawValue
+                    portraitSize: 60,
                 )
                 StyledGroupBox(
                     title: HelpAuthLabel.groupboxAuthTitle.rawValue.uppercased(),
@@ -225,7 +223,7 @@ struct HelpAuth: View {
                         Text("**Login** will grant our app \(Bundle.main.displayName!.capitalized), access to your Shopify merchant-data for **read-access**. \n\nPress **logout** button to revoke access.")
                     }
                 }
-                Spacer()
+                .frame(width: UIScreen.main.bounds.width * 0.8)
                 Button {
                     tabsModel.select(.shops, isAuthenticated: true)
                 } label: {
@@ -237,7 +235,7 @@ struct HelpAuth: View {
                         buttonBackgroundColor: colorManager.navigationBG
                     )
                 }
-                Spacer()
+                .padding(.top, 40)
             }
         }
     }
@@ -255,12 +253,11 @@ struct HelpCredits: View {
     var body: some View {
         PageScrollView {
             VStack(spacing: 20) {
-                Spacer()
                 ContentHeader(
-                    titleLabel: HelpLabel.credits,
-                    logo: Logo.credits,
+                    titleLabel: HelpLabel.credits.rawValue.capitalized,
+                    logo: Logo.credits.rawValue,
                     logoColor: colorManager.logo,
-                    portraitSize: Squares.portrait.rawValue
+                    portraitSize: 60,
                 )
                 StyledGroupBox(
                     title: HelpCreditsLabel.groupboxOAuth.rawValue.uppercased(),
@@ -273,6 +270,7 @@ struct HelpCredits: View {
                         Text("**AppAuth** implements OAuth2 technology. Copyright (c) 2016 William Denniss")
                     }
                 }
+                .frame(width: UIScreen.main.bounds.width * 0.8)
                 StyledGroupBox(
                     title: HelpCreditsLabel.groupboxChatGPT.rawValue.uppercased(),
                     icon: Icon.highlight.rawValue,
@@ -285,7 +283,7 @@ struct HelpCredits: View {
                         Text("**ChatGPT**, developed by OpenAI.")
                     }
                 }
-                Spacer()
+                .frame(width: UIScreen.main.bounds.width * 0.8)
             }
         }
     }

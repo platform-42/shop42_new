@@ -27,6 +27,7 @@ enum RGBLight: Int {
     case beige = 0xC7BAAC
     case orange = 0xEDAB75
     case brightOrange = 0xF37454
+    case shopify_green = 0x379088    // green signal color
 }
 
 
@@ -40,6 +41,7 @@ enum RGBDark: Int {
     case beige = 0x8F8575 // taupe
     case orange = 0xC67A50 // burnt orange
     case brightOrange = 0xD15B3A // fiery coral
+    case shopify_green = 0x5CAEAA
 }
 
 

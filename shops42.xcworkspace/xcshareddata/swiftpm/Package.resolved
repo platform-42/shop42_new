@@ -1,5 +1,5 @@
 {
-  "originHash" : "7312506b2716011dc0e537000b05ed7fef420ddbf22fb2a9421bbf285e779e7f",
+  "originHash" : "15835116dc516f3beb17f12a44298ce28aef17472fbd268bbde864d947682d1e",
   "pins" : [
     {
       "identity" : "appauth-ios",
@@ -43,7 +43,7 @@
       "location" : "git@github.com:platform-42/P42-screenelements.git",
       "state" : {
         "branch" : "main",
-        "revision" : "fc5152d81117c28dbe460f86c0cb764dc38c6bc7"
+        "revision" : "ccd0bf4e3ccad449744e7a22e789f206860efb82"
       }
     },
     {
