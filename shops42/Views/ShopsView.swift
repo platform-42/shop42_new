@@ -12,6 +12,7 @@ import P42_keychain
 import P42_sound
 import P42_viewmodifiers
 import P42_utils
+import P42_screenelements
 
 
 enum ShopsLabel: String {
@@ -202,11 +203,13 @@ struct ShopsView: View {
     var body: some View {
         ZStack {
             colorManager.background.ignoresSafeArea()
-            VStack {
-                ShopsListView()
-                ShopsNavigationView()
-                ShopsConnectionView()
-                    .padding(.bottom, 100)
+            PageScrollView {
+                VStack(spacing: 20) {
+                    ShopsListView()
+                    ShopsNavigationView()
+                    ShopsConnectionView()
+                        .padding(.bottom, 100)
+                }
             }
             .modifier(
                 EmptyDataModifier(

@@ -51,6 +51,7 @@ struct AbandonedView: View {
             )
             NumberAndStatView(
                 period: Period.today.rawValue,
+                connectionColor: .red,
                 primaryValue: String(abandoned.today),
                 primaryColor: .primary,
                 secondaryLabel: "\(AbandonedLabel.missed.rawValue): ",

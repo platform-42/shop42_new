@@ -60,6 +60,7 @@ struct OrdersView: View {
             )
             NumberAndStatView(
                 period: Period.today.rawValue,
+                connectionColor: .red,
                 primaryValue: String(orders.today),
                 primaryColor: .primary,
                 secondaryLabel: "\(OrdersLabel.unpaid.rawValue): ",

@@ -11,20 +11,6 @@ import P42_extensions
 import P42_viewmodifiers
 
 
-struct VScrollView<Content>: View where Content: View {
-  @ViewBuilder let content: Content
-  
-  var body: some View {
-    GeometryReader { geometry in
-      ScrollView(.vertical) {
-        content
-          .frame(width: geometry.size.width)
-          .frame(minHeight: geometry.size.height)
-      }
-    }
-  }
-}
-
 struct BackgroundView: View {
     var watermarkImageName: String
     var opacity: CGFloat

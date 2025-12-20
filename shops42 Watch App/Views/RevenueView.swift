@@ -51,6 +51,7 @@ struct RevenueView: View {
             )
             NumberAndStatView(
                 period: Period.today.rawValue,
+                connectionColor: .red,
                 primaryValue: Utils.autoscale(
                     revenue.todayAmount,
                     currencyCode: revenue.currency

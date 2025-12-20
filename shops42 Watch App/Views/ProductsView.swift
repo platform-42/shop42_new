@@ -55,6 +55,7 @@ struct ProductsView: View {
             )
             NumberAndStateView(
                 period: Period.today.rawValue,
+                connectionColor: .red,
                 primaryValue: String(products.total),
                 primaryColor: .primary,
                 secondaryValue: String(products.today),

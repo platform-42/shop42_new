@@ -1,5 +1,5 @@
 {
-  "originHash" : "369b2f61d24123c49a8608ec79a7c115fe9f18f3e584359ff3bb47ef07ae4ead",
+  "originHash" : "d7cc21ed51cac41c63fb360a3a10b82b0ec99608e057489aabc6839de95ba909",
   "pins" : [
     {
       "identity" : "appauth-ios",
@@ -16,7 +16,7 @@
       "location" : "git@github.com:platform-42/P42-extensions.git",
       "state" : {
         "branch" : "main",
-        "revision" : "db0f90da6e8b35b862a5b736468149426ccad5e4"
+        "revision" : "05f97771168b84ee5aee9725a06eb84a1950e343"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "git@github.com:platform-42/p42-keychain.git",
       "state" : {
         "branch" : "main",
-        "revision" : "ecea3d4c54481d4f5e8fe5e3cfad8da76c3f84cb"
+        "revision" : "1637c384b960677ab892fa2c449b14218502efe8"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "git@github.com:platform-42/P42-screenelements.git",
       "state" : {
         "branch" : "main",
-        "revision" : "65570dd0577e5fa3d927aa9cec6e86bd3fc3a13f"
+        "revision" : "fc5152d81117c28dbe460f86c0cb764dc38c6bc7"
       }
     },
     {
@@ -70,7 +70,7 @@
       "location" : "git@github.com:platform-42/P42-watchos-widgets.git",
       "state" : {
         "branch" : "main",
-        "revision" : "f591e3c537ebf2d26be8fe138c05c9db3342b8cc"
+        "revision" : "b291bbebece86bc67b386bd91cd7f5064eb6ccf1"
       }
     }
   ],

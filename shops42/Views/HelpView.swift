@@ -35,7 +35,7 @@ enum HelpAboutLabel: String {
 struct HelpAbout: View {
     @Environment(ColorManager.self) var colorManager
     var body: some View {
-        VScrollView {
+        PageScrollView {
             VStack(spacing: 20) {
                 Spacer()
                 ContentHeader(
@@ -124,7 +124,7 @@ struct HelpBugs: View {
     @State private var showAlert: Bool = false
     
     var body: some View {
-        VScrollView {
+        PageScrollView {
             VStack(spacing: 20) {
                 Spacer()
                 ContentHeader(
@@ -201,7 +201,7 @@ struct HelpAuth: View {
     @Environment(TabsModel.self) var tabsModel
     @Environment(ColorManager.self) var colorManager
     var body: some View {
-        VScrollView {
+        PageScrollView {
             VStack(spacing: 20) {
                 Spacer()
                 ContentHeader(
@@ -248,7 +248,7 @@ enum HelpCreditsLabel: String {
 struct HelpCredits: View {
     @Environment(ColorManager.self) var colorManager
     var body: some View {
-        VScrollView {
+        PageScrollView {
             VStack(spacing: 20) {
                 Spacer()
                 ContentHeader(

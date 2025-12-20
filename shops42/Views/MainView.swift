@@ -55,9 +55,6 @@ struct TabContainer<Content: View>: View {
             content()
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.large)
-                .toolbarBackground(colorManager.navbarBG, for: .navigationBar)
-                .toolbarBackground(.visible, for: .navigationBar)
-                .toolbarColorScheme(colorManager.navbarContent, for: .navigationBar)
         }
     }
 }
@@ -121,9 +118,9 @@ struct MainView: View {
         )
     }
     
-    
     var body: some View {
         ZStack {
+            colorManager.background.ignoresSafeArea()
             TabView(selection: tabSelectionBinding) {
                 ForEach(AppTab.allCases) { tab in
                     TabContainer(title: tab.title) {

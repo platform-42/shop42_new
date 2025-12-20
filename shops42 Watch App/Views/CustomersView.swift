@@ -55,6 +55,7 @@ struct CustomersView: View {
             )
             NumberAndStateView(
                 period: Period.today.rawValue,
+                connectionColor: .red,
                 primaryValue: String(customers.total),
                 primaryColor: .primary,
                 secondaryValue: String(customers.today),
