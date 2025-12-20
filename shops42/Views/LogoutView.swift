@@ -13,7 +13,7 @@ import P42_sound
 import P42_viewmodifiers
 import P42_utils
 import P42_screenelements
-
+import P42_colormanager
 
 enum LogoutTitle: String {
     case warning

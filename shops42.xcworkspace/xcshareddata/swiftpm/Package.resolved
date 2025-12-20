@@ -1,5 +1,5 @@
 {
-  "originHash" : "d7cc21ed51cac41c63fb360a3a10b82b0ec99608e057489aabc6839de95ba909",
+  "originHash" : "7312506b2716011dc0e537000b05ed7fef420ddbf22fb2a9421bbf285e779e7f",
   "pins" : [
     {
       "identity" : "appauth-ios",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "145104f5ea9d58ae21b60add007c33c1cc0c948e",
         "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "p42-colormanager",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-colormanager.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "dcc50fb4ed1afc42c0d36d9f686c7969026da867"
       }
     },
     {

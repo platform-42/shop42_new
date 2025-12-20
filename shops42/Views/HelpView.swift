@@ -11,7 +11,7 @@ import P42_extensions
 import P42_viewmodifiers
 import P42_utils
 import P42_screenelements
-
+import P42_colormanager
 
 enum HelpLabel: String {
     case about

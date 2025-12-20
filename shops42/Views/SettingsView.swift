@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import P42_keychain
 import P42_sound
+import P42_colormanager
+
 
 enum SettingsSection: String {
     case activity
@@ -16,6 +18,7 @@ enum SettingsSection: String {
     case limits
     case controls
 }
+
 
 enum SettingsItem: String {
     case orders = "Show Orders"
@@ -27,6 +30,7 @@ enum SettingsItem: String {
     case sound = "Sound"
     case autoSync = "Auto Sync"
 }
+
 
 struct SettingsView: View {
     

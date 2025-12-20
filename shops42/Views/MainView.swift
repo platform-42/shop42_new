@@ -8,7 +8,7 @@
 import SwiftUI
 import P42_sound
 import P42_utils
-
+import P42_colormanager
 
 enum AppTab: String, CaseIterable, Identifiable {
     case shops
@@ -88,7 +88,7 @@ struct MainView: View {
     
     
     @Environment(\.colorScheme) var colorScheme
-    @State private var colorManager: ColorManager = ColorManager(.light)
+    @Environment(ColorManager.self) var colorManager
     @State private var watch: ConnectivityProvider = ConnectivityProvider()
     @State private var portfolioModel: PortfolioModel = PortfolioModel()
     @State private var alertModel: AlertModel = AlertModel()
@@ -132,7 +132,7 @@ struct MainView: View {
                     .tag(tab)
                 }
             }
-            .tint(colorManager.tabBarItems)
+            .tint(colorManager.tint)
             .onAppear() {
                 updateColorScheme(colorScheme, colorManager: colorManager)
             }
