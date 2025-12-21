@@ -29,7 +29,7 @@ enum AppTheme {
             navigationBG: Color(hex: RGBDark.shopify_green.rawValue),
             tabBarBG: Color(hex: RGBDark.darkVanilla.rawValue),
             pickerBG: Color(hex: RGBDark.beige.rawValue).opacity(0.3),
-            toolBarItems: .black,
+            toolBarItems: .white,
             navigationText: .white,
             tint: Color(hex: RGBDark.shopify_green.rawValue),
             stroke: Color(hex: RGBDark.beige.rawValue),
