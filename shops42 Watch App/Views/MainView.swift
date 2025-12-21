@@ -29,7 +29,11 @@ struct MainView: View {
         .modifier(
             EmptyModifier(
                 numberOfItems: portfolio.numberOfViews,
-                placeholder: 
+                placeholder: VStack {
+                    Image("AppIconReview")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(15.0)
                     Label(
                         portfolio.licenseCheck ? MainLabel.licenseSync.rawValue : MainLabel.regularSync.rawValue,
                         systemImage: Icon.sync.rawValue
@@ -38,8 +42,9 @@ struct MainView: View {
                         color: .white,
                         backgroundColor: Color(NavigationColor.button.rawValue),
                         radius: 15.0
+                        )
                     )
-                )
+                }
             )
         )
     }
