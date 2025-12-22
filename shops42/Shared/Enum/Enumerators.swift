@@ -27,3 +27,8 @@ enum Squares: CGFloat {
 enum Padding: CGFloat {
     case badge = 3
 }
+
+enum SecurityState {
+    case prohibited
+    case granted
+}

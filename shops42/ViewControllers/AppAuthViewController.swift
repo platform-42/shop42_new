@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import AppAuth
-
+import P42_keychain
 
 class AppAuthViewController: UIViewController {
     
@@ -89,7 +89,12 @@ class AppAuthViewController: UIViewController {
                 for tuple in authState.lastAuthorizationResponse.additionalParameters! {
                     if tuple.key == AppAuthToken.shop.rawValue {
                         let shop = tuple.value as! String
-                            Security.authorizeShop(shop, secret: secret)
+                        Security.authorizeObject(
+                            shop,
+                            applicationId: Bundle.main.displayName!,
+                            objectId: "shop",
+                            secret: secret
+                        )
                     }
                 }
             } else {

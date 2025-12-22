@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import P42_keychain
 
 
 @Observable class PortfolioModel {
@@ -40,7 +41,14 @@ import Foundation
     
     func securityState(_ shop: String) -> SecurityState {
         let shopName = PortfolioModel.shopName(shop)
-        return Security.isAuthorizedShop(shopName) ? .granted : .prohibited
+        if let _ = Keychain.instance.getKeyChain(
+            service: Bundle.main.displayName!,
+            account: shopName
+        ) {
+            return .granted
+        }
+        
+        return .prohibited
     }
     
     static func securityIcon(_ securityState: SecurityState) -> IconSecurity {

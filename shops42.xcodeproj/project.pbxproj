@@ -51,7 +51,6 @@
 		DE8CC7AB2B5E729100E307F4 /* reject.aif in Resources */ = {isa = PBXBuildFile; fileRef = DE8CC78C2B5E728C00E307F4 /* reject.aif */; };
 		DE8CC7AC2B5E729100E307F4 /* trash.aif in Resources */ = {isa = PBXBuildFile; fileRef = DE8CC78D2B5E728C00E307F4 /* trash.aif */; };
 		DE8CC7AD2B5E729100E307F4 /* shops42App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7902B5E728D00E307F4 /* shops42App.swift */; };
-		DE8CC7AE2B5E729100E307F4 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7922B5E728E00E307F4 /* Security.swift */; };
 		DE8CC7B02B5E729100E307F4 /* ScreenElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7942B5E728E00E307F4 /* ScreenElements.swift */; };
 		DE8CC7B12B5E729100E307F4 /* EmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7952B5E728E00E307F4 /* EmailController.swift */; };
 		DE8CC7B52B5E729100E307F4 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC79A2B5E728F00E307F4 /* AlertModel.swift */; };
@@ -172,7 +171,6 @@
 		DE8CC78C2B5E728C00E307F4 /* reject.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = reject.aif; sourceTree = "<group>"; };
 		DE8CC78D2B5E728C00E307F4 /* trash.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = trash.aif; sourceTree = "<group>"; };
 		DE8CC7902B5E728D00E307F4 /* shops42App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shops42App.swift; sourceTree = "<group>"; };
-		DE8CC7922B5E728E00E307F4 /* Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 		DE8CC7942B5E728E00E307F4 /* ScreenElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenElements.swift; sourceTree = "<group>"; };
 		DE8CC7952B5E728E00E307F4 /* EmailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailController.swift; sourceTree = "<group>"; };
 		DE8CC79A2B5E728F00E307F4 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
@@ -513,7 +511,6 @@
 		DE8CC7912B5E728E00E307F4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DE8CC7922B5E728E00E307F4 /* Security.swift */,
 				DE8CC7942B5E728E00E307F4 /* ScreenElements.swift */,
 				DE8CC7952B5E728E00E307F4 /* EmailController.swift */,
 				DE76EA5D2C6100C200809EF5 /* ConnectivityProvider.swift */,
@@ -792,7 +789,6 @@
 				DE8CC7A12B5E729100E307F4 /* AppAuthView.swift in Sources */,
 				DE8CC7612B5E727500E307F4 /* AppAuth.swift in Sources */,
 				DE8CC7A72B5E729100E307F4 /* MainView.swift in Sources */,
-				DE8CC7AE2B5E729100E307F4 /* Security.swift in Sources */,
 				DE76EA5E2C6100C200809EF5 /* ConnectivityProvider.swift in Sources */,
 				DE8CC75B2B5E727500E307F4 /* Enumerators.swift in Sources */,
 				DE8CC76B2B5E727600E307F4 /* View.swift in Sources */,

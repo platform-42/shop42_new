@@ -67,9 +67,7 @@ struct SettingsView: View {
         if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasLicense.rawValue) {
             return (.license, .unlicensed)
         }
-        if !Security.isAuthorizedShop(portfolio.selectedShop) {
-            return  (.security, .unauthorized)
-        }
+        /* REMOVED */
         guard let result = Keychain.instance.getKeyChain(
             service: Bundle.main.displayName!,
             account: portfolio.selectedShop

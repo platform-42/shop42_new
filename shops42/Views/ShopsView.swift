@@ -83,9 +83,10 @@ struct ShopsSyncView: View {
         if !portfolio.shopIsSelected(portfolio.selectedShop) {
             return (.shop, .unsubscribed)
         }
-        if !Security.isAuthorizedShop(portfolio.selectedShop) {
-            return (.security, .unauthorized)
-        }
+        /* REMOVED */
+//        if !Security.isAuthorizedShop(portfolio.selectedShop) {
+//            return (.security, .unauthorized)
+//        }
         guard let result = Keychain.instance.getKeyChain(
             service: Bundle.main.displayName!,
             account: portfolio.selectedShop

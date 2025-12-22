@@ -77,7 +77,11 @@ struct LogoutView: View {
                                 .lock,
                                 audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
                             )
-                            Security.revokeShop(portfolio.selectedShop)
+                            Security.revokeObject(
+                                portfolio.selectedShop,
+                                applicationId: Bundle.main.bundleIdentifier!,
+                                objectId: "shop"
+                            )
                             portfolio.deselectShop(portfolio.selectedShop)
                             _ = portfolio.selectFirstShop()
                             tabsModel.select(.shops, isAuthenticated: true)
