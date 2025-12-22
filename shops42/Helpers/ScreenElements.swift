@@ -42,24 +42,6 @@ struct SettingsLabel: View {
     }
 }
 
-/*
-struct ContentHeader: View {
-    var titleLabel: HelpLabel
-    var logo: Logo
-    var logoColor: Color
-    var portraitSize: CGFloat
-    
-    var body: some View {
-        Spacer()
-        Text(titleLabel.rawValue.capitalized)
-            .modifier(H2(labelColor: Color(LabelColor.h2.rawValue)))
-        Image(systemName: logo.rawValue)
-            .portrait(width: portraitSize, height: portraitSize)
-            .foregroundColor(logoColor)
-    }
-}
-*/
-
 struct ShopListItem: View {
     var shopLabel: String
     var shopLabelColor: Color
