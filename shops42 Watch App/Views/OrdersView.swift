@@ -68,7 +68,6 @@ struct OrdersView: View {
                 widgetStatus: OrdersModel.indicatorFieldlogic(orders.todayPending)
             )
             FooterView(topic: portfolio.selectedShop)
-            Spacer()
         }
         .onAppear {
             self.ordersRestAPI(meta: meta, portfolio: portfolio, model: orders)

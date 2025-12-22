@@ -89,7 +89,6 @@ struct HistoryView: View {
             .scrollIndicators(.hidden)
             .listStyle(CarouselListStyle())
             FooterView(topic: portfolio.selectedShop)
-            Spacer()
         }
         .onAppear {
             self.historyRestAPI(meta: meta, portfolio: portfolio, model: history)

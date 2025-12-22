@@ -62,7 +62,6 @@ struct AbandonedView: View {
                 widgetStatus: AbandonedModel.indicatorFieldlogic(abandoned.today)
             )
             FooterView(topic: portfolio.selectedShop)
-            Spacer()
         }
         .onAppear {
             self.abandonedRestAPI(meta: meta, portfolio: portfolio, model: abandoned)

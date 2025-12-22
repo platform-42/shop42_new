@@ -65,7 +65,6 @@ struct RevenueView: View {
                 widgetStatus: RevenueModel.indicatorFieldLogic(revenue.todayAmountPending)
             )
             FooterView(topic: portfolio.selectedShop)
-            Spacer()
         }
         .onAppear {
             self.revenueRestAPI(meta: meta, portfolio: portfolio, model: revenue)

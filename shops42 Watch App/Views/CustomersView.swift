@@ -63,7 +63,6 @@ struct CustomersView: View {
                 widgetState: CustomersModel.indicatorArrowLogic(customers: customers.today)
             )
             FooterView(topic: portfolio.selectedShop)
-            Spacer()
         }
         .onAppear {
             self.customersRestAPI(meta: meta, portfolio: portfolio, model: customers)

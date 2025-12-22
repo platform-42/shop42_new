@@ -63,7 +63,6 @@ struct ProductsView: View {
                 widgetState: ProductsModel.indicatorArrowLogic(products: products.today)
             )
             FooterView(topic: portfolio.selectedShop)
-            Spacer()
         }
         .onAppear {
             self.productsRestAPI(meta: meta, portfolio: portfolio, model: products)
