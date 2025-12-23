@@ -45,7 +45,7 @@ struct RevenueView: View {
     var body: some View {
         VStack {
             HeaderView(
-                icon: Icon.revenue.rawValue,
+                connectionColor: revenueModel.widgetConnectionColor(),
                 title: WatchView.revenue.rawValue,
                 background: Color(BackgroundColor.header.rawValue)
             )

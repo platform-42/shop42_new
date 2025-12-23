@@ -36,7 +36,6 @@ struct LogoutView: View {
             PageScrollView {
                 VStack(spacing: 20) {
                     Text(LogoutTitle.warning.rawValue.capitalized)
-                        .modifier(H2(labelColor: Color(LabelColor.h2.rawValue)))
                     Image(systemName: Logo.warning.rawValue)
                         .portrait(
                             width: Squares.portrait.rawValue,
@@ -44,7 +43,6 @@ struct LogoutView: View {
                         )
                         .foregroundColor(Utils.stateFieldColor(.neutral))
                     Text("By pressing Logout, you will revoke access to Shopify merchant-data.\n\nIn order to use the Watch app again, you need to re-authenticate")
-                        .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
                     Button {
                         showDeleteAlert = (portfolio.selectedShop.isEmpty == false)
                         if (!showDeleteAlert) {

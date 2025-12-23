@@ -54,7 +54,7 @@ struct OrdersView: View {
     var body: some View {
         VStack {
             HeaderView(
-                icon: Icon.orders.rawValue,
+                connectionColor: ordersModel.widgetConnectionColor(),
                 title: WatchView.orders.rawValue,
                 background: Color(BackgroundColor.header.rawValue)
             )

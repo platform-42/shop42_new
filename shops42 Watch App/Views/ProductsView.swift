@@ -49,7 +49,7 @@ struct ProductsView: View {
     var body: some View {
         VStack {
             HeaderView(
-                icon: Icon.products.rawValue,
+                connectionColor: productsModel.widgetConnectionColor(),
                 title: WatchView.products.rawValue,
                 background: Color(BackgroundColor.header.rawValue)
             )

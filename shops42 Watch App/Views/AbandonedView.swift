@@ -45,7 +45,7 @@ struct AbandonedView: View {
     var body: some View {
         VStack {
             HeaderView(
-                icon: Icon.abandoned.rawValue,
+                connectionColor: abandonedModel.widgetConnectionColor(),
                 title: WatchView.abandoned.rawValue,
                 background: Color(BackgroundColor.header.rawValue)
             )

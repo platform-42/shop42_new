@@ -70,7 +70,6 @@ struct ShopView: View {
             VStack {
                 Spacer()
                 Text(ShopLabel.title.rawValue)
-                    .modifier(H2(labelColor: Color(LabelColor.h2.rawValue)))
                 Image(systemName: Icon.shop.rawValue)
                     .portrait(
                         width: Squares.portrait.rawValue,
@@ -78,7 +77,6 @@ struct ShopView: View {
                     )
                 Text("Specify storename\nwithout .myshopify.com")
                     .multilineTextAlignment(.center)
-                    .modifier(P(labelColor: Color(LabelColor.p.rawValue)))
                 TextField(ShopLabel.storename.rawValue, text: $shop)
                     .disableAutocorrection(true)
                     .multilineTextAlignment(.center)
