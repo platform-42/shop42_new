@@ -15,8 +15,9 @@ import P42_utils
 import P42_screenelements
 import P42_colormanager
 
-enum LogoutTitle: String {
+enum LogoutLabel: String {
     case warning
+    case info = "By pressing Logout, you will revoke access to Shopify merchant-data.\n\nIn order to use the Watch app again, you need to re-authenticate"
 }
 
 struct LogoutView: View {
@@ -35,14 +36,13 @@ struct LogoutView: View {
             colorManager.background.ignoresSafeArea()
             PageScrollView {
                 VStack(spacing: 20) {
-                    Text(LogoutTitle.warning.rawValue.capitalized)
-                    Image(systemName: Logo.warning.rawValue)
-                        .portrait(
-                            width: Squares.portrait.rawValue,
-                            height: Squares.portrait.rawValue
-                        )
-                        .foregroundColor(Utils.stateFieldColor(.neutral))
-                    Text("By pressing Logout, you will revoke access to Shopify merchant-data.\n\nIn order to use the Watch app again, you need to re-authenticate")
+                    ContentHeader(
+                        titleLabel: LogoutLabel.warning.rawValue,
+                        logo: Logo.warning.rawValue,
+                        logoColor: colorManager.logo,
+                        portraitSize: 60,
+                        info: LogoutLabel.info.rawValue,
+                    )
                     Button {
                         showDeleteAlert = (portfolio.selectedShop.isEmpty == false)
                         if (!showDeleteAlert) {
@@ -62,6 +62,7 @@ struct LogoutView: View {
                             buttonBackgroundColor: colorManager.navigationBG
                         )
                     }
+                    .padding(.top, 40)
                     .alert(alertModel.topicTitle, isPresented: $showAlert) {
                         Button(ButtonTitle.ok.rawValue.capitalized) {
                             tabsModel.select(.shops, isAuthenticated: true)

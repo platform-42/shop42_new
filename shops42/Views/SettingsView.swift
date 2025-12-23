@@ -84,38 +84,27 @@ struct SettingsView: View {
         connectivityProvider.semaphore.signal()
         return (.none, .okay)
     }
-    
+        
     var body: some View {
         ZStack {
             colorManager.background.ignoresSafeArea()
             List {
                 Section {
                     Toggle(isOn: $settingsModel.showHistory) {
-                        SettingsLabel(
-                            label: SettingsItem.history.rawValue,
-                            icon: Icon.history,
-                            iconColor: IconColor.history
-                        )
+                        Label(SettingsItem.history.rawValue, systemImage: Icon.history.rawValue)
                     }
                     .onChange(of: settingsModel.showHistory) { _, changed in
                         onChangeHandler(changed, settingsKey: .history)
                     }
                     Toggle(isOn: $settingsModel.showCustomers) {
-                        SettingsLabel(
-                            label: SettingsItem.customers.rawValue,
-                            icon: Icon.customers,
-                            iconColor: IconColor.customers
-                        )
+                        Label(SettingsItem.customers.rawValue, systemImage: Icon.customers.rawValue)
+
                     }
                     .onChange(of: settingsModel.showCustomers) { _, changed in
                         onChangeHandler(changed, settingsKey: .customers)
                     }
                     Toggle(isOn: $settingsModel.showProducts) {
-                        SettingsLabel(
-                            label: SettingsItem.products.rawValue,
-                            icon: Icon.products,
-                            iconColor: IconColor.products
-                        )
+                        Label(SettingsItem.products.rawValue, systemImage: Icon.products.rawValue)
                     }
                     .onChange(of: settingsModel.showProducts) { _, changed in
                         onChangeHandler(changed, settingsKey: .products)
@@ -126,11 +115,7 @@ struct SettingsView: View {
                 }
                 Section {
                     Toggle(isOn: $settingsModel.showAbandoned) {
-                        SettingsLabel(
-                            label: SettingsItem.abandoned.rawValue,
-                            icon: Icon.abandoned,
-                            iconColor: IconColor.abandoned
-                        )
+                        Label(SettingsItem.abandoned.rawValue, systemImage: Icon.abandoned.rawValue)
                     }
                     .onChange(of: settingsModel.showAbandoned) { _, changed in
                         onChangeHandler(changed, settingsKey: .abandoned)
@@ -141,21 +126,13 @@ struct SettingsView: View {
                 }
                 Section {
                     Toggle(isOn: $settingsModel.autoSync) {
-                        SettingsLabel(
-                            label: SettingsItem.autoSync.rawValue,
-                            icon: Icon.sync,
-                            iconColor: IconColor.autosync
-                        )
+                        Label(SettingsItem.autoSync.rawValue, systemImage: Icon.sync.rawValue)
                     }
                     .onChange(of: settingsModel.autoSync) { _, changed in
                         onChangeHandler(changed, settingsKey: .autoSync)
                     }
                     Toggle(isOn: $settingsModel.sound) {
-                        SettingsLabel(
-                            label: SettingsItem.sound.rawValue,
-                            icon: Icon.soundOn,
-                            iconColor: IconColor.sound
-                        )
+                        Label(SettingsItem.sound.rawValue, systemImage: Icon.soundOn.rawValue)
                     }
                     .onChange(of: settingsModel.sound) { _, changed in
                         onChangeHandler(changed, settingsKey: .sound)

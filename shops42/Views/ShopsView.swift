@@ -211,7 +211,6 @@ struct ShopsView: View {
                     ShopsListView()
                     ShopsNavigationView()
                     ShopsConnectionView()
-                        .padding(.bottom, 100)
                 }
             }
             .modifier(
@@ -240,7 +239,7 @@ struct ShopsView: View {
                             }
                     } label: {
                         Image(systemName: Icon.plus.rawValue)
-                            .foregroundColor(.white)
+                            .foregroundColor(colorManager.toolBarItems)
                     }
                 }
                 ToolbarItem {
@@ -254,7 +253,7 @@ struct ShopsView: View {
                         _ = portfolio.selectFirstShop()
                     } label: {
                         Image(systemName: Icon.minus.rawValue)
-                            .foregroundColor(.white)
+                            .foregroundColor(colorManager.toolBarItems)
                     }
                 }
             }
