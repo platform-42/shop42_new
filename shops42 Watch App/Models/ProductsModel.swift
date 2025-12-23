@@ -20,10 +20,12 @@ struct ProductsCount: Codable {
     
     var today: Int
     var total: Int
+    var lastUpdate: Date
 
     init() {
         self.today = 0
         self.total = 0
+        self.lastUpdate = Date()
     }
     
     static func indicatorArrowLogic(products: Int) -> WidgetState {
@@ -61,6 +63,7 @@ struct ProductsCount: Codable {
             return
         }
         self.today = decoded.count
+        self.lastUpdate = Date()
     }
 
     func productsTotalHandler(response: Data, meta: Meta) {
@@ -69,6 +72,7 @@ struct ProductsCount: Codable {
             return
         }
         self.total = decoded.count
+        self.lastUpdate = Date()
     }
     
 }

@@ -36,12 +36,14 @@ struct RevenueResponse: Codable {
     var todayAmount: Double
     var todayAmountPending: Double
     var currency: String
+    var lastUpdate: Date
 
     init() {
         self.todayAmount = 0.0
         self.todayAmountPending = 0.0
         self.revenue = []
         self.currency = Currency.eur.rawValue.capitalized
+        self.lastUpdate = Date()
     }
     
     static func indicatorFieldLogic(_ amountPending: Double) -> WidgetStatus {
@@ -77,6 +79,7 @@ struct RevenueResponse: Codable {
             }
             self.currency = order.currency
         }
+        self.lastUpdate = Date()
     }
     
 }

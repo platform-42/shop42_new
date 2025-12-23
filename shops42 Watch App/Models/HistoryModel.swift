@@ -36,9 +36,11 @@ struct OrderItemResponse: Codable {
 @Observable class HistoryModel {
     
     var ordersList: [OrderItem]
-    
+    var lastUpdate: Date
+
     init() {
         self.ordersList = []
+        self.lastUpdate = Date()
     }
 
     static func indicatorFieldLogic(_ financialStatus: String) -> WidgetStatus {
@@ -72,5 +74,6 @@ struct OrderItemResponse: Codable {
             return
         }
         self.ordersList = decoded.orders
+        self.lastUpdate = Date()
     }
 }

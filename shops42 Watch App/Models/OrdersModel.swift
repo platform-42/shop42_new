@@ -20,10 +20,12 @@ struct OrdersCount: Codable {
     
     var today: Int
     var todayPending: Int
+    var lastUpdate: Date
 
     init() {
         self.today = 0
         self.todayPending = 0
+        self.lastUpdate = Dat()
     }
     
     static func indicatorFieldlogic(_ ordersPending: Int) -> WidgetStatus {
@@ -60,6 +62,7 @@ struct OrdersCount: Codable {
             return
         }
         self.today = decoded.count
+        self.lastUpdate = Date()
     }
     
     func ordersTodayPendingHandler(response: Data, meta: Meta) {
@@ -68,5 +71,6 @@ struct OrdersCount: Codable {
             return
         }
         self.todayPending = decoded.count
+        self.lastUpdate = Date()
     }
 }
