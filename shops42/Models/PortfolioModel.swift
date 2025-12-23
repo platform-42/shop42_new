@@ -15,6 +15,10 @@ import P42_keychain
     private(set) var numberOfShops: Int
     private(set) var selectedShop: String
     
+    var hasShops: Bool {
+        !self.shops.isEmpty
+    }
+
     init() {
         self.selectedShop = ""
         self.shops = []
@@ -55,6 +59,7 @@ import P42_keychain
         return (securityState == .granted) ? .granted : .prohibited
     }
     
+    @discardableResult
     func selectFirstShop() -> Bool {
         if (self.shops.count != 0) {
             self.selectedShop = PortfolioModel.shopName(shops.first!)
@@ -67,6 +72,7 @@ import P42_keychain
         return false
     }
     
+    @discardableResult
     func selectShop(_ shop: String) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
         if self.shops.contains(where: { $0 == shopName }) {

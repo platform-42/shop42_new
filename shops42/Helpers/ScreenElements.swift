@@ -11,37 +11,6 @@ import P42_extensions
 import P42_viewmodifiers
 
 
-struct BackgroundView: View {
-    var watermarkImageName: String
-    var opacity: CGFloat
-    var body: some View {
-        VStack {
-            Image(watermarkImageName)
-                .resizable()
-                .scaledToFit()
-                .opacity(opacity)
-                .edgesIgnoringSafeArea(.all)
-                .padding(50)
-            Spacer()
-        }
-    }
-}
-
-struct SettingsLabel: View {
-    var label: String
-    var icon: Icon
-    var iconColor: IconColor
-    var body: some View {
-        
-        Label {
-            Text(label)
-        } icon: {
-            Image(systemName: icon.rawValue)
-                .foregroundColor(Color(iconColor.rawValue))
-        }
-    }
-}
-
 struct ShopListItem: View {
     var shopLabel: String
     var shopLabelColor: Color

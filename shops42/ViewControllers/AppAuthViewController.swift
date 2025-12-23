@@ -28,6 +28,7 @@ class AppAuthViewController: UIViewController {
         components.scheme = ShopifyURIComponent.schema.rawValue
         components.host = "\(shop)\(ShopifyURIComponent.host.rawValue)"
         components.path = endpoint
+        debugLog(components.string!)
         return components
     }
     
@@ -36,6 +37,7 @@ class AppAuthViewController: UIViewController {
         components.scheme = ShopifyURIComponent.schema.rawValue
         components.host = "\(shop)\(ShopifyURIComponent.host.rawValue)"
         components.path = endpoint
+        debugLog(components.string!)
         return components
     }
     

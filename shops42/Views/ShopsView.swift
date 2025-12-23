@@ -21,19 +21,19 @@ enum ShopsLabel: String {
     case empty = "No shops configured"
     case loggedIn = "Logged in"
     case loggedOut = "Logged out"
+    case info = "Press + or - sign in the toolbar to add or remove a shop"
+    case title = "Adding shops"
 }
 
 
 struct ShopsListView: View {
     
     @Environment(PortfolioModel.self) var portfolio
+    @Environment(ColorManager.self) var colorManager
     @State private var selectedShop: String = ""
-    @State private var icon: String = ""
-    @State private var granted: Bool = false
     
     var body: some View {
         VStack {
-            Spacer()
             Picker(ShopsLabel.pickerTitle.rawValue, selection: $selectedShop) {
                 ForEach(portfolio.shops, id: \.self) { shop in
                     ShopListItem(
@@ -42,25 +42,12 @@ struct ShopsListView: View {
                     )
                 }
             }
-            .onAppear {
-                selectedShop = portfolio.selectedShop
-                portfolio.selectShop(selectedShop)
-                icon = PortfolioModel.securityIcon(portfolio.securityState(portfolio.selectedShop)).rawValue
-                granted = portfolio.securityState(portfolio.selectedShop) == .granted
-            }
-            .onChange(of: selectedShop) { _, changed in
-                portfolio.selectShop(changed)
-                icon = PortfolioModel.securityIcon(portfolio.securityState(changed)).rawValue
-                granted = portfolio.securityState(changed) == .granted
-            }
-            .pickerStyle(.inline)
-            Image(systemName: icon)
-                .portrait(
-                    width: Squares.portrait.rawValue,
-                    height: Squares.portrait.rawValue
-                )
-            Text(granted ? ShopsLabel.loggedIn.rawValue : ShopsLabel.loggedOut.rawValue)
-            Spacer()
+            .frame(width: UIScreen.main.bounds.width * 0.8)
+            .pickerStyle(WheelPickerStyle())
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(colorManager.stroke, lineWidth: 3)
+            )
         }
     }
 }
@@ -95,6 +82,7 @@ struct ShopsSyncView: View {
         }
         let accessToken = String(decoding: result, as: UTF8.self)
         let message = Shops42.shopAdd(portfolio.selectedShop, accessToken: accessToken)
+        debugLog(accessToken)
         connectivityProvider.semaphore.wait()
         connectivityProvider.send(message: message)
         connectivityProvider.semaphore.signal()
@@ -208,24 +196,20 @@ struct ShopsView: View {
             colorManager.background.ignoresSafeArea()
             PageScrollView {
                 VStack(spacing: 20) {
-                    ShopsListView()
+                    ContentHeader(
+                        titleLabel: ShopsLabel.title.rawValue,
+                        logo: TabIcon.shops.rawValue,
+                        logoColor: colorManager.logo,
+                        portraitSize: 60,
+                        info: ShopsLabel.info.rawValue,
+                    )
+                    if portfolio.hasShops {
+                        ShopsListView()
+                    }
                     ShopsNavigationView()
                     ShopsConnectionView()
                 }
             }
-            .modifier(
-                EmptyDataModifier(
-                    items: portfolio.shops,
-                    placeholder:
-                        Label(ShopsLabel.empty.rawValue, systemImage: Icon.orders.rawValue)
-                        .labelStyle(BackgroundLabelStyle(
-                            color: colorManager.navigationText,
-                            backgroundColor: colorManager.navigationBG,
-                            radius: 25.0
-                        )
-                        )
-                )
-            )
             .scrollContentBackground(.hidden)
             .toolbar {
                 ToolbarItem {
