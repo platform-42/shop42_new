@@ -32,7 +32,7 @@ struct OrdersView: View {
                 ),
                 secret: portfolio.accessToken,
                 meta: meta,
-                handler: orders.ordersTodayHandler
+                handler: ordersModel.ordersTodayHandler
             )
             RestAPI.getRequestShopify(
                 components: OrdersModel.ordersTodayPendingURL(
@@ -48,7 +48,7 @@ struct OrdersView: View {
     }
     
     @EnvironmentObject var portfolio: PortfolioModel
-    @State private var orders: OrdersModel = OrdersModel()
+    @State private var ordersModel: OrdersModel = OrdersModel()
     var meta: Meta = Meta(2)
     
     var body: some View {
@@ -61,19 +61,28 @@ struct OrdersView: View {
             NumberAndStatView(
                 period: Period.today.rawValue,
                 connectionColor: .red,
-                primaryValue: String(orders.today),
+                primaryValue: String(ordersModel.today),
                 primaryColor: .primary,
                 secondaryLabel: "\(OrdersLabel.unpaid.rawValue): ",
-                secondaryValue: String(orders.todayPending),
-                widgetStatus: OrdersModel.indicatorFieldlogic(orders.todayPending)
+                secondaryValue: String(ordersModel.todayPending),
+                widgetStatus: OrdersModel.indicatorFieldlogic(ordersModel.todayPending)
             )
-            FooterView(topic: portfolio.selectedShop)
+            TimelineView(.periodic(from: .now, by: 120)) { context in
+                FooterView(
+                    topic: portfolio.selectedShop,
+                    lastUpdate: Utils.delayIndicator(
+                        now: context.date,
+                        lastUpdate: ordersModel.lastUpdate,
+                        boundaryMinutes: 1
+                    )
+                )
+            }
         }
         .onAppear {
-            self.ordersRestAPI(meta: meta, portfolio: portfolio, model: orders)
+            self.ordersRestAPI(meta: meta, portfolio: portfolio, model: ordersModel)
         }
         .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.ordersRestAPI(meta: meta, portfolio: portfolio, model: orders)
+            self.ordersRestAPI(meta: meta, portfolio: portfolio, model: ordersModel)
         }
     }
 }

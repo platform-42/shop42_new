@@ -34,12 +34,14 @@ struct AbandonedResponse: Codable {
     var todayTotal: Double
     var currency: String
     var abandoned: [AbandonedItem]
+    var lastUpdate: Date
     
     init() {
         self.today = 0
         self.todayTotal = 0.0
         self.currency = Currency.eur.rawValue.capitalized
         self.abandoned = []
+        self.lastUpdate = Date()
     }
     
     static func indicatorFieldlogic(_ abandoned: Int) -> WidgetStatus {
@@ -70,6 +72,7 @@ struct AbandonedResponse: Codable {
             self.todayTotal += Double(checkout.total_price)!
             self.currency = checkout.currency
         }
+        self.lastUpdate = Date()
     }
     
 }

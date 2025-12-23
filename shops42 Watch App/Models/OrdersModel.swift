@@ -25,7 +25,7 @@ struct OrdersCount: Codable {
     init() {
         self.today = 0
         self.todayPending = 0
-        self.lastUpdate = Dat()
+        self.lastUpdate = Date()
     }
     
     static func indicatorFieldlogic(_ ordersPending: Int) -> WidgetStatus {

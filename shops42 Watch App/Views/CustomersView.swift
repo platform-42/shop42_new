@@ -27,7 +27,7 @@ struct CustomersView: View {
                 ),
                 secret: portfolio.accessToken,
                 meta: meta,
-                handler: customers.customersTodayHandler
+                handler: customersModel.customersTodayHandler
             )
             RestAPI.getRequestShopify(
                 components: CustomersModel.customersTotalURL(
@@ -43,7 +43,7 @@ struct CustomersView: View {
     }
     
     @EnvironmentObject var portfolio: PortfolioModel
-    @State private var customers: CustomersModel = CustomersModel()
+    @State private var customersModel: CustomersModel = CustomersModel()
     var meta: Meta = Meta(2)
     
     var body: some View {
@@ -56,19 +56,28 @@ struct CustomersView: View {
             NumberAndStateView(
                 period: Period.today.rawValue,
                 connectionColor: .red,
-                primaryValue: String(customers.total),
+                primaryValue: String(customersModel.total),
                 primaryColor: .primary,
-                secondaryValue: String(customers.today),
+                secondaryValue: String(customersModel.today),
                 secondaryColor: .secondary,
-                widgetState: CustomersModel.indicatorArrowLogic(customers: customers.today)
+                widgetState: CustomersModel.indicatorArrowLogic(customers: customersModel.today)
             )
-            FooterView(topic: portfolio.selectedShop)
+            TimelineView(.periodic(from: .now, by: 120)) { context in
+                FooterView(
+                    topic: portfolio.selectedShop,
+                    lastUpdate: Utils.delayIndicator(
+                        now: context.date,
+                        lastUpdate: customersModel.lastUpdate,
+                        boundaryMinutes: 1
+                    )
+                )
+            }
         }
         .onAppear {
-            self.customersRestAPI(meta: meta, portfolio: portfolio, model: customers)
+            self.customersRestAPI(meta: meta, portfolio: portfolio, model: customersModel)
         }
         .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.customersRestAPI(meta: meta, portfolio: portfolio, model: customers)
+            self.customersRestAPI(meta: meta, portfolio: portfolio, model: customersModel)
         }
     }
 }

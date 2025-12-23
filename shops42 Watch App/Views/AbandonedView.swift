@@ -39,7 +39,7 @@ struct AbandonedView: View {
     }
     
     @EnvironmentObject var portfolio: PortfolioModel
-    @State private var abandoned: AbandonedModel = AbandonedModel()
+    @State private var abandonedModel: AbandonedModel = AbandonedModel()
     var meta: Meta = Meta(1)
     
     var body: some View {
@@ -52,22 +52,31 @@ struct AbandonedView: View {
             NumberAndStatView(
                 period: Period.today.rawValue,
                 connectionColor: .red,
-                primaryValue: String(abandoned.today),
+                primaryValue: String(abandonedModel.today),
                 primaryColor: .primary,
                 secondaryLabel: "\(AbandonedLabel.missed.rawValue): ",
                 secondaryValue: Utils.autoscale(
-                    abandoned.todayTotal,
-                    currencyCode: abandoned.currency
+                    abandonedModel.todayTotal,
+                    currencyCode: abandonedModel.currency
                 ),
-                widgetStatus: AbandonedModel.indicatorFieldlogic(abandoned.today)
+                widgetStatus: AbandonedModel.indicatorFieldlogic(abandonedModel.today)
             )
-            FooterView(topic: portfolio.selectedShop)
+            TimelineView(.periodic(from: .now, by: 120)) { context in
+                FooterView(
+                    topic: portfolio.selectedShop,
+                    lastUpdate: Utils.delayIndicator(
+                        now: context.date,
+                        lastUpdate: abandonedModel.lastUpdate,
+                        boundaryMinutes: 1
+                    )
+                )
+            }
         }
         .onAppear {
-            self.abandonedRestAPI(meta: meta, portfolio: portfolio, model: abandoned)
+            self.abandonedRestAPI(meta: meta, portfolio: portfolio, model: abandonedModel)
         }
         .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.abandonedRestAPI(meta: meta, portfolio: portfolio, model: abandoned)
+            self.abandonedRestAPI(meta: meta, portfolio: portfolio, model: abandonedModel)
         }
     }
 }

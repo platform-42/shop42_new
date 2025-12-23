@@ -39,7 +39,7 @@ struct RevenueView: View {
     }
     
     @EnvironmentObject var portfolio: PortfolioModel
-    @State private var revenue: RevenueModel = RevenueModel()
+    @State private var revenueModel: RevenueModel = RevenueModel()
     var meta: Meta = Meta(1)
     
     var body: some View {
@@ -53,24 +53,33 @@ struct RevenueView: View {
                 period: Period.today.rawValue,
                 connectionColor: .red,
                 primaryValue: Utils.autoscale(
-                    revenue.todayAmount,
-                    currencyCode: revenue.currency
+                    revenueModel.todayAmount,
+                    currencyCode: revenueModel.currency
                 ),
                 primaryColor: .primary,
                 secondaryLabel: "\(RevenueLabel.unpaid.rawValue): ",
                 secondaryValue: Utils.autoscale(
-                    revenue.todayAmountPending,
-                    currencyCode: revenue.currency
+                    revenueModel.todayAmountPending,
+                    currencyCode: revenueModel.currency
                 ),
-                widgetStatus: RevenueModel.indicatorFieldLogic(revenue.todayAmountPending)
+                widgetStatus: RevenueModel.indicatorFieldLogic(revenueModel.todayAmountPending)
             )
-            FooterView(topic: portfolio.selectedShop)
+            TimelineView(.periodic(from: .now, by: 120)) { context in
+                FooterView(
+                    topic: portfolio.selectedShop,
+                    lastUpdate: Utils.delayIndicator(
+                        now: context.date,
+                        lastUpdate: revenueModel.lastUpdate,
+                        boundaryMinutes: 1
+                    )
+                )
+            }
         }
         .onAppear {
-            self.revenueRestAPI(meta: meta, portfolio: portfolio, model: revenue)
+            self.revenueRestAPI(meta: meta, portfolio: portfolio, model: revenueModel)
         }
         .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.revenueRestAPI(meta: meta, portfolio: portfolio, model: revenue)
+            self.revenueRestAPI(meta: meta, portfolio: portfolio, model: revenueModel)
         }
     }
 }
