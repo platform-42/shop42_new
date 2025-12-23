@@ -40,7 +40,7 @@ struct HistoryView: View {
     }
     
     @EnvironmentObject var portfolio: PortfolioModel
-    @State private var history: HistoryModel = HistoryModel()
+    @State private var historyModel: HistoryModel = HistoryModel()
     var meta: Meta = Meta(1)
     
     var body: some View {
@@ -51,7 +51,7 @@ struct HistoryView: View {
                 background: Color(BackgroundColor.header.rawValue)
             )
             List {
-                ForEach(history.ordersList) { order in
+                ForEach(historyModel.ordersList) { order in
                     HStack {
                         VStack {
                             let indicator = HistoryModel.indicatorFieldLogic(order.financial_status)
@@ -76,7 +76,7 @@ struct HistoryView: View {
                         }
                     }
                 }
-                if history.ordersList.count == 0 {
+                if historyModel.ordersList.count == 0 {
                     BadgedLabel(
                         labelColor: Widget.statusFieldColor(.warning),
                         backgroundColor: Widget.statusFieldBackgroundColor(.warning),
@@ -88,13 +88,22 @@ struct HistoryView: View {
             }
             .scrollIndicators(.hidden)
             .listStyle(CarouselListStyle())
-            FooterView(topic: portfolio.selectedShop)
+            TimelineView(.periodic(from: .now, by: 120)) { context in
+                FooterView(
+                    topic: portfolio.selectedShop,
+                    lastUpdate: Utils.delayIndicator(
+                        now: context.date,
+                        lastUpdate: historyModel.lastUpdate,
+                        boundaryMinutes: 1
+                    )
+                )
+            }
         }
         .onAppear {
-            self.historyRestAPI(meta: meta, portfolio: portfolio, model: history)
+            self.historyRestAPI(meta: meta, portfolio: portfolio, model: historyModel)
         }
         .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.historyRestAPI(meta: meta, portfolio: portfolio, model: history)
+            self.historyRestAPI(meta: meta, portfolio: portfolio, model: historyModel)
         }
     }
 }
