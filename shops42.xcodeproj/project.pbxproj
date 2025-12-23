@@ -80,6 +80,7 @@
 		DE9E9F982DA70EF7004BCDE7 /* P42-watchos-widgets in Frameworks */ = {isa = PBXBuildFile; productRef = DE9E9F972DA70EF7004BCDE7 /* P42-watchos-widgets */; };
 		DE9E9F9B2DA7102C004BCDE7 /* P42-keychain in Frameworks */ = {isa = PBXBuildFile; productRef = DE9E9F9A2DA7102C004BCDE7 /* P42-keychain */; };
 		DE9E9F9E2DA7107F004BCDE7 /* P42-sound in Frameworks */ = {isa = PBXBuildFile; productRef = DE9E9F9D2DA7107F004BCDE7 /* P42-sound */; };
+		DEB418552EFA94E700B3F7B0 /* P42-watchos-colormanager in Frameworks */ = {isa = PBXBuildFile; productRef = DEB418542EFA94E700B3F7B0 /* P42-watchos-colormanager */; };
 		E3DE02B97496D0FFF18B39ED /* Pods_shops42.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0DA646D802B53ADDE367928 /* Pods_shops42.framework */; };
 /* End PBXBuildFile section */
 
@@ -224,6 +225,7 @@
 				DE9E9F982DA70EF7004BCDE7 /* P42-watchos-widgets in Frameworks */,
 				DE9E9F902DA70E39004BCDE7 /* P42-utils in Frameworks */,
 				DE9E9F952DA70EAA004BCDE7 /* P42-viewmodifiers in Frameworks */,
+				DEB418552EFA94E700B3F7B0 /* P42-watchos-colormanager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +642,7 @@
 				DE9E9F8F2DA70E39004BCDE7 /* P42-utils */,
 				DE9E9F942DA70EAA004BCDE7 /* P42-viewmodifiers */,
 				DE9E9F972DA70EF7004BCDE7 /* P42-watchos-widgets */,
+				DEB418542EFA94E700B3F7B0 /* P42-watchos-colormanager */,
 			);
 			productName = "shops42 Watch App";
 			productReference = DE8CC7242B5E700800E307F4 /* shops42 Watch App.app */;
@@ -682,6 +685,7 @@
 				DE1E58042EF06ECE00C149CC /* XCRemoteSwiftPackageReference "AppAuth-iOS" */,
 				DE1E58082EF0868300C149CC /* XCRemoteSwiftPackageReference "P42-screenelements" */,
 				DE3770AC2EF69F6800F5B131 /* XCRemoteSwiftPackageReference "P42-colormanager" */,
+				DEB418532EFA94CF00B3F7B0 /* XCRemoteSwiftPackageReference "P42-watchos-colormanager" */,
 			);
 			productRefGroup = DE8CC7152B5E700500E307F4 /* Products */;
 			projectDirPath = "";
@@ -1217,6 +1221,14 @@
 				kind = branch;
 			};
 		};
+		DEB418532EFA94CF00B3F7B0 /* XCRemoteSwiftPackageReference "P42-watchos-colormanager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:platform-42/P42-watchos-colormanager.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1269,6 +1281,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE9E9F9C2DA7107F004BCDE7 /* XCRemoteSwiftPackageReference "P42-sound" */;
 			productName = "P42-sound";
+		};
+		DEB418542EFA94E700B3F7B0 /* P42-watchos-colormanager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEB418532EFA94CF00B3F7B0 /* XCRemoteSwiftPackageReference "P42-watchos-colormanager" */;
+			productName = "P42-watchos-colormanager";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

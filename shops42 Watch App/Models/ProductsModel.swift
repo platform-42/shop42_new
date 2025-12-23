@@ -5,6 +5,7 @@
 //  Created by Diederick de Buck on 25/04/2023.
 //
 
+import SwiftUI
 import Foundation
 import P42_extensions
 import P42_utils
@@ -21,11 +22,17 @@ struct ProductsCount: Codable {
     var today: Int
     var total: Int
     var lastUpdate: Date
+    var hasConnection: Bool
 
     init() {
         self.today = 0
         self.total = 0
         self.lastUpdate = Date()
+        self.hasConnection = true
+    }
+    
+    func widgetConnectionColor() -> Color {
+        return (self.hasConnection) ? .green : .red
     }
     
     static func indicatorArrowLogic(products: Int) -> WidgetState {

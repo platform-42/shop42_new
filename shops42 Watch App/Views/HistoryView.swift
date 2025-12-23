@@ -47,6 +47,7 @@ struct HistoryView: View {
         VStack {
             HeaderView(
                 icon: Icon.history.rawValue,
+                connectionColor: historyModel.widgetConnectionColor(),
                 title: WatchView.history.rawValue,
                 background: Color(BackgroundColor.header.rawValue)
             )

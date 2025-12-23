@@ -5,6 +5,7 @@
 //  Created by Diederick de Buck on 16/08/2024.
 //
 
+import SwiftUI
 import Foundation
 import P42_extensions
 import P42_utils
@@ -37,6 +38,7 @@ struct RevenueResponse: Codable {
     var todayAmountPending: Double
     var currency: String
     var lastUpdate: Date
+    var hasConnection: Bool
 
     init() {
         self.todayAmount = 0.0
@@ -44,6 +46,11 @@ struct RevenueResponse: Codable {
         self.revenue = []
         self.currency = Currency.eur.rawValue.capitalized
         self.lastUpdate = Date()
+        self.hasConnection = true
+    }
+    
+    func widgetConnectionColor() -> Color {
+        return (self.hasConnection) ? .green : .red
     }
     
     static func indicatorFieldLogic(_ amountPending: Double) -> WidgetStatus {

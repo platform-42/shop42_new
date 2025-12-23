@@ -5,6 +5,7 @@
 //  Created by Diederick de Buck on 25/04/2023.
 //
 
+import SwiftUI
 import Foundation
 import P42_extensions
 import P42_utils
@@ -35,6 +36,7 @@ struct AbandonedResponse: Codable {
     var currency: String
     var abandoned: [AbandonedItem]
     var lastUpdate: Date
+    var hasConnection: Bool
     
     init() {
         self.today = 0
@@ -42,6 +44,11 @@ struct AbandonedResponse: Codable {
         self.currency = Currency.eur.rawValue.capitalized
         self.abandoned = []
         self.lastUpdate = Date()
+        self.hasConnection = true
+    }
+    
+    func widgetConnectionColor() -> Color {
+        return (self.hasConnection) ? .green : .red
     }
     
     static func indicatorFieldlogic(_ abandoned: Int) -> WidgetStatus {

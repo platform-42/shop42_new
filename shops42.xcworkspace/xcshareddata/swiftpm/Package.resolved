@@ -1,5 +1,5 @@
 {
-  "originHash" : "15835116dc516f3beb17f12a44298ce28aef17472fbd268bbde864d947682d1e",
+  "originHash" : "a59e701db8f863f5dc8d02dbfa7d59d7cb92ea291cb650cf44ac2ca7b44a736f",
   "pins" : [
     {
       "identity" : "appauth-ios",
@@ -16,7 +16,7 @@
       "location" : "git@github.com:platform-42/P42-colormanager.git",
       "state" : {
         "branch" : "main",
-        "revision" : "dcc50fb4ed1afc42c0d36d9f686c7969026da867"
+        "revision" : "83dcaa0dca93b3a1a920d1ec276c1564a6e6c829"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "git@github.com:platform-42/P42-extensions.git",
       "state" : {
         "branch" : "main",
-        "revision" : "05f97771168b84ee5aee9725a06eb84a1950e343"
+        "revision" : "7edf898c63fe1abeb93c2fe5b706b9d59bc15fab"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "git@github.com:platform-42/p42-keychain.git",
       "state" : {
         "branch" : "main",
-        "revision" : "99a689aa4d92c21830a2aa113724fbade36aabeb"
+        "revision" : "a37751f6579d8b720de12c3ed1ed923a5aec194e"
       }
     },
     {
@@ -43,7 +43,7 @@
       "location" : "git@github.com:platform-42/P42-screenelements.git",
       "state" : {
         "branch" : "main",
-        "revision" : "ccd0bf4e3ccad449744e7a22e789f206860efb82"
+        "revision" : "7f40dc89254e03041183a341340d44668e946217"
       }
     },
     {
@@ -52,7 +52,7 @@
       "location" : "git@github.com:platform-42/P42-sound.git",
       "state" : {
         "branch" : "main",
-        "revision" : "13d602369020a9030089990377ec17cf27711c22"
+        "revision" : "be669986384d1caeb43699f8a2d3a34698b7091a"
       }
     },
     {
@@ -61,7 +61,7 @@
       "location" : "git@github.com:platform-42/P42-utils.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d6b46d137bac0a80875bad84fe342ac79f43cb7e"
+        "revision" : "0971f3bd37dab94c5e0865f2dc8712e84be7cf1d"
       }
     },
     {
@@ -70,7 +70,16 @@
       "location" : "git@github.com:platform-42/P42-viewmodifiers.git",
       "state" : {
         "branch" : "main",
-        "revision" : "a61809941f2530a72c2552c2e4fe32a83870a732"
+        "revision" : "3d70e329a69b067c20c8548237c8967ab7760486"
+      }
+    },
+    {
+      "identity" : "p42-watchos-colormanager",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-watchos-colormanager.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bbaf4bb9488463825423c782062296ac98096390"
       }
     },
     {
@@ -79,7 +88,7 @@
       "location" : "git@github.com:platform-42/P42-watchos-widgets.git",
       "state" : {
         "branch" : "main",
-        "revision" : "b291bbebece86bc67b386bd91cd7f5064eb6ccf1"
+        "revision" : "210a26245fca7e361c09cf39b5da0f7d9cbca1c2"
       }
     }
   ],

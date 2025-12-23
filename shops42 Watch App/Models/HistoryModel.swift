@@ -5,6 +5,7 @@
 //  Created by Diederick de Buck on 19/04/2023.
 //
 
+import SwiftUI
 import Foundation
 import P42_utils
 import P42_watchos_widgets
@@ -37,12 +38,18 @@ struct OrderItemResponse: Codable {
     
     var ordersList: [OrderItem]
     var lastUpdate: Date
+    var hasConnection: Bool
 
     init() {
         self.ordersList = []
         self.lastUpdate = Date()
+        self.hasConnection = true
     }
 
+    func widgetConnectionColor() -> Color {
+        return (self.hasConnection) ? .green : .red
+    }
+    
     static func indicatorFieldLogic(_ financialStatus: String) -> WidgetStatus {
         let status: String = financialStatus.lowercased()
         if status == "unpaid" || status == "partially_paid" || status == "partially_refundend" {

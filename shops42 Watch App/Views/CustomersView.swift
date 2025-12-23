@@ -9,7 +9,7 @@ import SwiftUI
 import P42_utils
 import P42_extensions
 import P42_watchos_widgets
-
+import P42_watchos_colormanager
 
 struct CustomersView: View {
     
@@ -50,6 +50,7 @@ struct CustomersView: View {
         VStack {
             HeaderView(
                 icon: Icon.customers.rawValue,
+                connectionColor: widget
                 title: WatchView.customers.rawValue,
                 background: Color(BackgroundColor.header.rawValue)
             )
