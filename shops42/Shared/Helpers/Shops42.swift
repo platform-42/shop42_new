@@ -19,7 +19,6 @@ enum Shops42TKN: String {
     case products
     case views
     case status
-    case renewalDate
 }
 
 
@@ -38,7 +37,6 @@ class Shops42 {
             Shops42TKN.access_token.rawValue: accessToken,
             Shops42TKN.shop.rawValue: shop,
             Shops42TKN.views.rawValue: views,
-            Shops42TKN.renewalDate.rawValue: UserDefaults.standard.string(forKey: UDKey.renewalDate.rawValue)!,
         ]
         return body
     }

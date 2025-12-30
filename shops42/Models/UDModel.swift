@@ -52,6 +52,7 @@ final class UDModel: ObservableObject {
     }
     @Published var shops: [String] {
         didSet {
+            debugLog(shops.joined(separator: ","))
             UserDefaults.standard.bool(forKey: UDKey.shops.rawValue)
         }
     }

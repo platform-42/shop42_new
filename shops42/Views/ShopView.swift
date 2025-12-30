@@ -22,8 +22,8 @@ struct ShopView: View {
     
     @Environment(ColorManager.self) var colorManager
     @Environment(AlertModel.self) var alertModel
-    @Environment(PortfolioModel.self) var portfolio
     @Environment(\.dismiss) var dismiss
+    @Environment(PortfolioModel.self) var portfolioModel
     
     @State private var shop: String = ""
     @State private var showAlert = false
@@ -86,12 +86,12 @@ struct ShopView: View {
                 Button {
                     let (topic, diagnostics) = validateShop(
                         shop,
-                        numberOfShops: portfolio.numberOfShops,
+                        numberOfShops: portfolioModel.numberOfShops,
                         maxNumberOfShops: 3
                     )
                     if (diagnostics == .okay) {
-                        _ = portfolio.addShop(shop)
-                        _ = portfolio.selectShop(shop)
+                        portfolioModel.addShop(shop)
+                        portfolioModel.selectShop(shop)
                         Sound.playSound(
                             .click,
                             audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)

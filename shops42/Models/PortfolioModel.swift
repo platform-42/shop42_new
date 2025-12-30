@@ -14,6 +14,10 @@ class PortfolioModel {
     
     private let udModel: UDModel
     
+    init(udModel: UDModel) {
+        self.udModel = udModel
+    }
+    
     var shops: [String] {
         udModel.shops
     }
@@ -26,24 +30,26 @@ class PortfolioModel {
         udModel.selectedShop
     }
     
-    init(udModel: UDModel) {
-        self.udModel = udModel
-    }
-    
     var hasShops: Bool {
         !self.shops.isEmpty
     }
 
-    static func shopName(_ shop: String) -> String {
+    static func shopName(
+        _ shop: String
+    ) -> String {
         return shop.lowercased().removePostfix(ShopifyURIComponent.host.rawValue)
     }
     
-    func shopIsSelected(_ shop: String) -> Bool {
+    func shopIsSelected(
+        _ shop: String
+    ) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
-        return (shopName == self.selectedShop) && (self.selectedShop.count != 0)
+        return (shopName == selectedShop) && (selectedShop.count != 0)
     }
     
-    func securityState(_ shop: String) -> SecurityState {
+    func securityState(
+        _ shop: String
+    ) -> SecurityState {
         let shopName = PortfolioModel.shopName(shop)
         if let _ = Keychain.instance.getKeyChain(
             service: Bundle.main.displayName!,
@@ -55,13 +61,15 @@ class PortfolioModel {
         return .prohibited
     }
     
-    static func securityIcon(_ securityState: SecurityState) -> IconSecurity {
+    static func securityIcon(
+        _ securityState: SecurityState
+    ) -> IconSecurity {
         return (securityState == .granted) ? .granted : .prohibited
     }
     
     @discardableResult
     func selectFirstShop() -> Bool {
-        if (self.shops.count != 0) {
+        if (numberOfShops != 0) {
             udModel.selectedShop = PortfolioModel.shopName(shops.first!)
             return true
         }
@@ -69,9 +77,11 @@ class PortfolioModel {
     }
     
     @discardableResult
-    func selectShop(_ shop: String) -> Bool {
+    func selectShop(
+        _ shop: String
+    ) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
-        if self.shops.contains(where: { $0 == shopName }) {
+        if shops.contains(where: { $0 == shopName }) {
             udModel.selectedShop = shopName
             return true
         }
@@ -79,7 +89,9 @@ class PortfolioModel {
     }
     
     @discardableResult
-    func deselectShop(_ shop: String) -> Bool {
+    func deselectShop(
+        _ shop: String
+    ) -> Bool {
         if shopIsSelected(shop) {
             udModel.selectedShop = ""
             return true
@@ -87,9 +99,12 @@ class PortfolioModel {
         return false
     }
     
-    func addShop(_ shop: String) -> Bool {
+    @discardableResult
+    func addShop(
+        _ shop: String
+    ) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
-        if self.shops.contains(where: { $0 == shopName }) {
+        if shops.contains(where: { $0 == shopName }) {
             return false
         }
         udModel.shops.append(shopName)
@@ -97,9 +112,11 @@ class PortfolioModel {
     }
     
     @discardableResult
-    func delShop(_ shop: String) -> Bool {
+    func delShop(
+        _ shop: String
+    ) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
         udModel.shops.removeAll { $0 == shopName }
-        return self.deselectShop(shopName)
+        return deselectShop(shopName)
     }
 }

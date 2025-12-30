@@ -48,6 +48,9 @@ struct ShopsListView: View {
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(colorManager.stroke, lineWidth: 3)
             )
+            .onAppear() {
+                selectedShop = portfolio.selectedShop
+            }
         }
     }
 }
@@ -233,7 +236,7 @@ struct ShopsView: View {
                             audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                         )
                         portfolio.delShop(portfolio.selectedShop)
-                        _ = portfolio.selectFirstShop()
+                        portfolio.selectFirstShop()
                     } label: {
                         Image(systemName: Icon.minus.rawValue)
                             .foregroundColor(colorManager.toolBarItems)
