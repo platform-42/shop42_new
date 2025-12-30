@@ -36,8 +36,8 @@
 		DE8CC7742B5E727600E307F4 /* Shopify.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7562B5E727500E307F4 /* Shopify.swift */; };
 		DE8CC7792B5E727600E307F4 /* Shops42.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7592B5E727500E307F4 /* Shops42.swift */; };
 		DE8CC77A2B5E727600E307F4 /* Shops42.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7592B5E727500E307F4 /* Shops42.swift */; };
-		DE8CC77B2B5E727600E307F4 /* UD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC75A2B5E727500E307F4 /* UD.swift */; };
-		DE8CC77C2B5E727600E307F4 /* UD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC75A2B5E727500E307F4 /* UD.swift */; };
+		DE8CC77B2B5E727600E307F4 /* UDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC75A2B5E727500E307F4 /* UDKey.swift */; };
+		DE8CC77C2B5E727600E307F4 /* UDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC75A2B5E727500E307F4 /* UDKey.swift */; };
 		DE8CC7A02B5E729100E307F4 /* ShopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC77E2B5E728A00E307F4 /* ShopsView.swift */; };
 		DE8CC7A12B5E729100E307F4 /* AppAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC77F2B5E728A00E307F4 /* AppAuthView.swift */; };
 		DE8CC7A22B5E729100E307F4 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7802B5E728A00E307F4 /* ShopView.swift */; };
@@ -55,7 +55,7 @@
 		DE8CC7B12B5E729100E307F4 /* EmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7952B5E728E00E307F4 /* EmailController.swift */; };
 		DE8CC7B52B5E729100E307F4 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC79A2B5E728F00E307F4 /* AlertModel.swift */; };
 		DE8CC7B62B5E729100E307F4 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC79B2B5E728F00E307F4 /* TabsModel.swift */; };
-		DE8CC7B72B5E729100E307F4 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC79C2B5E728F00E307F4 /* SettingsModel.swift */; };
+		DE8CC7B72B5E729100E307F4 /* UDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC79C2B5E728F00E307F4 /* UDModel.swift */; };
 		DE8CC7B82B5E729100E307F4 /* PortfolioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC79D2B5E728F00E307F4 /* PortfolioModel.swift */; };
 		DE8CC7B92B5E729100E307F4 /* AppAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC79F2B5E729000E307F4 /* AppAuthViewController.swift */; };
 		DE8CC7CE2B5E72B700E307F4 /* WatchReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CC7BC2B5E72B600E307F4 /* WatchReceive.swift */; };
@@ -160,7 +160,7 @@
 		DE8CC7512B5E727500E307F4 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		DE8CC7562B5E727500E307F4 /* Shopify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shopify.swift; sourceTree = "<group>"; };
 		DE8CC7592B5E727500E307F4 /* Shops42.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shops42.swift; sourceTree = "<group>"; };
-		DE8CC75A2B5E727500E307F4 /* UD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UD.swift; sourceTree = "<group>"; };
+		DE8CC75A2B5E727500E307F4 /* UDKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDKey.swift; sourceTree = "<group>"; };
 		DE8CC77E2B5E728A00E307F4 /* ShopsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopsView.swift; sourceTree = "<group>"; };
 		DE8CC77F2B5E728A00E307F4 /* AppAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAuthView.swift; sourceTree = "<group>"; };
 		DE8CC7802B5E728A00E307F4 /* ShopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		DE8CC7952B5E728E00E307F4 /* EmailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailController.swift; sourceTree = "<group>"; };
 		DE8CC79A2B5E728F00E307F4 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		DE8CC79B2B5E728F00E307F4 /* TabsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
-		DE8CC79C2B5E728F00E307F4 /* SettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		DE8CC79C2B5E728F00E307F4 /* UDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDModel.swift; sourceTree = "<group>"; };
 		DE8CC79D2B5E728F00E307F4 /* PortfolioModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioModel.swift; sourceTree = "<group>"; };
 		DE8CC79F2B5E729000E307F4 /* AppAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAuthViewController.swift; sourceTree = "<group>"; };
 		DE8CC7BC2B5E72B600E307F4 /* WatchReceive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchReceive.swift; sourceTree = "<group>"; };
@@ -467,7 +467,7 @@
 				DEB418562EFABA4B00B3F7B0 /* DebugUtils.swift */,
 				DE1E58052EF0721900C149CC /* ColorManager.swift */,
 				DE8CC7592B5E727500E307F4 /* Shops42.swift */,
-				DE8CC75A2B5E727500E307F4 /* UD.swift */,
+				DE8CC75A2B5E727500E307F4 /* UDKey.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -529,7 +529,7 @@
 			children = (
 				DE8CC79A2B5E728F00E307F4 /* AlertModel.swift */,
 				DE8CC79B2B5E728F00E307F4 /* TabsModel.swift */,
-				DE8CC79C2B5E728F00E307F4 /* SettingsModel.swift */,
+				DE8CC79C2B5E728F00E307F4 /* UDModel.swift */,
 				DE8CC79D2B5E728F00E307F4 /* PortfolioModel.swift */,
 			);
 			path = Models;
@@ -787,7 +787,7 @@
 				DE8CC7AD2B5E729100E307F4 /* shops42App.swift in Sources */,
 				DE8CC7B92B5E729100E307F4 /* AppAuthViewController.swift in Sources */,
 				DE8CC7B12B5E729100E307F4 /* EmailController.swift in Sources */,
-				DE8CC7B72B5E729100E307F4 /* SettingsModel.swift in Sources */,
+				DE8CC7B72B5E729100E307F4 /* UDModel.swift in Sources */,
 				DEB418582EFABA5200B3F7B0 /* DebugUtils.swift in Sources */,
 				DE8CC7B02B5E729100E307F4 /* ScreenElements.swift in Sources */,
 				DE8CC7792B5E727600E307F4 /* Shops42.swift in Sources */,
@@ -804,7 +804,7 @@
 				065387072C53B3610012B07F /* WatchView.swift in Sources */,
 				DE8CC75D2B5E727500E307F4 /* Buttons.swift in Sources */,
 				DE8CC7A22B5E729100E307F4 /* ShopView.swift in Sources */,
-				DE8CC77B2B5E727600E307F4 /* UD.swift in Sources */,
+				DE8CC77B2B5E727600E307F4 /* UDKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,7 +838,7 @@
 				DE8CC7D82B5E72B700E307F4 /* MainView.swift in Sources */,
 				DE8CC7DB2B5E72B700E307F4 /* shops42App.swift in Sources */,
 				DE8CC7D52B5E72B700E307F4 /* CustomersView.swift in Sources */,
-				DE8CC77C2B5E727600E307F4 /* UD.swift in Sources */,
+				DE8CC77C2B5E727600E307F4 /* UDKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

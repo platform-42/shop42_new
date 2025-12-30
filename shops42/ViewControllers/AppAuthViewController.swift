@@ -28,6 +28,7 @@ class AppAuthViewController: UIViewController {
         components.scheme = ShopifyURIComponent.schema.rawValue
         components.host = "\(shop)\(ShopifyURIComponent.host.rawValue)"
         components.path = endpoint
+        debugLog(shop)
         debugLog(components.string!)
         return components
     }
@@ -37,6 +38,7 @@ class AppAuthViewController: UIViewController {
         components.scheme = ShopifyURIComponent.schema.rawValue
         components.host = "\(shop)\(ShopifyURIComponent.host.rawValue)"
         components.path = endpoint
+        debugLog(shop)
         debugLog(components.string!)
         return components
     }
@@ -51,7 +53,7 @@ class AppAuthViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let shop: String = UserDefaults.standard.string(forKey: UserDefaultsKey.selectedShop.rawValue)!
+        let shop: String = UserDefaults.standard.string(forKey: UDKey.selectedShop.rawValue)!
         super.viewDidAppear(true)
         
         

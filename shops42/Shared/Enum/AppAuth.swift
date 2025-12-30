@@ -13,7 +13,6 @@ enum AppAuthEndpoint: String {
     case access = "/admin/oauth/access_token"
 }
 
-
 enum AppAuthSecrets: String {
     case consumerKey = "bd1d936c3eabe4c7a49189d2585ab45b"
     case consumerSecret = "aa14d8e845d2f05378789f30bd411db3"

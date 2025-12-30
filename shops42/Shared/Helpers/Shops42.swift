@@ -27,18 +27,18 @@ class Shops42 {
         
     static func shopAdd(_ shop: String, accessToken: String) -> [String : Any] {
         let views: [String : Any] = [
-            Shops42TKN.orders.rawValue: UserDefaults.standard.bool(forKey: UserDefaultsKey.orders.rawValue),
-            Shops42TKN.history.rawValue: UserDefaults.standard.bool(forKey: UserDefaultsKey.history.rawValue),
-            Shops42TKN.revenue.rawValue: UserDefaults.standard.bool(forKey: UserDefaultsKey.revenue.rawValue),
-            Shops42TKN.customers.rawValue: UserDefaults.standard.bool(forKey: UserDefaultsKey.customers.rawValue),
-            Shops42TKN.products.rawValue: UserDefaults.standard.bool(forKey: UserDefaultsKey.products.rawValue),
-            Shops42TKN.abandoned.rawValue: UserDefaults.standard.bool(forKey: UserDefaultsKey.abandoned.rawValue)
+            Shops42TKN.orders.rawValue: UserDefaults.standard.bool(forKey: UDKey.orders.rawValue),
+            Shops42TKN.history.rawValue: UserDefaults.standard.bool(forKey: UDKey.history.rawValue),
+            Shops42TKN.revenue.rawValue: UserDefaults.standard.bool(forKey: UDKey.revenue.rawValue),
+            Shops42TKN.customers.rawValue: UserDefaults.standard.bool(forKey: UDKey.customers.rawValue),
+            Shops42TKN.products.rawValue: UserDefaults.standard.bool(forKey: UDKey.products.rawValue),
+            Shops42TKN.abandoned.rawValue: UserDefaults.standard.bool(forKey: UDKey.abandoned.rawValue)
         ]
         let body: [String : Any] = [
             Shops42TKN.access_token.rawValue: accessToken,
             Shops42TKN.shop.rawValue: shop,
             Shops42TKN.views.rawValue: views,
-            Shops42TKN.renewalDate.rawValue: UserDefaults.standard.string(forKey: UserDefaultsKey.renewalDate.rawValue)!,
+            Shops42TKN.renewalDate.rawValue: UserDefaults.standard.string(forKey: UDKey.renewalDate.rawValue)!,
         ]
         return body
     }

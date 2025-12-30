@@ -50,7 +50,7 @@ struct LogoutView: View {
                             Sound.playSound(
                                 .reject,
                                 soundExtension: .aif,
-                                audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                                audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                             )
                         }
                     } label: {
@@ -74,7 +74,7 @@ struct LogoutView: View {
                         Button(ButtonTitle.ok.rawValue.capitalized, role: .destructive) {
                             Sound.playSound(
                                 .lock,
-                                audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                                audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                             )
                             Security.revokeObject(
                                 portfolio.selectedShop,

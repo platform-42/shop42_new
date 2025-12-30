@@ -34,7 +34,7 @@ enum SettingsItem: String {
 
 struct SettingsView: View {
     
-    @State private var settingsModel: SettingsModel = SettingsModel()
+    @State private var udModel: UDModel = UDModel()
     @Environment(ColorManager.self) var colorManager
     @Environment(AlertModel.self) var alertModel
     @Environment(PortfolioModel.self) var portfolio
@@ -42,30 +42,14 @@ struct SettingsView: View {
     @Environment(ConnectivityProvider.self) var watch
     @State private var showAlert = false
     
-    @MainActor
-    func onChangeHandler(_ newValue: Bool, settingsKey: UserDefaultsKey) -> Void {
-        UserDefaults.standard.set(newValue, forKey: settingsKey.rawValue)
-        Sound.playSound(
-            .click,
-            audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
-        )
-        let (topic, diagnostics) = syncWatch(
-            hasAutoSync: settingsModel.autoSync,
-            connectivityProvider: watch,
-            portfolio: portfolio
-        )
-        if (diagnostics != .okay) {
-            alertModel.showAlert(topic, diagnostics: diagnostics)
-        }
-    }
     
-    
-    @MainActor func syncWatch(hasAutoSync: Bool, connectivityProvider: ConnectivityProvider, portfolio: PortfolioModel) -> (Topic, Diagnostics) {
+    @MainActor func syncWatch(
+        hasAutoSync: Bool,
+        connectivityProvider: ConnectivityProvider,
+        portfolio: PortfolioModel
+    ) -> (Topic, Diagnostics) {
         if !hasAutoSync {
             return (.none, .okay)
-        }
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasLicense.rawValue) {
-            return (.license, .unlicensed)
         }
         /* REMOVED */
         guard let result = Keychain.instance.getKeyChain(
@@ -90,53 +74,36 @@ struct SettingsView: View {
             colorManager.background.ignoresSafeArea()
             List {
                 Section {
-                    Toggle(isOn: $settingsModel.showHistory) {
+                    Toggle(isOn: $udModel.showHistory) {
                         Label(SettingsItem.history.rawValue, systemImage: Icon.history.rawValue)
                     }
-                    .onChange(of: settingsModel.showHistory) { _, changed in
-                        onChangeHandler(changed, settingsKey: .history)
-                    }
-                    Toggle(isOn: $settingsModel.showCustomers) {
+                    Toggle(isOn: $udModel.showCustomers) {
                         Label(SettingsItem.customers.rawValue, systemImage: Icon.customers.rawValue)
 
                     }
-                    .onChange(of: settingsModel.showCustomers) { _, changed in
-                        onChangeHandler(changed, settingsKey: .customers)
-                    }
-                    Toggle(isOn: $settingsModel.showProducts) {
+                    Toggle(isOn: $udModel.showProducts) {
                         Label(SettingsItem.products.rawValue, systemImage: Icon.products.rawValue)
-                    }
-                    .onChange(of: settingsModel.showProducts) { _, changed in
-                        onChangeHandler(changed, settingsKey: .products)
                     }
                 } header: {
                     Text(SettingsSection.activity.rawValue.uppercased())
                         .font(.headline)
                 }
                 Section {
-                    Toggle(isOn: $settingsModel.showAbandoned) {
+                    Toggle(isOn: $udModel.showAbandoned) {
                         Label(SettingsItem.abandoned.rawValue, systemImage: Icon.abandoned.rawValue)
-                    }
-                    .onChange(of: settingsModel.showAbandoned) { _, changed in
-                        onChangeHandler(changed, settingsKey: .abandoned)
                     }
                 } header: {
                     Text(SettingsSection.alerts.rawValue.uppercased())
                         .font(.headline)
                 }
                 Section {
-                    Toggle(isOn: $settingsModel.autoSync) {
+                    Toggle(isOn: $udModel.autoSync) {
                         Label(SettingsItem.autoSync.rawValue, systemImage: Icon.sync.rawValue)
                     }
-                    .onChange(of: settingsModel.autoSync) { _, changed in
-                        onChangeHandler(changed, settingsKey: .autoSync)
-                    }
-                    Toggle(isOn: $settingsModel.sound) {
+                    Toggle(isOn: $udModel.sound) {
                         Label(SettingsItem.sound.rawValue, systemImage: Icon.soundOn.rawValue)
                     }
-                    .onChange(of: settingsModel.sound) { _, changed in
-                        onChangeHandler(changed, settingsKey: .sound)
-                    }
+
                 } header: {
                     Text(SettingsSection.controls.rawValue.uppercased())
                         .font(.headline)

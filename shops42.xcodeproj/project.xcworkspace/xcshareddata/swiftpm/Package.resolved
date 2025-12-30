@@ -1,5 +1,5 @@
 {
-  "originHash" : "d7cc21ed51cac41c63fb360a3a10b82b0ec99608e057489aabc6839de95ba909",
+  "originHash" : "0ab831e72b842d9382699d240f732df28fd0a44f5c6591fc60099255de6fc151",
   "pins" : [
     {
       "identity" : "appauth-ios",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "145104f5ea9d58ae21b60add007c33c1cc0c948e",
         "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "p42-colormanager",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-colormanager.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "83dcaa0dca93b3a1a920d1ec276c1564a6e6c829"
       }
     },
     {
@@ -62,6 +71,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "a61809941f2530a72c2552c2e4fe32a83870a732"
+      }
+    },
+    {
+      "identity" : "p42-watchos-colormanager",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:platform-42/P42-watchos-colormanager.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bbaf4bb9488463825423c782062296ac98096390"
       }
     },
     {

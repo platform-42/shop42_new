@@ -45,11 +45,13 @@ struct shops42App: App {
         theme: AppTheme.default,
         colorScheme: .light
     )
-    
+    @StateObject private var udModel: UDModel = UDModel()
+
     var body: some Scene {
         WindowGroup {
             EntryView()
                .environment(colorManager)
+               .environmentObject(udModel)
         }
     }
 }

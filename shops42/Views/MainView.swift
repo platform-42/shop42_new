@@ -44,12 +44,6 @@ struct TabContainer<Content: View>: View {
     let title: String
     let content: () -> Content
 
-    @Environment(ColorManager.self) var colorManager
-    @Environment(ConnectivityProvider.self) var watch
-    @Environment(AlertModel.self) var alertModel
-    @Environment(PortfolioModel.self) var portfolio
-    @Environment(TabsModel.self) var tabsModel
-
     var body: some View {
         NavigationStack {
             content()
@@ -89,13 +83,12 @@ struct MainView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(ColorManager.self) var colorManager
+    @EnvironmentObject var udModel: UDModel
     @State private var watch: ConnectivityProvider = ConnectivityProvider()
     @State private var portfolioModel: PortfolioModel = PortfolioModel()
     @State private var alertModel: AlertModel = AlertModel()
     @State private var tabsModel: TabsModel = TabsModel(TabItem.logout)
     @State private var showAlert: Bool = false
-
-    let userDefaults: UD = UD()
 
     private var tabSelectionBinding: Binding<AppTab> {
         Binding(

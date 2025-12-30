@@ -64,9 +64,6 @@ struct ShopsSyncView: View {
     
     @MainActor
     func syncWatch(connectivityProvider: ConnectivityProvider, portfolio: PortfolioModel) -> (Topic, Diagnostics) {
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasLicense.rawValue) {
-            return (.license, .unlicensed)
-        }
         if !portfolio.shopIsSelected(portfolio.selectedShop) {
             return (.shop, .unsubscribed)
         }
@@ -102,7 +99,7 @@ struct ShopsSyncView: View {
                         Sound.playSound(
                             .reject,
                             soundExtension: .aif,
-                            audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                            audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                         )
                         alert.showAlert(topic, diagnostics: diagnostics)
                         return
@@ -218,7 +215,7 @@ struct ShopsView: View {
                             .onAppear {
                                 Sound.playSound(
                                     .click,
-                                    audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                                    audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                                 )
                             }
                     } label: {
@@ -231,7 +228,7 @@ struct ShopsView: View {
                         Sound.playSound(
                             .trash,
                             soundExtension: .aif,
-                            audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                            audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                         )
                         portfolio.delShop(portfolio.selectedShop)
                         _ = portfolio.selectFirstShop()

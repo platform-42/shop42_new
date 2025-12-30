@@ -94,7 +94,7 @@ struct ShopView: View {
                         _ = portfolio.selectShop(shop)
                         Sound.playSound(
                             .click,
-                            audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                            audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                         )
                         dismiss()
                     }
@@ -103,7 +103,7 @@ struct ShopView: View {
                         Sound.playSound(
                             .reject, 
                             soundExtension: .aif,
-                            audible: UserDefaults.standard.bool(forKey: UserDefaultsKey.sound.rawValue)
+                            audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
                         )
                         alertModel.showAlert(topic, diagnostics: diagnostics)
                     }

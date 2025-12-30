@@ -26,9 +26,9 @@ import P42_keychain
     }
     
     func restore() {
-        let selectedShop = UserDefaults.standard.string(forKey: UserDefaultsKey.selectedShop.rawValue)!
-        let shops = (UserDefaults.standard.array(forKey: UserDefaultsKey.shops.rawValue) as? [String])!
-        let numberOfShops = (UserDefaults.standard.array(forKey: UserDefaultsKey.shops.rawValue))!.count
+        let selectedShop = UserDefaults.standard.string(forKey: UDKey.selectedShop.rawValue)!
+        let shops = (UserDefaults.standard.array(forKey: UDKey.shops.rawValue) as? [String])!
+        let numberOfShops = (UserDefaults.standard.array(forKey: UDKey.shops.rawValue))!.count
         self.selectedShop = PortfolioModel.shopName(selectedShop)
         self.shops = shops
         self.numberOfShops = numberOfShops
@@ -65,7 +65,7 @@ import P42_keychain
             self.selectedShop = PortfolioModel.shopName(shops.first!)
             UserDefaults.standard.set(
                 self.selectedShop,
-                forKey: UserDefaultsKey.selectedShop.rawValue
+                forKey: UDKey.selectedShop.rawValue
             )
             return true
         }
@@ -79,7 +79,7 @@ import P42_keychain
             self.selectedShop = shopName
             UserDefaults.standard.set(
                 self.selectedShop,
-                forKey: UserDefaultsKey.selectedShop.rawValue
+                forKey: UDKey.selectedShop.rawValue
             )
             return true
         }
@@ -92,7 +92,7 @@ import P42_keychain
             self.selectedShop = ""
             UserDefaults.standard.set(
                 self.selectedShop,
-                forKey: UserDefaultsKey.selectedShop.rawValue
+                forKey: UDKey.selectedShop.rawValue
             )
             return true
         }
@@ -108,7 +108,7 @@ import P42_keychain
         self.numberOfShops = shops.count
         UserDefaults.standard.set(
             self.shops,
-            forKey: UserDefaultsKey.shops.rawValue
+            forKey: UDKey.shops.rawValue
         )
         return true
     }
@@ -119,7 +119,7 @@ import P42_keychain
         self.shops.removeAll { $0 == shopName }
         UserDefaults.standard.set(
             self.shops,
-            forKey: UserDefaultsKey.shops.rawValue
+            forKey: UDKey.shops.rawValue
         )
         self.numberOfShops = self.shops.count
         return self.deselectShop(shopName)
