@@ -54,24 +54,6 @@ enum LabelColor: String {
 }
 
 
-enum IconColor: String {
-    case orders = "IC_orders"
-    case history = "IC_history"
-    case revenue = "IC_revenue"
-    case customers = "IC_customers"
-    case products = "IC_products"
-    case abandoned = "IC_abandoned"
-    case sound = "IC_sound"
-    case autosync = "IC_autosync"
-}
-
-
-enum OrnamentColor: String {
-    case pagination = "OC_pagination"
-    case logo = "OC_logo"
-}
-
-
 enum BackgroundColor: String {
     case navbarLeft = "BG_navbarLeft"
     case navbarRight = "BG_navbarRight"

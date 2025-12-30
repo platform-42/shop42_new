@@ -58,7 +58,8 @@ struct ShopsSyncView: View {
     @Environment(AlertModel.self) var alert
     @Environment(PortfolioModel.self) var portfolio
     @Environment(ConnectivityProvider.self) var watch
-    
+    @Environment(ColorManager.self) var colorManager
+
     @State private var isPressed: Bool = false
     @State private var showAlert: Bool = false
     
@@ -108,8 +109,8 @@ struct ShopsSyncView: View {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.sync.rawValue,
                         buttonTitle: ButtonTitle.sync.rawValue.capitalized,
-                        buttonColor: Color(LabelColor.button.rawValue),
-                        buttonLabelColor: Color(LabelColor.button.rawValue),
+                        buttonColor: colorManager.navigationText,
+                        buttonLabelColor: colorManager.navigationText,
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
                 }
@@ -126,6 +127,7 @@ struct ShopsSyncView: View {
 
 struct ShopsAuthView: View {
     @Environment(PortfolioModel.self) var portfolio
+    @Environment(ColorManager.self) var colorManager
     @State private var isPressed = false
     var body: some View {
         VStack {
@@ -140,8 +142,8 @@ struct ShopsAuthView: View {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.login.rawValue,
                         buttonTitle: ButtonTitle.login.rawValue.capitalized,
-                        buttonColor: Color(LabelColor.button.rawValue),
-                        buttonLabelColor: Color(LabelColor.button.rawValue),
+                        buttonColor: colorManager.navigationText,
+                        buttonLabelColor: colorManager.navigationText,
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
                 }

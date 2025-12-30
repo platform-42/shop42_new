@@ -10,7 +10,6 @@ import Foundation
 enum Topic: String {
     case mail
     case shop
-    case license
     case sync
     case security
     case none = ""

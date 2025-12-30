@@ -18,7 +18,6 @@ enum HelpLabel: String {
     case about
     case bugs
     case authentication
-    case revoke = "Revoke License"
     case credits
 }
 

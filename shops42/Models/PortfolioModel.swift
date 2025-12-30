@@ -9,31 +9,31 @@ import Foundation
 import P42_keychain
 
 
-@Observable class PortfolioModel {
+@Observable
+class PortfolioModel {
     
-    private(set) var shops: [String]
-    private(set) var numberOfShops: Int
-    private(set) var selectedShop: String
+    private let udModel: UDModel
+    
+    var shops: [String] {
+        udModel.shops
+    }
+    
+    var numberOfShops: Int {
+        udModel.shops.count
+    }
+    
+    var selectedShop: String {
+        udModel.selectedShop
+    }
+    
+    init(udModel: UDModel) {
+        self.udModel = udModel
+    }
     
     var hasShops: Bool {
         !self.shops.isEmpty
     }
 
-    init() {
-        self.selectedShop = ""
-        self.shops = []
-        self.numberOfShops = 0
-    }
-    
-    func restore() {
-        let selectedShop = UserDefaults.standard.string(forKey: UDKey.selectedShop.rawValue)!
-        let shops = (UserDefaults.standard.array(forKey: UDKey.shops.rawValue) as? [String])!
-        let numberOfShops = (UserDefaults.standard.array(forKey: UDKey.shops.rawValue))!.count
-        self.selectedShop = PortfolioModel.shopName(selectedShop)
-        self.shops = shops
-        self.numberOfShops = numberOfShops
-    }
-    
     static func shopName(_ shop: String) -> String {
         return shop.lowercased().removePostfix(ShopifyURIComponent.host.rawValue)
     }
@@ -62,11 +62,7 @@ import P42_keychain
     @discardableResult
     func selectFirstShop() -> Bool {
         if (self.shops.count != 0) {
-            self.selectedShop = PortfolioModel.shopName(shops.first!)
-            UserDefaults.standard.set(
-                self.selectedShop,
-                forKey: UDKey.selectedShop.rawValue
-            )
+            udModel.selectedShop = PortfolioModel.shopName(shops.first!)
             return true
         }
         return false
@@ -76,11 +72,7 @@ import P42_keychain
     func selectShop(_ shop: String) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
         if self.shops.contains(where: { $0 == shopName }) {
-            self.selectedShop = shopName
-            UserDefaults.standard.set(
-                self.selectedShop,
-                forKey: UDKey.selectedShop.rawValue
-            )
+            udModel.selectedShop = shopName
             return true
         }
         return false
@@ -89,11 +81,7 @@ import P42_keychain
     @discardableResult
     func deselectShop(_ shop: String) -> Bool {
         if shopIsSelected(shop) {
-            self.selectedShop = ""
-            UserDefaults.standard.set(
-                self.selectedShop,
-                forKey: UDKey.selectedShop.rawValue
-            )
+            udModel.selectedShop = ""
             return true
         }
         return false
@@ -102,26 +90,16 @@ import P42_keychain
     func addShop(_ shop: String) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
         if self.shops.contains(where: { $0 == shopName }) {
-            return true
+            return false
         }
-        self.shops.append(shopName)
-        self.numberOfShops = shops.count
-        UserDefaults.standard.set(
-            self.shops,
-            forKey: UDKey.shops.rawValue
-        )
+        udModel.shops.append(shopName)
         return true
     }
     
     @discardableResult
     func delShop(_ shop: String) -> Bool {
         let shopName = PortfolioModel.shopName(shop)
-        self.shops.removeAll { $0 == shopName }
-        UserDefaults.standard.set(
-            self.shops,
-            forKey: UDKey.shops.rawValue
-        )
-        self.numberOfShops = self.shops.count
+        udModel.shops.removeAll { $0 == shopName }
         return self.deselectShop(shopName)
     }
 }

@@ -49,12 +49,13 @@ struct LaunchView: View {
 
 struct EntryView: View {
     @State private var isActive: Bool = false
-    
+    @EnvironmentObject var udModel: UDModel
+
     @ViewBuilder
     func view(initial isActive: Bool) -> some View {
         switch isActive {
         case true:
-            MainView()
+            MainView(udModel: udModel)
         default:
             LaunchView(
                 isActive: $isActive,

@@ -61,6 +61,24 @@ final class UDModel: ObservableObject {
         }
     }
     
+    func isEnabled(
+        _ view: WatchView
+    ) -> Bool {
+        switch view {
+        case .orders: showOrders
+        case .history: showHistory
+        case .revenue: showRevenue
+        case .customers: showCustomers
+        case .products: showProducts
+        case .abandoned: showAbandoned
+        }
+    }
+
+    var enabledViews: [WatchView] {
+        WatchView.allCases
+            .filter(isEnabled)
+            .sorted()
+    }
     
     init() {
         UserDefaults.standard.register(defaults: [

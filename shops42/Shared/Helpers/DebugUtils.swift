@@ -11,16 +11,3 @@ func debugLog(_ message: @autoclosure () -> String) {
     print(message())
     #endif
 }
-
-
-func debugLog(
-    _ message: @autoclosure () -> String,
-    file: String = #fileID,
-    function: String = #function,
-    line: Int = #line
-) {
-    #if DEBUG
-    let filename = file.components(separatedBy: "/").last ?? file
-    print("[\(filename):\(line)] \(function) -> \(message())")
-    #endif
-}

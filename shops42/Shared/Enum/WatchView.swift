@@ -20,7 +20,7 @@ import Foundation
  *  it's raw value cannot be "Last 5 orders"
  */
 
-enum WatchView: String, Comparable {
+enum WatchView: String, CaseIterable, Comparable {
     static func < (lhs: WatchView, rhs: WatchView) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }

@@ -111,8 +111,8 @@ struct ShopView: View {
                     ButtonLabelWithImage(
                         buttonImageName: Icon.confirm.rawValue,
                         buttonTitle: ButtonTitle.confirm.rawValue.capitalized,
-                        buttonColor: Color(LabelColor.button.rawValue),
-                        buttonLabelColor: Color(LabelColor.button.rawValue),
+                        buttonColor: colorManager.navigationText,
+                        buttonLabelColor: colorManager.navigationText,
                         buttonBackgroundColor: Color(NavigationColor.button.rawValue)
                     )
                 }

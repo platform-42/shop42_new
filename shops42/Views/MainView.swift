@@ -80,16 +80,19 @@ struct MainView: View {
         forceRedraw()
     }
     
-    
     @Environment(\.colorScheme) var colorScheme
     @Environment(ColorManager.self) var colorManager
     @EnvironmentObject var udModel: UDModel
     @State private var watch: ConnectivityProvider = ConnectivityProvider()
-    @State private var portfolioModel: PortfolioModel = PortfolioModel()
+    @State private var portfolioModel: PortfolioModel
     @State private var alertModel: AlertModel = AlertModel()
     @State private var tabsModel: TabsModel = TabsModel(TabItem.logout)
     @State private var showAlert: Bool = false
 
+    init(udModel: UDModel) {
+        _portfolioModel = State(initialValue: PortfolioModel(udModel: udModel))
+    }
+    
     private var tabSelectionBinding: Binding<AppTab> {
         Binding(
             get: {
