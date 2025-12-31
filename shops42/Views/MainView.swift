@@ -136,6 +136,7 @@ struct MainView: View {
                 updateColorScheme(newValue, colorManager: colorManager)
             }
         }
+        .environmentObject(udModel)
         .environment(colorManager)
         .environment(watch)
         .environment(alertModel)

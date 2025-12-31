@@ -31,7 +31,11 @@ class PortfolioModel {
     }
     
     var hasShops: Bool {
-        !self.shops.isEmpty
+        !shops.isEmpty
+    }
+    
+    var isAuthenticated: Bool {
+        securityState(selectedShop) == .granted
     }
 
     static func shopName(
@@ -57,7 +61,6 @@ class PortfolioModel {
         ) {
             return .granted
         }
-        
         return .prohibited
     }
     
@@ -103,6 +106,7 @@ class PortfolioModel {
     func addShop(
         _ shop: String
     ) -> Bool {
+        debugLog("\(String(describing: type(of: self))).\(#function)")
         let shopName = PortfolioModel.shopName(shop)
         if shops.contains(where: { $0 == shopName }) {
             return false

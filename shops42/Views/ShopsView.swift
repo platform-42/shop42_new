@@ -62,12 +62,16 @@ struct ShopsSyncView: View {
     @Environment(PortfolioModel.self) var portfolio
     @Environment(ConnectivityProvider.self) var watch
     @Environment(ColorManager.self) var colorManager
+    @EnvironmentObject var udModel: UDModel
 
     @State private var isPressed: Bool = false
     @State private var showAlert: Bool = false
     
     @MainActor
-    func syncWatch(connectivityProvider: ConnectivityProvider, portfolio: PortfolioModel) -> (Topic, Diagnostics) {
+    func syncWatch(
+        connectivityProvider: ConnectivityProvider,
+        portfolio: PortfolioModel
+    ) -> (Topic, Diagnostics) {
         if !portfolio.shopIsSelected(portfolio.selectedShop) {
             return (.shop, .unsubscribed)
         }
@@ -100,11 +104,7 @@ struct ShopsSyncView: View {
                     )
                     if (diagnostics != .okay) {
                         showAlert = true
-                        Sound.playSound(
-                            .reject,
-                            soundExtension: .aif,
-                            audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
-                        )
+                        Sound.playSound(.reject, soundExtension: .aif, audible: udModel.sound)
                         alert.showAlert(topic, diagnostics: diagnostics)
                         return
                     }
@@ -156,23 +156,6 @@ struct ShopsAuthView: View {
     }
 }
 
-struct ShopsNavigationView: View {
-    @Environment(PortfolioModel.self) var portfolio
-
-    
-    @ViewBuilder
-    func view(_ isAuthenticated: Bool) -> some View {
-        switch isAuthenticated {
-        case true: ShopsSyncView()
-        default: ShopsAuthView()
-        }
-    }
-    
-    var body: some View {
-        view(portfolio.securityState(portfolio.selectedShop) == .granted)
-    }
-}
-
 
 struct ShopsConnectionView: View {
     @Environment(ConnectivityProvider.self) var watch
@@ -193,6 +176,7 @@ struct ShopsConnectionView: View {
 struct ShopsView: View {
     @Environment(PortfolioModel.self) var portfolio
     @Environment(ColorManager.self) var colorManager
+    @EnvironmentObject var udModel: UDModel
     var body: some View {
         ZStack {
             colorManager.background.ignoresSafeArea()
@@ -208,7 +192,11 @@ struct ShopsView: View {
                     if portfolio.hasShops {
                         ShopsListView()
                     }
-                    ShopsNavigationView()
+                    if (portfolio.isAuthenticated) {
+                        ShopsSyncView()
+                    } else {
+                        ShopsAuthView()
+                    }
                     ShopsConnectionView()
                 }
             }
@@ -218,10 +206,7 @@ struct ShopsView: View {
                     NavigationLink {
                         ShopView()
                             .onAppear {
-                                Sound.playSound(
-                                    .click,
-                                    audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
-                                )
+                                Sound.playSound(.click, audible: udModel.sound)
                             }
                     } label: {
                         Image(systemName: Icon.plus.rawValue)
@@ -230,11 +215,7 @@ struct ShopsView: View {
                 }
                 ToolbarItem {
                     Button {
-                        Sound.playSound(
-                            .trash,
-                            soundExtension: .aif,
-                            audible: UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
-                        )
+                        Sound.playSound(.trash, soundExtension: .aif, audible: udModel.sound)
                         portfolio.delShop(portfolio.selectedShop)
                         portfolio.selectFirstShop()
                     } label: {

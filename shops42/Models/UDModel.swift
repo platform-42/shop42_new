@@ -12,53 +12,52 @@ final class UDModel: ObservableObject {
     
     @Published var showOrders: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.orders.rawValue)
+            UserDefaults.standard.set(showOrders, forKey: UDKey.orders.rawValue)
         }
     }
     @Published var showHistory: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.history.rawValue)
+            UserDefaults.standard.set(showHistory, forKey: UDKey.history.rawValue)
         }
     }
     @Published var showRevenue: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.revenue.rawValue)
+            UserDefaults.standard.set(showRevenue, forKey: UDKey.revenue.rawValue)
         }
     }
     @Published var showCustomers: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.customers.rawValue)
+            UserDefaults.standard.set(showCustomers, forKey: UDKey.customers.rawValue)
         }
     }
     @Published var showProducts: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.products.rawValue)
+            UserDefaults.standard.set(showProducts, forKey: UDKey.products.rawValue)
         }
     }
     @Published var showAbandoned: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.abandoned.rawValue)
+            UserDefaults.standard.set(showAbandoned, forKey: UDKey.abandoned.rawValue)
         }
     }
     @Published var sound: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.sound.rawValue)
+            UserDefaults.standard.set(sound, forKey: UDKey.sound.rawValue)
         }
     }
     @Published var autoSync: Bool {
         didSet {
-            UserDefaults.standard.bool(forKey: UDKey.autoSync.rawValue)
+            UserDefaults.standard.set(autoSync, forKey: UDKey.autoSync.rawValue)
         }
     }
     @Published var shops: [String] {
         didSet {
-            debugLog(shops.joined(separator: ","))
-            UserDefaults.standard.bool(forKey: UDKey.shops.rawValue)
+            UserDefaults.standard.set(shops, forKey: UDKey.shops.rawValue)
         }
     }
     @Published var selectedShop: String {
         didSet {
-            UserDefaults.standard.string(forKey: UDKey.selectedShop.rawValue)
+            UserDefaults.standard.set(selectedShop, forKey: UDKey.selectedShop.rawValue)
         }
     }
     
@@ -82,6 +81,7 @@ final class UDModel: ObservableObject {
     }
     
     init() {
+        debugLog("\(String(describing: type(of: self))).\(#function)")
         UserDefaults.standard.register(defaults: [
             UDKey.orders.rawValue: true,
             UDKey.history.rawValue: true,
@@ -108,6 +108,7 @@ final class UDModel: ObservableObject {
     }
     
     func reset() {
+        debugLog("\(String(describing: type(of: self))).\(#function)")
         self.showOrders = true
         self.showHistory = true
         self.showRevenue = true
@@ -116,7 +117,7 @@ final class UDModel: ObservableObject {
         self.showAbandoned = true
         self.sound = false
         self.autoSync = false
-        self.shops = []
+        self.shops.removeAll()
         self.selectedShop = ""
     }
     
