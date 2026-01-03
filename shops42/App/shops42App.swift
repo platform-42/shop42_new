@@ -13,10 +13,10 @@ enum AppTheme {
     static let `default` = ColorTheme(
         light: .init(
             background: Color(hex: RGBLight.vanilla.rawValue),
-            groupBoxBG: Color(hex: RGBLight.beige.rawValue).opacity(0.3),
+            groupBoxBG: .white,
             navigationBG: Color(hex: RGBLight.shopify_green.rawValue),
             tabBarBG: Color(hex: RGBLight.darkVanilla.rawValue),
-            pickerBG: Color(hex: RGBLight.beige.rawValue).opacity(0.3),
+            pickerBG: .white,
             toolBarItems: .black,
             navigationText: .white,
             tint: Color(hex: RGBLight.shopify_green.rawValue),

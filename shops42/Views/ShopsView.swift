@@ -34,23 +34,28 @@ struct ShopsListView: View {
     
     var body: some View {
         VStack {
-            Picker(ShopsLabel.pickerTitle.rawValue, selection: $selectedShop) {
-                ForEach(portfolio.shops, id: \.self) { shop in
-                    ShopListItem(
-                        shopLabel: shop,
-                        shopLabelColor: Color(LabelColor.picker.rawValue)
-                    )
+            ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(colorManager.pickerBG)
+                Picker(ShopsLabel.pickerTitle.rawValue, selection: $selectedShop) {
+                    ForEach(portfolio.shops, id: \.self) { shop in
+                        ShopListItem(
+                            shopLabel: shop,
+                            shopLabelColor: Color(LabelColor.picker.rawValue)
+                        )
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+                .onAppear() {
+                    selectedShop = portfolio.selectedShop
                 }
             }
             .frame(width: UIScreen.main.bounds.width * 0.8)
-            .pickerStyle(WheelPickerStyle())
+            .clipShape(RoundedRectangle(cornerRadius: 15))
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(colorManager.stroke, lineWidth: 3)
             )
-            .onAppear() {
-                selectedShop = portfolio.selectedShop
-            }
         }
     }
 }
