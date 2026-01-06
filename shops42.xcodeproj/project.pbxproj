@@ -12,6 +12,7 @@
 		067035D42C53D54400622F6C /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067035D32C53D54400622F6C /* HistoryModel.swift */; };
 		B242A9A92B6D28F10058DD06 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B242A9A82B6D28F10058DD06 /* StoreKit.framework */; };
 		DE1E580A2EF0868300C149CC /* P42-screenelements in Frameworks */ = {isa = PBXBuildFile; productRef = DE1E58092EF0868300C149CC /* P42-screenelements */; };
+		DE3375262F0DA0140000C50B /* BadgedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3375252F0DA00D0000C50B /* BadgedView.swift */; };
 		DE3770AE2EF69F6800F5B131 /* P42-colormanager in Frameworks */ = {isa = PBXBuildFile; productRef = DE3770AD2EF69F6800F5B131 /* P42-colormanager */; };
 		DE648B7B2C6F4AEC00D2DDF5 /* RevenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE648B7A2C6F4AEC00D2DDF5 /* RevenueModel.swift */; };
 		DE68B0A22B6846A500B8A3C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68B0A12B6846A500B8A3C1 /* Colors.swift */; };
@@ -119,6 +120,7 @@
 		B242A9A82B6D28F10058DD06 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		DE1E58052EF0721900C149CC /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		DE309F962C528EDB00FAEE23 /* TransactionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObserver.swift; sourceTree = "<group>"; };
+		DE3375252F0DA00D0000C50B /* BadgedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgedView.swift; sourceTree = "<group>"; };
 		DE4A266B2CB0068500380C5D /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		DE62EADC2CA2EB060040802F /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		DE648B7A2C6F4AEC00D2DDF5 /* RevenueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueModel.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 		DE8CC7BA2B5E72B600E307F4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DE3375252F0DA00D0000C50B /* BadgedView.swift */,
 				DE8CC7BC2B5E72B600E307F4 /* WatchReceive.swift */,
 			);
 			path = Helpers;
@@ -837,6 +840,7 @@
 				DE8CC75E2B5E727500E307F4 /* Buttons.swift in Sources */,
 				DE8CC7D82B5E72B700E307F4 /* MainView.swift in Sources */,
 				DE8CC7DB2B5E72B700E307F4 /* shops42App.swift in Sources */,
+				DE3375262F0DA0140000C50B /* BadgedView.swift in Sources */,
 				DE8CC7D52B5E72B700E307F4 /* CustomersView.swift in Sources */,
 				DE8CC77C2B5E727600E307F4 /* UDKey.swift in Sources */,
 			);

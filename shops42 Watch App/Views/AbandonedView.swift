@@ -62,14 +62,13 @@ struct AbandonedView: View {
                 widgetStatus: AbandonedModel.indicatorFieldlogic(abandonedModel.today)
             )
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(
-                    topic: portfolio.selectedShop,
-                    lastUpdate: Utils.delayIndicator(
+                FooterView(topic: portfolio.selectedShop) {
+                    DelayBadge(
                         now: context.date,
                         lastUpdate: abandonedModel.lastUpdate,
-                        boundaryMinutes: 1
+                        backgroundColor: Widget.stateFieldColor(.neutral)
                     )
-                )
+                }
             }
         }
         .onAppear {

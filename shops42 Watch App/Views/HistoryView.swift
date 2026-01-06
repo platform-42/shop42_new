@@ -60,7 +60,7 @@ struct HistoryView: View {
                                 labelColor: Widget.statusFieldColor(indicator),
                                 backgroundColor: Widget.statusFieldBackgroundColor(indicator),
                                 labelValue: order.financial_status,
-                                padding: Padding.badge.rawValue
+                                padding: EdgeInsets(top: 3, leading: 3, bottom: 3, trailing: 3)
                             )
                             .font(.system(size: 8))
                         }
@@ -81,7 +81,7 @@ struct HistoryView: View {
                         labelColor: Widget.statusFieldColor(.warning),
                         backgroundColor: Widget.statusFieldBackgroundColor(.warning),
                         labelValue: HistoryLabel.noOrders.rawValue,
-                        padding: Padding.badge.rawValue
+                        padding: EdgeInsets(top: 3, leading: 3, bottom: 3, trailing: 3)
                     )
                     .frame(maxWidth: .infinity)
                 }
@@ -89,14 +89,13 @@ struct HistoryView: View {
             .scrollIndicators(.hidden)
             .listStyle(CarouselListStyle())
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(
-                    topic: portfolio.selectedShop,
-                    lastUpdate: Utils.delayIndicator(
+                FooterView(topic: portfolio.selectedShop) {
+                    DelayBadge(
                         now: context.date,
                         lastUpdate: historyModel.lastUpdate,
-                        boundaryMinutes: 1
+                        backgroundColor: Widget.stateFieldColor(.neutral)
                     )
-                )
+                }
             }
         }
         .onAppear {

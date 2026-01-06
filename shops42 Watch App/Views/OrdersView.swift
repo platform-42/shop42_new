@@ -68,13 +68,10 @@ struct OrdersView: View {
                 widgetStatus: OrdersModel.indicatorFieldlogic(ordersModel.todayPending)
             )
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(
-                    topic: portfolio.selectedShop,
-                    lastUpdate: Utils.delayIndicator(
-                        now: context.date,
-                        lastUpdate: ordersModel.lastUpdate,
-                        boundaryMinutes: 1
-                    )
+                DelayBadge(
+                    now: context.date,
+                    lastUpdate: ordersModel.lastUpdate,
+                    backgroundColor: Widget.stateFieldColor(.neutral)
                 )
             }
         }

@@ -65,13 +65,10 @@ struct RevenueView: View {
                 widgetStatus: RevenueModel.indicatorFieldLogic(revenueModel.todayAmountPending)
             )
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(
-                    topic: portfolio.selectedShop,
-                    lastUpdate: Utils.delayIndicator(
-                        now: context.date,
-                        lastUpdate: revenueModel.lastUpdate,
-                        boundaryMinutes: 1
-                    )
+                DelayBadge(
+                    now: context.date,
+                    lastUpdate: revenueModel.lastUpdate,
+                    backgroundColor: Widget.stateFieldColor(.neutral)
                 )
             }
         }

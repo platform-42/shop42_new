@@ -1,5 +1,5 @@
 {
-  "originHash" : "a59e701db8f863f5dc8d02dbfa7d59d7cb92ea291cb650cf44ac2ca7b44a736f",
+  "originHash" : "0ab831e72b842d9382699d240f732df28fd0a44f5c6591fc60099255de6fc151",
   "pins" : [
     {
       "identity" : "appauth-ios",
@@ -88,7 +88,7 @@
       "location" : "git@github.com:platform-42/P42-watchos-widgets.git",
       "state" : {
         "branch" : "main",
-        "revision" : "210a26245fca7e361c09cf39b5da0f7d9cbca1c2"
+        "revision" : "486d3b34868ac6c5b2db2c6baa534e276ae566cc"
       }
     }
   ],

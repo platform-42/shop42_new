@@ -63,14 +63,13 @@ struct ProductsView: View {
                 widgetState: ProductsModel.indicatorArrowLogic(products: productsModel.today)
             )
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(
-                    topic: portfolio.selectedShop,
-                    lastUpdate: Utils.delayIndicator(
+                FooterView(topic: portfolio.selectedShop) {
+                    DelayBadge(
                         now: context.date,
                         lastUpdate: productsModel.lastUpdate,
-                        boundaryMinutes: 1
+                        backgroundColor: Widget.stateFieldColor(.neutral)
                     )
-                )
+                }
             }
         }
         .onAppear {
