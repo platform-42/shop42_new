@@ -16,7 +16,7 @@ import P42_screenelements
 import P42_colormanager
 
 
-enum ShopsLabel: String {
+private enum ShopsLabel: String {
     case pickerTitle = "Select Shop"
     case empty = "No shops configured"
     case loggedIn = "Logged in"

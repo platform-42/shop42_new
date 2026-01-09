@@ -14,7 +14,7 @@ import P42_screenelements
 import P42_colormanager
 
 
-enum HelpLabel: String {
+private enum HelpLabel: String {
     case about
     case bugs
     case authentication
@@ -22,14 +22,14 @@ enum HelpLabel: String {
 }
 
 
-enum SMTPLabel: String {
+private enum SMTPLabel: String {
     case title
     case subject
 }
 
 
 // 1
-enum HelpAboutLabel: String {
+private enum HelpAboutLabel: String {
     case groupboxShops42Title = "Shop42"
     case groupboxVersionTitle = "Version Info"
 }
@@ -93,7 +93,7 @@ struct HelpAbout: View {
 
 
 // #2 - Bugs
-enum HelpBugsLabel: String {
+private enum HelpBugsLabel: String {
     case emailTitle = "Faultreport"
     case groupboxBugsTitle = "Report"
 }
@@ -194,7 +194,7 @@ struct HelpBugs: View {
 
 // #3 - Authentication
 
-enum HelpAuthLabel: String {
+private enum HelpAuthLabel: String {
     case groupboxAuthTitle = "OAuth2"
 }
 
@@ -241,7 +241,7 @@ struct HelpAuth: View {
 }
 
 
-enum HelpCreditsLabel: String {
+private enum HelpCreditsLabel: String {
     case groupboxOAuth = "AppAuth"
     case groupboxChatGPT = "ChatGPT"
 }

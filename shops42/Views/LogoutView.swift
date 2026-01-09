@@ -15,7 +15,7 @@ import P42_utils
 import P42_screenelements
 import P42_colormanager
 
-enum LogoutLabel: String {
+private enum LogoutLabel: String {
     case warning
     case info = "By pressing Logout, you will revoke access to Shopify merchant-data.\n\nIn order to use the Watch app again, you need to re-authenticate"
 }

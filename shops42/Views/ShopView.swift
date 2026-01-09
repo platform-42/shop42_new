@@ -12,7 +12,7 @@ import P42_viewmodifiers
 import P42_colormanager
 
 
-enum ShopLabel: String {
+private enum ShopLabel: String {
     case title = "Add Shop"
     case storename = "Enter storename ..."
 }

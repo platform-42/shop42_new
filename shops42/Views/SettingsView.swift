@@ -12,7 +12,7 @@ import P42_sound
 import P42_colormanager
 
 
-enum SettingsSection: String {
+private enum SettingsSection: String {
     case activity
     case alerts
     case limits
@@ -20,7 +20,7 @@ enum SettingsSection: String {
 }
 
 
-enum SettingsItem: String {
+private enum SettingsItem: String {
     case orders = "Show Orders"
     case history = "Show Orders History"
     case revenue = "Show Revenue"
@@ -85,16 +85,14 @@ struct SettingsView: View {
                         Label(SettingsItem.products.rawValue, systemImage: Icon.products.rawValue)
                     }
                 } header: {
-                    Text(SettingsSection.activity.rawValue.uppercased())
-                        .font(.headline)
+                    Text(SettingsSection.activity.rawValue.uppercased()).font(.headline)
                 }
                 Section {
                     Toggle(isOn: $udModel.showAbandoned) {
                         Label(SettingsItem.abandoned.rawValue, systemImage: Icon.abandoned.rawValue)
                     }
                 } header: {
-                    Text(SettingsSection.alerts.rawValue.uppercased())
-                        .font(.headline)
+                    Text(SettingsSection.alerts.rawValue.uppercased()).font(.headline)
                 }
                 Section {
                     Toggle(isOn: $udModel.autoSync) {
@@ -105,8 +103,7 @@ struct SettingsView: View {
                     }
 
                 } header: {
-                    Text(SettingsSection.controls.rawValue.uppercased())
-                        .font(.headline)
+                    Text(SettingsSection.controls.rawValue.uppercased()).font(.headline)
                 }
             }
             .alert(alertModel.topicTitle, isPresented: $showAlert) {

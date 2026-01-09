@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum LaunchLabel: String {
+private enum LaunchLabel: String {
     case title = "Shopify Sales"
 }
 
