@@ -9,7 +9,7 @@ import SwiftUI
 import P42_viewmodifiers
 
 
-enum MainLabel: String {
+private enum MainLabel: String {
     case licenseSync = "License Sync"
     case regularSync = "Please Sync"
 }
@@ -17,25 +17,25 @@ enum MainLabel: String {
 struct MainView: View {
     
     let watch = WatchReceive()
-    @StateObject var portfolio: PortfolioModel = PortfolioModel.instance
+    @StateObject var portfolioModel: PortfolioModel = PortfolioModel.instance
 
     var body: some View {
         TabView {
-            ForEach(portfolio.selectedViews.sorted(), id: \.self) { viewEnum in
+            ForEach(portfolioModel.selectedViews.sorted(), id: \.self) { viewEnum in
                 view(for: viewEnum)
-                    .environmentObject(portfolio)
+                    .environmentObject(portfolioModel)
             }
         }
         .modifier(
             EmptyModifier(
-                numberOfItems: portfolio.numberOfViews,
+                numberOfItems: portfolioModel.numberOfViews,
                 placeholder: VStack {
                     Image("AppIconReview")
                         .resizable()
                         .frame(width: 60, height: 60)
                         .cornerRadius(15.0)
                     Label(
-                        portfolio.licenseCheck ? MainLabel.licenseSync.rawValue : MainLabel.regularSync.rawValue,
+                        portfolioModel.licenseCheck ? MainLabel.licenseSync.rawValue : MainLabel.regularSync.rawValue,
                         systemImage: Icon.sync.rawValue
                     )
                     .labelStyle(BackgroundLabelStyle(

@@ -42,7 +42,7 @@ struct ProductsView: View {
         }
     }
     
-    @EnvironmentObject var portfolio: PortfolioModel
+    @EnvironmentObject var portfolioModel: PortfolioModel
     @State private var productsModel: ProductsModel = ProductsModel()
     var meta: Meta = Meta(2)
     
@@ -63,7 +63,7 @@ struct ProductsView: View {
                 widgetState: ProductsModel.indicatorArrowLogic(products: productsModel.today)
             )
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(topic: portfolio.selectedShop) {
+                FooterView(topic: portfolioModel.selectedShop) {
                     DelayBadge(
                         now: context.date,
                         lastUpdate: productsModel.lastUpdate,
@@ -73,10 +73,10 @@ struct ProductsView: View {
             }
         }
         .onAppear {
-            self.productsRestAPI(meta: meta, portfolio: portfolio, model: productsModel)
+            self.productsRestAPI(meta: meta, portfolio: portfolioModel, model: productsModel)
         }
-        .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.productsRestAPI(meta: meta, portfolio: portfolio, model: productsModel)
+        .onChange(of: portfolioModel.selectedShop) { oldValue, newValue in
+            self.productsRestAPI(meta: meta, portfolio: portfolioModel, model: productsModel)
         }
     }
 }

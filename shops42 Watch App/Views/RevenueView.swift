@@ -11,7 +11,7 @@ import P42_extensions
 import P42_watchos_widgets
 
 
-enum RevenueLabel: String {
+private enum RevenueLabel: String {
     case unpaid = "Unpaid"
 }
 
@@ -38,7 +38,7 @@ struct RevenueView: View {
         }
     }
     
-    @EnvironmentObject var portfolio: PortfolioModel
+    @EnvironmentObject var portfolioModel: PortfolioModel
     @State private var revenueModel: RevenueModel = RevenueModel()
     var meta: Meta = Meta(1)
     
@@ -73,10 +73,10 @@ struct RevenueView: View {
             }
         }
         .onAppear {
-            self.revenueRestAPI(meta: meta, portfolio: portfolio, model: revenueModel)
+            self.revenueRestAPI(meta: meta, portfolio: portfolioModel, model: revenueModel)
         }
-        .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.revenueRestAPI(meta: meta, portfolio: portfolio, model: revenueModel)
+        .onChange(of: portfolioModel.selectedShop) { oldValue, newValue in
+            self.revenueRestAPI(meta: meta, portfolio: portfolioModel, model: revenueModel)
         }
     }
 }

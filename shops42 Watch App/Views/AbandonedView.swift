@@ -11,7 +11,7 @@ import P42_extensions
 import P42_watchos_widgets
 
 
-enum AbandonedLabel: String {
+private enum AbandonedLabel: String {
     case missed = "Missed"
 }
 
@@ -38,7 +38,7 @@ struct AbandonedView: View {
         }
     }
     
-    @EnvironmentObject var portfolio: PortfolioModel
+    @EnvironmentObject var portfolioModel: PortfolioModel
     @State private var abandonedModel: AbandonedModel = AbandonedModel()
     var meta: Meta = Meta(1)
     
@@ -62,7 +62,7 @@ struct AbandonedView: View {
                 widgetStatus: AbandonedModel.indicatorFieldlogic(abandonedModel.today)
             )
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(topic: portfolio.selectedShop) {
+                FooterView(topic: portfolioModel.selectedShop) {
                     DelayBadge(
                         now: context.date,
                         lastUpdate: abandonedModel.lastUpdate,
@@ -72,10 +72,10 @@ struct AbandonedView: View {
             }
         }
         .onAppear {
-            self.abandonedRestAPI(meta: meta, portfolio: portfolio, model: abandonedModel)
+            self.abandonedRestAPI(meta: meta, portfolio: portfolioModel, model: abandonedModel)
         }
-        .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.abandonedRestAPI(meta: meta, portfolio: portfolio, model: abandonedModel)
+        .onChange(of: portfolioModel.selectedShop) { oldValue, newValue in
+            self.abandonedRestAPI(meta: meta, portfolio: portfolioModel, model: abandonedModel)
         }
     }
 }

@@ -11,7 +11,7 @@ import P42_extensions
 import P42_watchos_widgets
 
 
-enum OrdersLabel: String {
+private enum OrdersLabel: String {
     case unpaid = "Unpaid"
 }
 
@@ -47,7 +47,7 @@ struct OrdersView: View {
         }
     }
     
-    @EnvironmentObject var portfolio: PortfolioModel
+    @EnvironmentObject var portfolioModel: PortfolioModel
     @State private var ordersModel: OrdersModel = OrdersModel()
     var meta: Meta = Meta(2)
     
@@ -76,10 +76,10 @@ struct OrdersView: View {
             }
         }
         .onAppear {
-            self.ordersRestAPI(meta: meta, portfolio: portfolio, model: ordersModel)
+            self.ordersRestAPI(meta: meta, portfolio: portfolioModel, model: ordersModel)
         }
-        .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.ordersRestAPI(meta: meta, portfolio: portfolio, model: ordersModel)
+        .onChange(of: portfolioModel.selectedShop) { oldValue, newValue in
+            self.ordersRestAPI(meta: meta, portfolio: portfolioModel, model: ordersModel)
         }
     }
 }

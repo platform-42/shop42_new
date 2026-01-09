@@ -11,7 +11,7 @@ import P42_viewmodifiers
 import P42_watchos_widgets
 
 
-enum HistoryLabel: String {
+private enum HistoryLabel: String {
     case noOrders = "No orders"
 }
 
@@ -39,7 +39,7 @@ struct HistoryView: View {
         }
     }
     
-    @EnvironmentObject var portfolio: PortfolioModel
+    @EnvironmentObject var portfolioModel: PortfolioModel
     @State private var historyModel: HistoryModel = HistoryModel()
     var meta: Meta = Meta(1)
     
@@ -89,7 +89,7 @@ struct HistoryView: View {
             .scrollIndicators(.hidden)
             .listStyle(CarouselListStyle())
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(topic: portfolio.selectedShop) {
+                FooterView(topic: portfolioModel.selectedShop) {
                     DelayBadge(
                         now: context.date,
                         lastUpdate: historyModel.lastUpdate,
@@ -99,10 +99,10 @@ struct HistoryView: View {
             }
         }
         .onAppear {
-            self.historyRestAPI(meta: meta, portfolio: portfolio, model: historyModel)
+            self.historyRestAPI(meta: meta, portfolio: portfolioModel, model: historyModel)
         }
-        .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.historyRestAPI(meta: meta, portfolio: portfolio, model: historyModel)
+        .onChange(of: portfolioModel.selectedShop) { oldValue, newValue in
+            self.historyRestAPI(meta: meta, portfolio: portfolioModel, model: historyModel)
         }
     }
 }

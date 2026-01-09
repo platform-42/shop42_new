@@ -42,7 +42,7 @@ struct CustomersView: View {
         }
     }
     
-    @EnvironmentObject var portfolio: PortfolioModel
+    @EnvironmentObject var portfolioModel: PortfolioModel
     @State private var customersModel: CustomersModel = CustomersModel()
     var meta: Meta = Meta(2)
     
@@ -63,7 +63,7 @@ struct CustomersView: View {
                 widgetState: CustomersModel.indicatorArrowLogic(customers: customersModel.today)
             )
             TimelineView(.periodic(from: .now, by: 120)) { context in
-                FooterView(topic: portfolio.selectedShop) {
+                FooterView(topic: portfolioModel.selectedShop) {
                     DelayBadge(
                         now: context.date,
                         lastUpdate: customersModel.lastUpdate,
@@ -73,10 +73,10 @@ struct CustomersView: View {
             }
         }
         .onAppear {
-            self.customersRestAPI(meta: meta, portfolio: portfolio, model: customersModel)
+            self.customersRestAPI(meta: meta, portfolio: portfolioModel, model: customersModel)
         }
-        .onChange(of: portfolio.selectedShop) { oldValue, newValue in
-            self.customersRestAPI(meta: meta, portfolio: portfolio, model: customersModel)
+        .onChange(of: portfolioModel.selectedShop) { oldValue, newValue in
+            self.customersRestAPI(meta: meta, portfolio: portfolioModel, model: customersModel)
         }
     }
 }

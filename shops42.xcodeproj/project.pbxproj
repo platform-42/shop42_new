@@ -11,6 +11,7 @@
 		065387082C53B37B0012B07F /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065387062C53B3610012B07F /* WatchView.swift */; };
 		067035D42C53D54400622F6C /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067035D32C53D54400622F6C /* HistoryModel.swift */; };
 		B242A9A92B6D28F10058DD06 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B242A9A82B6D28F10058DD06 /* StoreKit.framework */; };
+		DE0E90952F111426001E5351 /* ProportionalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E90942F111419001E5351 /* ProportionalPage.swift */; };
 		DE1E580A2EF0868300C149CC /* P42-screenelements in Frameworks */ = {isa = PBXBuildFile; productRef = DE1E58092EF0868300C149CC /* P42-screenelements */; };
 		DE3375262F0DA0140000C50B /* BadgedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3375252F0DA00D0000C50B /* BadgedView.swift */; };
 		DE3770AE2EF69F6800F5B131 /* P42-colormanager in Frameworks */ = {isa = PBXBuildFile; productRef = DE3770AD2EF69F6800F5B131 /* P42-colormanager */; };
@@ -118,6 +119,7 @@
 		4A2C185E2A311BEC8162BB69 /* Pods-shops42.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shops42.debug.xcconfig"; path = "Target Support Files/Pods-shops42/Pods-shops42.debug.xcconfig"; sourceTree = "<group>"; };
 		A0DA646D802B53ADDE367928 /* Pods_shops42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shops42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B242A9A82B6D28F10058DD06 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		DE0E90942F111419001E5351 /* ProportionalPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProportionalPage.swift; sourceTree = "<group>"; };
 		DE1E58052EF0721900C149CC /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		DE309F962C528EDB00FAEE23 /* TransactionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObserver.swift; sourceTree = "<group>"; };
 		DE3375252F0DA00D0000C50B /* BadgedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgedView.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 		DE8CC7C42B5E72B700E307F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DE0E90942F111419001E5351 /* ProportionalPage.swift */,
 				DE938C4A2C9A077B0098E1FB /* HistoryView.swift */,
 				DE8CC7C52B5E72B700E307F4 /* CustomersView.swift */,
 				DE8CC7C62B5E72B700E307F4 /* ProductsView.swift */,
@@ -834,6 +837,7 @@
 				065387082C53B37B0012B07F /* WatchView.swift in Sources */,
 				DE8CC75C2B5E727500E307F4 /* Enumerators.swift in Sources */,
 				DE8CC7D42B5E72B700E307F4 /* CustomersModel.swift in Sources */,
+				DE0E90952F111426001E5351 /* ProportionalPage.swift in Sources */,
 				DE8CC7CE2B5E72B700E307F4 /* WatchReceive.swift in Sources */,
 				DE8CC76C2B5E727600E307F4 /* View.swift in Sources */,
 				DEB418572EFABA5200B3F7B0 /* DebugUtils.swift in Sources */,
