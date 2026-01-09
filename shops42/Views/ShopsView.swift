@@ -69,7 +69,6 @@ struct ShopsSyncView: View {
     @Environment(ColorManager.self) var colorManager
     @EnvironmentObject var udModel: UDModel
 
-    @State private var isPressed: Bool = false
     @State private var showAlert: Bool = false
     
     @MainActor
@@ -136,7 +135,6 @@ struct ShopsSyncView: View {
 struct ShopsAuthView: View {
     @Environment(PortfolioModel.self) var portfolio
     @Environment(ColorManager.self) var colorManager
-    @State private var isPressed = false
     var body: some View {
         VStack {
             HStack {

@@ -17,11 +17,6 @@ enum Logo: String {
     case warning = "exclamationmark.triangle.fill"
 }
 
-enum Watermark: String {
-    case graph = "Graph"
-    case compass = "Comnpass"
-    case horus = "Horus"
-}
 
 enum Icon: String {
     case logo = "Logo"

@@ -1,9 +1,5 @@
+project: shops42.xcworkspace
 retain_objc_accessible: true
-retain_public: true
 schemes:
 - shops42
 - shops42 Watch App
-targets:
-- shops42
-- shops42 Watch App
-workspace: shops42.xcworkspace

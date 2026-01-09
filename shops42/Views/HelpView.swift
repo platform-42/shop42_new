@@ -22,12 +22,6 @@ private enum HelpLabel: String {
 }
 
 
-private enum SMTPLabel: String {
-    case title
-    case subject
-}
-
-
 // 1
 private enum HelpAboutLabel: String {
     case groupboxShops42Title = "Shop42"
